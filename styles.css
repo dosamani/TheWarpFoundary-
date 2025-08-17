@@ -21,7 +21,9 @@ a{color:var(--fg);text-decoration:none}
   background-color: rgba(17, 17, 17, 0.7); 
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px); /* Safari support */
+margin-bottom: 20px; /* adds space under header */
 }
+
 .btn{background:linear-gradient(90deg,var(--accent2),var(--accent));padding:10px 16px;border-radius:12px;font-weight:700;display:inline-block;cursor:pointer}
 .btn.small{padding:8px 12px;font-size:14px}
 .btn.ghost{background:transparent;border:1px solid #2a365e}
