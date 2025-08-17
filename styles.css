@@ -250,3 +250,18 @@ textarea,select,input{width:100%;border-radius:12px;border:1px solid #22305a;bac
     margin-bottom: 4px;
   }
 }
+.logo-text {
+  font-size: 1.8rem;         /* slightly larger */
+  font-weight: 900;          /* bolder */
+  color: #5b7cff;            /* Warp = purple-blue */
+  text-decoration: none;
+  letter-spacing: 0.5px;     /* subtle spacing */
+}
+
+.logo-text span {
+  color: #eaf2ff;            /* Foundary = light blue */
+}
+
+.logo-text:hover {
+  text-shadow: 0 0 8px rgba(91,124,255,0.6);  /* glow effect on hover */
+}
