@@ -306,6 +306,47 @@ textarea,select,input{width:100%;border-radius:12px;border:1px solid #22305a;bac
   background: #eaf2ff;
   transition: transform .2s ease, opacity .2s ease;
 }
+header.nav.open .menu-toggle span:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+/* --- Site menu (links) --- */
+.site-menu {
+  display: flex;
+  gap: 16px;
+}
+
+/* Hide menu on mobile until opened */
+@media (max-width: 860px) {
+  .site-menu {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 64px;
+    right: 16px;
+    background: rgba(20, 20, 35, 0.95);
+    padding: 12px 16px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    z-index: 1000;
+  }
+
+  header.nav.open .site-menu {
+    display: flex;
+  }
+
+  .site-menu a {
+    padding: 8px 12px;
+    white-space: nowrap;
+  }
+}
+
+/* --- Mobile layout --- */
+@media (max-width: 860px) {
+  /* you already have more rules here */
+  .menu-toggle { display: flex; }
+  /* etc */
+}
 
 /* Animate to an "X" when open */
 header.nav.open .menu-toggle span:nth-child(1) {
