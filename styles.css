@@ -10,38 +10,44 @@ body {
   padding-top: 80px; /* keeps content below header */
 }
 a{color:var(--fg);text-decoration:none}
-.nav{max-width:1100px;margin:16px auto;display:flex;align-items:center;justify-content:space-between;padding:8px 16px}
-.brand{display:flex;gap:10px;align-items:center;font-weight:800}
-.nav {
-  position: sticky;          /* keeps it visible when scrolling */
-  top: 0;                    /* stick to very top */
-  z-index: 1000;             /* stay above other content */
-
-  display: flex;
-  justify-content: flex-end; /* push links to the right */
-  align-items: center;
-  gap: 20px;                 /* space between links */
-  padding: 10px 20px;
-
-  /* Glass effect */
-  background-color: rgba(17, 17, 17, 0.7); 
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px); /* Safari support */
-margin-bottom: 20px; /* adds space under header */
+/* Navigation links */
+nav a {
+  color: #eaf2ff;
+  font-weight: 500;
+  padding: 8px 14px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
 }
+
+nav a:hover {
+  background: rgba(255,255,255,0.1);
+  color: #ffffff;
+}
+
+nav a.active {
+  color: #5b7cff;
+  font-weight: 600;
+}
+
+/* Nav container */
 .nav {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
+  max-width: 1100px;
+  margin: 16px auto;
   display: flex;
-  justify-content: flex-end;
   align-items: center;
+  justify-content: flex-end;  /* push links to the right */
   gap: 20px;
   padding: 10px 20px;
-  background-color: rgba(17, 17, 17, 0.7);
+
+  position: sticky;  /* keep visible on scroll */
+  top: 0;
+  z-index: 1000;
+
+  background-color: rgba(17, 17, 17, 0.7); /* subtle glass effect */
   backdrop-filter: blur(8px);
-  margin-bottom: 20px;
 }
+brand{display:flex;gap:10px;align-items:center;font-weight:800}
 
 /* 👇 ADD THIS NEW BLOCK BELOW */
 nav a {
