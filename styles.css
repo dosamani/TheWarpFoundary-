@@ -54,7 +54,17 @@ nav a.active {
   font-size: 1.2rem;
   color: #eaf2ff;
 }
+.logo-text {
+  font-size: 1.6rem;   /* bigger font */
+  font-weight: 800;    /* extra bold */
+  letter-spacing: -0.5px;  /* tighten spacing slightly */
+  text-decoration: none;
+  color: #5b7cff;      /* main color */
+}
 
+.logo-text span {
+  color: #eaf2ff;      /* highlight second word */
+}
 
 /* 👇 ADD THIS NEW BLOCK BELOW */
 nav a {
