@@ -78,3 +78,9 @@ textarea,select,input{width:100%;border-radius:12px;border:1px solid #22305a;bac
   text-decoration: underline;
   transition: all 0.3s ease;
 }
+/* Active nav link style */
+.nav a.active {
+  color: #7e8fb7;       /* same soft accent color */
+  text-decoration: underline; 
+  font-weight: 600;     /* slightly bolder to stand out */
+}
