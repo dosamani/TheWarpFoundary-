@@ -29,6 +29,47 @@ a{color:var(--fg);text-decoration:none}
   -webkit-backdrop-filter: blur(8px); /* Safari support */
 margin-bottom: 20px; /* adds space under header */
 }
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 20px;
+  padding: 10px 20px;
+  background-color: rgba(17, 17, 17, 0.7);
+  backdrop-filter: blur(8px);
+  margin-bottom: 20px;
+}
+
+/* 👇 ADD THIS NEW BLOCK BELOW */
+nav a {
+  color: #eaf2ff;
+  font-weight: 500;
+  padding: 8px 14px;
+  border-radius: 6px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+nav a:hover {
+  background: rgba(255,255,255,0.1);
+  color: #ffffff;
+}
+
+nav a.active {
+  color: #5b7cff;
+  font-weight: 600;
+}
+
+nav {
+  display: flex;
+  gap: 12px;
+}
+
+nav .btn {
+  margin-left: 8px;
+}
 
 .btn{background:linear-gradient(90deg,var(--accent2),var(--accent));padding:10px 16px;border-radius:12px;font-weight:700;display:inline-block;cursor:pointer}
 .btn.small{padding:8px 12px;font-size:14px}
