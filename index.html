@@ -7,7 +7,29 @@
   <meta name="description" content="WarpFoundary turns ideas into investor-ready MVPs with AI." />
   <link rel="stylesheet" href="styles.css" />
 </head>
+<script>
+(function () {
+  const header = document.querySelector('header.nav');
+  const toggle = document.getElementById('menuToggle');
+  const menu   = document.getElementById('site-menu');
+  if (!header || !toggle || !menu) return;
 
+  toggle.addEventListener('click', () => {
+    const open = header.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open);
+    toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  });
+
+  // close menu after tapping a link (mobile)
+  menu.querySelectorAll('a').forEach(a =>
+    a.addEventListener('click', () => {
+      header.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-label', 'Open menu');
+    })
+  );
+})();
+</script>
 <body>
   <!-- =================== HEADER / NAV =================== -->
   <header class="nav">
