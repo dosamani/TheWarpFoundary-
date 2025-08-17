@@ -72,3 +72,9 @@ textarea,select,input{width:100%;border-radius:12px;border:1px solid #22305a;bac
   color: white; /* adjust to match theme */
   font-weight: 500;
 }
+
+.nav a:hover {
+  color: #7e8fb7;          /* soft accent color */
+  text-decoration: underline;
+  transition: all 0.3s ease;
+}
