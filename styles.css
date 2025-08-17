@@ -117,16 +117,16 @@ textarea,select,input{width:100%;border-radius:12px;border:1px solid #22305a;bac
 @media (max-width:640px){h1{font-size:30px}.grid{grid-template-columns:1fr}}
 /* Fix nav spacing + sticky header */
 .nav {
-  position: sticky;   /* keeps it visible when scrolling */
-  top: 0;             /* stick to very top */
-  z-index: 1000;      /* stay above other content */
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 
   display: flex;
-  justify-content: flex-end; /* push links to right */
+  justify-content: space-between;  /* ✅ logo left, links right */
   align-items: center;
-  gap: 20px;          /* space between links */
-  padding: 10px 20px; /* some breathing room */
-  background-color: #111; /* dark background so links don’t overlap content */
+  gap: 20px;
+  padding: 10px 20px;
+  background-color: #111;
 }
 
 .nav a {
@@ -265,4 +265,13 @@ textarea,select,input{width:100%;border-radius:12px;border:1px solid #22305a;bac
 
 .logo-text:hover {
   text-shadow: 0 0 8px rgba(91,124,255,0.6);  /* glowing effect on hover */
+}
+.logo-text {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #5b7cff;        /* Warp */
+  text-decoration: none;
+}
+.logo-text span {
+  color: #eaf2ff;        /* Foundary */
 }
