@@ -2,7 +2,13 @@
   --bg:#0a0b12; --card:#121527; --fg:#eaf2ff; --muted:#9fb0d9; --accent:#7a5cff; --accent2:#6b8cff;
 }
 *{box-sizing:border-box}html,body{margin:0;padding:0}
-body{background:radial-gradient(1200px 600px at 10% -10%,#151a32,transparent),#0a0b12;color:var(--fg);font:16px/1.6 system-ui,Segoe UI,Inter,Roboto,Arial}
+body {
+  background: radial-gradient(1200px 600px at 10% -10%, #151a32, transparent),
+              #0a0b12;
+  color: var(--fg);
+  font: 16px/1.6 system-ui, Segoe UI, Inter, Roboto, Arial;
+  padding-top: 80px; /* keeps content below header */
+}
 a{color:var(--fg);text-decoration:none}
 .nav{max-width:1100px;margin:16px auto;display:flex;align-items:center;justify-content:space-between;padding:8px 16px}
 .brand{display:flex;gap:10px;align-items:center;font-weight:800}
