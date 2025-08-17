@@ -34,20 +34,29 @@
     </div>
   </div>
 </section>
-
 <section id="generator" class="generator">
   <h2>Interactive demo</h2>
   <p class="muted">Describe an idea and see an instant mock output.</p>
+
   <div class="gen-grid">
     <div class="left">
-      <label>Your idea</label>
+      <!-- Idea input -->
+      <label for="idea">Your idea</label>
       <textarea id="idea" placeholder="e.g., Social fitness app that pairs solo runners by pace and location."></textarea>
+
+      <!-- Build Type dropdown -->
       <div class="row">
-        <label>Build Type</label>
-        <select id="buildType"><option>Web App</option><option>Mobile App</option><option>API</option></select>
+        <label for="buildType">Build Type</label>
+        <select id="buildType">
+          <option>Web App</option>
+          <option>Mobile App</option>
+          <option>API</option>
+        </select>
       </div>
+
+      <!-- LLM dropdown -->
       <div class="row">
-        <label>Region-Safe LLM</label>
+        <label for="llm">Region-Safe LLM</label>
         <select id="llm">
           <option value="smart">Smart Select (default)</option>
           <option value="openai">OpenAI</option>
@@ -56,26 +65,17 @@
           <option value="deepseek">DeepSeek</option>
         </select>
       </div>
+
+      <!-- Extra tools -->
       <div class="checks">
-        <label><input type="checkbox" id="rev" checked/> Revenue Estimator</label>
-        <label><input type="checkbox" id="tm" checked/> TM/Domain Check</label>
-        <label><input type="checkbox" id="radar" checked/> Stealth Radar</label>
+        <label><input type="checkbox" id="rev" checked /> Revenue Estimator</label>
+        <label><input type="checkbox" id="tm" checked /> TM/Domain Check</label>
+        <label><input type="checkbox" id="radar" checked /> Stealth Radar</label>
       </div>
+
+      <!-- Submit -->
       <button id="go" class="btn">Generate Startup 🚀</button>
     </div>
-    <div class="right">
-      <pre id="out" class="out" aria-live="polite">// Your result will appear here…</pre>
-    </div>
-  </div>
-</section>
-
-<section id="how" class="how">
-  <h2>How it works</h2>
-  <div class="steps">
-    <div class="step"><div class="num">1</div><h3>Describe your idea</h3><p>Paste a brief or answer a short guided form. No jargon required.</p></div>
-    <div class="step"><div class="num">2</div><h3>AI assembles your MVP</h3><p>We draft code, UI, copy, and a functional demo you can deploy in minutes.</p></div>
-    <div class="step"><div class="num">3</div><h3>One‑click launch kit</h3><p>Pitch deck, landing page, and growth hooks come included.</p></div>
-    <div class="step"><div class="num">4</div><h3>Iterate & ship</h3><p>Tune features, connect APIs, and go live. Keep ownership of your code.</p></div>
   </div>
 </section>
 
