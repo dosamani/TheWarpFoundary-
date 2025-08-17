@@ -92,3 +92,107 @@ textarea,select,input{width:100%;border-radius:12px;border:1px solid #22305a;bac
   text-decoration: underline; 
   font-weight: 600;     /* slightly bolder to stand out */
 }
+/* ==== Generator form polish ==== */
+.generator {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 32px 16px 40px;
+}
+
+.gen-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+/* rows stack nicely with even spacing */
+.generator .row {
+  display: grid;
+  grid-template-columns: 160px 1fr; /* label | control */
+  align-items: center;
+  gap: 12px;
+}
+
+/* labels */
+.generator label {
+  color: #9fb0d9;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+/* inputs, selects, textarea share a look */
+.generator textarea,
+.generator select,
+.generator input[type="text"] {
+  width: 100%;
+  background: #0e1430;
+  border: 1px solid #22305a;
+  color: #eaf2ff;
+  border-radius: 10px;
+  padding: 12px 14px;
+  outline: none;
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+
+/* taller idea box */
+#idea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* focus/hover */
+.generator textarea:hover,
+.generator select:hover,
+.generator input[type="text"]:hover {
+  border-color: #2a3a7a;
+}
+.generator textarea:focus,
+.generator select:focus,
+.generator input[type="text"]:focus {
+  border-color: #5b7cff;
+  box-shadow: 0 0 0 3px rgba(91,124,255,.15);
+}
+
+/* checkboxes line up and breathe */
+.generator .checks {
+  display: grid;
+  gap: 10px;
+  margin-top: 6px;
+}
+.generator .checks label {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  color: #cbd7ff;
+  font-size: 14px;
+}
+.generator .checks input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #7e8fb7;
+}
+
+/* submit button spacing */
+#go {
+  margin-top: 14px;
+  width: 100%;
+}
+
+/* section header + helper text */
+.generator h2 {
+  margin: 6px 0 8px;
+}
+.generator .muted {
+  color: #7e8fb7;
+  margin: 0 0 18px;
+}
+
+/* Responsive tweaks */
+@media (max-width: 780px) {
+  .generator .row {
+    grid-template-columns: 1fr; /* stack label over control */
+  }
+  .generator label {
+    margin-bottom: 4px;
+  }
+}
