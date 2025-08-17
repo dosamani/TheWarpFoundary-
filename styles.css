@@ -55,15 +55,20 @@ nav a.active {
   color: #eaf2ff;
 }
 .logo-text {
-  font-size: 1.6rem;   /* bigger font */
-  font-weight: 800;    /* extra bold */
-  letter-spacing: -0.5px;  /* tighten spacing slightly */
+  font-size: 1.8rem;          /* larger font */
+  font-weight: 900;           /* bold */
+  color: #5b7cff;             /* Warp = purple-blue */
   text-decoration: none;
-  color: #5b7cff;      /* main color */
+  letter-spacing: 0.5px;      /* subtle spacing */
+  transition: text-shadow 0.3s ease; /* smooth glow effect */
 }
 
 .logo-text span {
-  color: #eaf2ff;      /* highlight second word */
+  color: #eaf2ff;             /* Foundary = light blue */
+}
+
+.logo-text:hover {
+  text-shadow: 0 0 8px rgba(91, 124, 255, 0.6); /* glowing hover effect */
 }
 
 /* 👇 ADD THIS NEW BLOCK BELOW */
@@ -264,29 +269,4 @@ textarea,select,input{width:100%;border-radius:12px;border:1px solid #22305a;bac
   .generator label {
     margin-bottom: 4px;
   }
-}
-.logo-text {
-  font-size: 1.8rem;         /* slightly larger */
-  font-weight: 900;          /* bold */
-  color: #5b7cff;            /* Warp = purple-blue */
-  text-decoration: none;
-  letter-spacing: 0.5px;     /* subtle spacing */
-  transition: text-shadow 0.3s ease; /* smooth glow effect */
-}
-
-.logo-text span {
-  color: #eaf2ff;            /* Foundary = light blue */
-}
-
-.logo-text:hover {
-  text-shadow: 0 0 8px rgba(91,124,255,0.6);  /* glowing effect on hover */
-}
-.logo-text {
-  font-size: 1.5rem;
-  font-weight: 800;
-  color: #5b7cff;        /* Warp */
-  text-decoration: none;
-}
-.logo-text span {
-  color: #eaf2ff;        /* Foundary */
 }
