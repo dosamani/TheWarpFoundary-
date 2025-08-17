@@ -75,9 +75,14 @@ nav a.active {
   font-weight: 600;
 }
 
+/* 🔹 Your new block */
 nav {
   display: flex;
   gap: 12px;
+}
+
+.brand {
+  flex: 1;   /* ✅ pushes logo to the far left */
 }
 
 nav .btn {
