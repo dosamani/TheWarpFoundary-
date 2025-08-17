@@ -391,3 +391,44 @@ header.nav.open .menu-toggle span:nth-child(3) {
   .menu-toggle { display: none; }
   header.nav #site-menu { position: static; display: flex; }
 }
+/* --- Mobile layout --- */
+@media (max-width: 860px) {
+  .site-menu a {
+    padding: 8px 12px;
+    white-space: nowrap;
+  }
+}   /* ← this closing curly ends the media query */
+
+
+/* --- FAQ Section --- */
+.faq {
+  padding: 60px 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.faq h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #eaf2ff;
+}
+
+.faq-list article {
+  margin-bottom: 24px;
+  padding: 16px;
+  border-radius: 8px;
+  background: rgba(234, 242, 255, 0.05);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.faq-list h3 {
+  font-size: 1.25rem;
+  margin-bottom: 8px;
+  color: #eaf2ff;
+}
+
+.faq-list p {
+  line-height: 1.6;
+  color: #ccc;
+}
