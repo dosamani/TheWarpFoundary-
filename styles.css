@@ -6,7 +6,22 @@ body{background:radial-gradient(1200px 600px at 10% -10%,#151a32,transparent),#0
 a{color:var(--fg);text-decoration:none}
 .nav{max-width:1100px;margin:16px auto;display:flex;align-items:center;justify-content:space-between;padding:8px 16px}
 .brand{display:flex;gap:10px;align-items:center;font-weight:800}
-.nav nav{display:flex;gap:16px;align-items:center}
+.nav {
+  position: sticky;          /* keeps it visible when scrolling */
+  top: 0;                    /* stick to very top */
+  z-index: 1000;             /* stay above other content */
+
+  display: flex;
+  justify-content: flex-end; /* push links to the right */
+  align-items: center;
+  gap: 20px;                 /* space between links */
+  padding: 10px 20px;
+
+  /* Glass effect */
+  background-color: rgba(17, 17, 17, 0.7); 
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px); /* Safari support */
+}
 .btn{background:linear-gradient(90deg,var(--accent2),var(--accent));padding:10px 16px;border-radius:12px;font-weight:700;display:inline-block;cursor:pointer}
 .btn.small{padding:8px 12px;font-size:14px}
 .btn.ghost{background:transparent;border:1px solid #2a365e}
