@@ -182,7 +182,9 @@ textarea,select,input{width:100%;border-radius:12px;border:1px solid #22305a;bac
 .card{background:linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0.02));border:1px solid #1b2341;border-radius:16px;padding:16px}
 .badge{display:inline-block;background:#0e1330;border:1px solid #273057;border-radius:999px;padding:4px 8px;font-size:12px;color:#a9b7e3;margin-bottom:8px}
 .faq details{background:#0e1330;border:1px solid #273057;border-radius:12px;padding:12px;margin:8px 0}
-.cta{text-align:center}
+.cta {
+  text-align: center;
+}
 #signup{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:10px}
 #signup input{min-width:240px}
 .thanks{color:#b4c4ff}
