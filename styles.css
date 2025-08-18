@@ -401,6 +401,13 @@ header.nav.open .menu-toggle span:nth-child(3) {
 
 
 /* --- FAQ Section --- */
+/* Collapsible FAQ items */
+.faq-list details {
+  margin: 12px 0;
+  border-radius: 10px;
+  background: rgba(234, 242, 255, 0.05);
+  border: 1px solid rgba(234, 242, 255, 0.08);
+  box-shadow:
 .faq {
   padding: 60px 20px;
   max-width: 800px;
