@@ -141,6 +141,7 @@ h1{font-size:38px;line-height:1.15;margin:10px 0 8px}
   gap: 24px;
 }
 
+
 @media (min-width: 768px) {
   .portfolio .grid {
     grid-template-columns: repeat(2, 1fr);
