@@ -134,6 +134,40 @@ h1{font-size:38px;line-height:1.15;margin:10px 0 8px}
 .sub{color:var(--muted);max-width:760px}
 .cta-row{display:flex;gap:12px;margin:16px 0 24px;flex-wrap:wrap}
 .generator,.how,.portfolio,.faq,.cta{max-width:1100px;margin:24px auto;padding:0 16px}
+/* --- Portfolio Grid --- */
+.portfolio .grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+@media (min-width: 768px) {
+  .portfolio .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.card {
+  background: rgba(234, 242, 255, 0.05);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+.card h3 {
+  margin-top: 10px;
+  color: #eaf2ff;
+}
+
+.badge {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: #111;
+  background: #eaf2ff;
+  padding: 2px 8px;
+  border-radius: 12px;
+}
 h2{font-size:26px;margin:18px 0}
 .gen-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 label{color:#9fb0d9}
