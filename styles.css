@@ -447,6 +447,12 @@ header.nav.open .menu-toggle span:nth-child(3) {
   padding: 16px;
   margin-top: 20px;
   font-family: monospace;
-  white-space: pre-wrap; /* keeps line breaks */
+  white-space: pre-wrap; /* keep line breaks */
   color: #eaf2ff;
+}
+
+.out-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
 }
