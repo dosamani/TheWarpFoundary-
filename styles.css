@@ -163,9 +163,9 @@ h1{font-size:38px;line-height:1.15;margin:10px 0 8px}
   display: inline-block;
   font-size: 0.8rem;
   font-weight: bold;
-  color: #111;
-  background: #eaf2ff;
-  padding: 2px 8px;
+  color: #fff;
+  background: linear-gradient(90deg, #8fb3ff, #b69cff);
+  padding: 4px 10px;
   border-radius: 12px;
 }
 h2{font-size:26px;margin:18px 0}
