@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Airbnb (Today’s MVP) — WarpFoundary Framework</title>
+  <meta name="description" content="Investor-ready founder kit for a short-stay marketplace MVP: scope, core screens, data model, API, GTM." />
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body class="doc">
+  <!-- =================== HEADER =================== -->
+  <header class="nav">
+    <div class="brand">
+      <a href="/" class="logo-text">Warp<span>Foundary</span></a>
+    </div>
+    <button id="menuToggle" class="menu-toggle" aria-expanded="false" aria-controls="site-menu" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="site-menu" class="site-menu">
+      <a href="/">Home</a>
+      <a href="/#replicas">Replicas</a>
+      <a href="/#generator">Try it</a>
+      <a href="/#faq">FAQ</a>
+    </nav>
+  </header>
+
+  <!-- =================== HERO =================== -->
+  <section class="hero compact">
+    <div class="hero-inner">
+      <h1>Airbnb (today’s MVP) — <span class="gradient">Founder Kit</span></h1>
+      <p class="sub">Short-stay listings: host onboarding, search + filters, bookings, payouts, reviews.</p>
+
+      <div class="cta-row">
+        <a href="/#generator"
+           class="btn"
+           data-preset
+           data-idea="Short-stay marketplace for unique homes with host onboarding, search/filters, secure booking and payouts, and review system."
+           data-type="Web App">Generate this in demo</a>
+        <a href="/#cta" class="btn ghost">Get early access</a>
+      </div>
+    </div>
+  </section>
+
+  <main class="doc-main">
+    <!-- ========== OVERVIEW ========== -->
+    <section class="doc-section">
+      <h2>Overview</h2>
+      <p><strong>Goal:</strong> Validate a supply + demand marketplace in one region with high-quality listings and safe, reliable bookings.</p>
+      <ul>
+        <li><strong>Primary users:</strong> Guests, Hosts, Ops Admin</li>
+        <li><strong>Platforms:</strong> Web App (guest + host), lightweight Admin panel</li>
+        <li><strong>Payments:</strong> Stripe Connect (host payouts), escrowed charges, refunds</li>
+        <li><strong>Risk controls:</strong> Email/phone verification, ID/KYC stub, simple fraud checks</li>
+      </ul>
+    </section>
+
+    <!-- ========== MVP SCOPE ========== -->
+    <section class="doc-section">
+      <h2>MVP Scope (must-have)</h2>
+      <ul>
+        <li><strong>Auth</strong>: email + magic link (or OAuth stub)</li>
+        <li><strong>Guest</strong>: search, filters (price, dates, guests), listing details, calendar, booking + payment</li>
+        <li><strong>Host</strong>: onboarding, create/edit listing, photos upload, pricing, availability calendar, payouts</li>
+        <li><strong>Reviews</strong>: guest→host and host→guest (post-stay)</li>
+        <li><strong>Admin</strong>: view users/listings/bookings, resolve disputes, refunds</li>
+      </ul>
+    </section>
+
+    <!-- ========== CORE SCREENS ========== -->
+    <section class="doc-section">
+      <h2>Core Screens</h2>
+      <ol>
+        <li>Home/search: location + date picker, results grid with map preview</li>
+        <li>Listing details: gallery, amenities, host profile, calendar, reviews, “Reserve” CTA</li>
+        <li>Checkout: price breakdown, fees, payment capture, confirmation</li>
+        <li>Host dashboard: listings table, create/edit flow, availability, payouts</li>
+        <li>Admin read-only panel: users, listings, bookings with basic actions</li>
+      </ol>
+    </section>
+
+    <!-- ========== DATA MODEL ========== -->
+    <section class="doc-section">
+      <h
