@@ -1,110 +1,54 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Airbnb (Today’s MVP) — WarpFoundary Framework</title>
-  <meta name="description" content="Investor-ready founder kit for a short-stay marketplace MVP: scope, screens, data model, API, GTM." />
-  <link rel="stylesheet" href="../styles.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Airbnb (today’s MVP) — Founder Kit</title>
+  <link rel="stylesheet" href="../styles.css">
 </head>
-<body class="doc">
-  <!-- HEADER -->
-  <header class="nav">
-    <div class="brand">
-      <a href="/" class="logo-text">Warp<span>Foundary</span></a>
-    </div>
-    <nav class="site-menu">
-      <a href="/">Home</a>
-      <a href="/#replicas">Replicas</a>
-      <a href="/#generator">Try it</a>
-      <a href="/#faq">FAQ</a>
-    </nav>
+<body>
+  <header>
+    <h1>WarpFoundary</h1>
   </header>
 
   <main>
-    <!-- HERO -->
-    <section class="hero compact">
-      <div class="hero-inner">
-        <h1>Airbnb (today’s MVP) — <span class="gradient">Founder Kit</span></h1>
-        <p class="sub">Short-stay listings: host onboarding, search + filters, bookings, payouts, reviews.</p>
+    <h2>Airbnb (today’s MVP) — Founder Kit</h2>
+    <p>Short-stay marketplace: host onboarding, search + filters, bookings, payouts, reviews.</p>
 
-        <div class="cta-row">
-          <!-- This button will auto-fill and run the demo on the homepage -->
-          <button
-            class="btn"
-            data-preset
-            data-idea="Short-stay marketplace for unique homes with host onboarding, search/filters, secure booking and payouts, and a review system."
-            data-type="Web App">
-            Generate this in demo
-          </button>
-
-          <a href="/#cta" class="btn ghost">Get early access</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- OVERVIEW (lite) -->
-    <section class="doc-section">
-      <h2>Overview</h2>
+    <section>
+      <h3>Overview</h3>
+      <p><strong>Goal:</strong> Validate a short-stay marketplace with host onboarding, guest booking, and reviews.</p>
       <ul>
-        <li><strong>Primary users:</strong> Guests, Hosts, Ops Admin</li>
-        <li><strong>Platforms:</strong> Web App (guest/host), Admin web panel</li>
+        <li><strong>Primary users:</strong> Hosts, Guests, Admin</li>
+        <li><strong>Platforms:</strong> Web app (host + guest), Admin panel</li>
         <li><strong>Payments:</strong> Stripe (Connect Express) for payouts</li>
-        <li><strong>Safety:</strong> Host/guest verification (stub), secure messaging</li>
+        <li><strong>Risk controls:</strong> ID verification, reviews, dispute management</li>
       </ul>
     </section>
 
-    <!-- MVP Scope (lite) -->
-    <section class="doc-section">
-      <h2>MVP Scope (must-have)</h2>
+    <section>
+      <h3>MVP Scope (must-have)</h3>
       <ul>
-        <li>Host onboarding (KYC-lite, list a property, pricing & availability)</li>
-        <li>Guest discovery (search, filters, map/list results, PDP)</li>
-        <li>Booking & payouts (request/confirm, pay, cancelation rules)</li>
-        <li>Reviews (post-stay star + text review, basic fraud guard)</li>
-        <li>Admin overview (read-only listings, bookings, flags)</li>
+        <li>Host onboarding</li>
+        <li>Property listings with photos, pricing, and availability</li>
+        <li>Search + filters (location, price, dates)</li>
+        <li>Booking and payments</li>
+        <li>Guest reviews</li>
       </ul>
     </section>
 
-    <!-- CTA -->
-    <section class="cta">
-      <h2>Want this auto-generated for your idea?</h2>
-      <a href="/#generator" class="btn">Open the generator</a>
+    <section>
+      <h3>Future Features (nice-to-have)</h3>
+      <ul>
+        <li>Host dashboards with analytics</li>
+        <li>Loyalty or referral program</li>
+        <li>Advanced pricing tools (dynamic pricing)</li>
+      </ul>
     </section>
+
+    <div>
+      <a href="../index.html">⬅ Back to Home</a>
+    </div>
   </main>
-
-  <!-- FOOTER -->
-  <footer class="footer">
-    <p>© WarpFoundary</p>
-    <nav>
-      <a href="/">Home</a>
-      <a href="/#replicas">Replicas</a>
-      <a href="/#generator">Try it</a>
-      <a href="mailto:hello@warpfoundary.com">Contact</a>
-    </nav>
-  </footer>
-
-  <!-- reuse base scripts if any -->
-  <script src="../script.js"></script>
-
-  <!-- Preset click -> store + redirect to Home generator -->
-  <script>
-  (() => {
-    const presetBtn = document.querySelector('[data-preset][data-type]');
-    if (!presetBtn) return;
-
-    presetBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      const idea = presetBtn.getAttribute('data-idea') || '';
-      const type = presetBtn.getAttribute('data-type') || 'Web App';
-      try {
-        localStorage.setItem('wf_idea', idea);
-        localStorage.setItem('wf_type', type);
-        localStorage.setItem('wf_from_preset', '1');
-      } catch (_) {}
-      window.location.href = '/#generator';
-    });
-  })();
-  </script>
 </body>
 </html>
