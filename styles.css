@@ -657,4 +657,41 @@ header.nav.open .menu-toggle span:nth-child(3) {
 .footer nav{display:flex;gap:16px;flex-wrap:wrap}
 .footer a{color:#98a3c7;text-decoration:none}
 .footer a:hover{text-decoration:underline}
+/* =================== MOBILE NAV =================== */
+.menu-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 10px;
+}
 
+.menu-toggle span {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background: #333; /* or white if dark header */
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+/* Hide nav by default on mobile */
+.site-menu {
+  display: none;
+  flex-direction: column;
+  gap: 15px;
+  background: #fff;
+  position: absolute;
+  top: 60px; /* adjust based on header height */
+  right: 20px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  border-radius: 8px;
+}
+
+/* Show menu when .open is toggled */
+header.nav.open .site-menu {
+  display: flex;
+}
