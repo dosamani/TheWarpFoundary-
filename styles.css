@@ -493,3 +493,63 @@ header.nav.open .menu-toggle span:nth-child(3) {
   gap: 12px;
   margin-top: 12px;
 }
+/* --- FAQ (collapsible) --- */
+.faq { padding: 60px 20px; max-width: 800px; margin: 0 auto; }
+.faq h2 { font-size: 2rem; margin-bottom: 20px; text-align: center; color: #eaf2ff; }
+
+.faq-list details {
+  margin: 12px 0;
+  border-radius: 10px;
+  background: rgba(234,242,255,0.05);
+  border: 1px solid rgba(234,242,255,0.08);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+  padding: 12px 16px;
+  transition: border-color .2s ease, background .2s ease;
+}
+
+.faq-list details:hover {
+  border-color: rgba(234,242,255,0.18);
+}
+
+.faq-list summary {
+  list-style: none;         /* hide default triangle (Firefox) */
+  cursor: pointer;
+  font-weight: 600;
+  color: #eaf2ff;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Hide default marker (Chromium/WebKit) */
+.faq-list summary::-webkit-details-marker { display: none; }
+
+/* Custom caret */
+.faq-list summary::before {
+  content: "▸";
+  display: inline-block;
+  transform: translateY(1px);
+  transition: transform .2s ease;
+  opacity: 0.85;
+}
+
+/* Rotate when open */
+.faq-list details[open] summary::before {
+  transform: rotate(90deg) translateY(-1px);
+}
+
+/* Answer body */
+.faq-list details > p {
+  margin-top: 10px;
+  color: #ccc;
+  line-height: 1.6;
+}
+
+/* Subtle open animation */
+.faq-list details[open] > p {
+  animation: faqFade .18s ease;
+}
+@keyframes faqFade {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
