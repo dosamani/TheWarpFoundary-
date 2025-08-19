@@ -1,17 +1,2 @@
 [build]
   publish = "."
-
-# (Optional) extensionless URLs → their .html counterparts inside /replicas
-[[redirects]]
-  from = "/replicas/:page"
-  to   = "/replicas/:page.html"
-  status = 200
-
-# Make sure /thanks redirects to the folder (so /thanks/ loads /thanks/index.html)
-[[redirects]]
-  from = "/thanks"
-  to   = "/thanks/"
-  status = 301
-  force = true
-
-# No SPA catch-all! (Do NOT add /* -> /index.html 200)
