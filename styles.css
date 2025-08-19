@@ -553,3 +553,46 @@ header.nav.open .menu-toggle span:nth-child(3) {
   from { opacity: 0; transform: translateY(-4px); }
   to   { opacity: 1; transform: translateY(0); }
 }
+/* FAQ Accordion Styles */
+.faq details {
+  margin-bottom: 1rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #f9f9f9;
+  transition: background 0.3s;
+}
+
+.faq details[open] {
+  background: #fff;
+  border-color: #ccc;
+}
+
+.faq summary {
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+  position: relative;
+}
+
+.faq summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Custom arrow */
+.faq summary::after {
+  content: "▸";
+  position: absolute;
+  right: 0;
+  transition: transform 0.3s;
+}
+
+.faq details[open] summary::after {
+  transform: rotate(90deg);
+  content: "▾";
+}
+
+.faq p {
+  margin-top: 0.5rem;
+  line-height: 1.4;
+}
