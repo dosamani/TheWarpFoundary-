@@ -5,24 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>WarpFoundary — AI Startup Factory</title>
   <meta name="description" content="WarpFoundary turns ideas into investor-ready MVPs with AI." />
-  <link rel="stylesheet" href="styles.css" />
 
-  <!-- Minimal inline fix so mobile menu opens even if styles.css lacks it -->
-  <style>
-    @media (max-width: 768px){
-      header.nav { position: relative; z-index: 1000; }
-      .site-menu{
-        display: none;
-        position: absolute;
-        top: 64px; left: 16px; right: 16px;
-        padding: 16px; gap: 12px; flex-direction: column;
-        background: #0e1330; border: 1px solid rgba(234,242,255,0.08);
-        border-radius: 12px; box-shadow: 0 6px 18px rgba(0,0,0,0.35);
-      }
-      header.nav.open .site-menu{ display: flex; }
-      .site-menu a{ display:block; padding:10px 12px; border-radius:8px; }
-    }
-  </style>
+  <!-- Open Graph / Twitter -->
+  <meta property="og:title" content="WarpFoundary — AI Startup Factory" />
+  <meta property="og:description" content="Turn a plain-English brief into an investor-ready founder kit: MVP scope, pitch, and brand starter." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://thewarpfoundarymvp.netlify.app/" />
+  <meta property="og:image" content="/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="WarpFoundary — AI Startup Factory" />
+  <meta name="twitter:description" content="Turn a plain-English brief into an investor-ready founder kit: MVP scope, pitch, and brand starter." />
+  <meta name="twitter:image" content="/og-image.png" />
+
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <!-- =================== HEADER / NAV =================== -->
@@ -107,7 +102,7 @@
       </div>
 
       <div class="right" id="mockOutput">
-        <!-- Your JS can populate a preview here -->
+        <!-- (Optional) JS preview area -->
       </div>
     </div>
 
@@ -274,26 +269,40 @@
   <!-- Generator -->
   <script>
   (() => {
+    // Grab inputs
     const ideaEl     = document.getElementById('idea');
     const buildType  = document.getElementById('buildType');
     const goBtn      = document.getElementById('go');
     const outBox     = document.getElementById('outputBox');
 
+    // Optional toggles
     const rev   = document.getElementById('rev');
     const tm    = document.getElementById('tm');
     const radar = document.getElementById('radar');
 
+    // Persist idea between visits
+    const IDEA_KEY = 'wf_idea';
+    if (ideaEl && !ideaEl.value) {
+      try { ideaEl.value = localStorage.getItem(IDEA_KEY) || ''; } catch(e){}
+    }
+    ideaEl?.addEventListener('input', () => {
+      try { localStorage.setItem(IDEA_KEY, ideaEl.value); } catch(e){}
+    });
+
     if (!ideaEl || !buildType || !goBtn || !outBox) return;
 
-    const h = (t) => `\n## ${t}\n`;
+    // Helpers
+    const h  = (t) => `\n## ${t}\n`;
     const li = (arr) => arr.map(a => `- ${a}`).join('\n');
 
+    // Tiny template engine
     function generate(idea, type, opts){
       const lines = [];
       lines.push(`# WarpFoundary — Founder Kit`);
       lines.push(`*Idea:* ${idea.trim() || '—'}`);
       lines.push(`*Build Type:* ${type}`);
 
+      // MVP Scope
       lines.push(h('MVP Scope'));
       const scope = {
         "Web App": [
@@ -310,4 +319,91 @@
           'REST endpoints for core resource',
           'Auth with API keys',
           'Rate limiting & basic analytics',
-          'Simple docs (OpenAPI +
+          'Simple docs (OpenAPI + examples)']
+      }[type] || ['Core flow (TBD)'];
+      lines.push(li(scope));
+
+      // Pitch outline
+      lines.push(h('Pitch Outline (Lean)'));
+      lines.push(li([
+        'Problem — who hurts today and how',
+        'Solution — what your product does in one line',
+        'Why now — timing or tech shift',
+        'Secret — wedge/insight others miss',
+        'Go-to-market — first 100 users',
+        'Business model — how money flows',
+        'Team — why you ship this']));
+
+      // Brand kit
+      lines.push(h('Brand Kit (Light)'));
+      lines.push(li([
+        'Name: (working) ' + (idea.split(' ')[0] || 'Project'),
+        'Color: #5b7cff / #eaf2ff (starter palette)',
+        'Tone: concise, confident, founder-first',
+        'Tagline: From prompt to product — in warp speed']));
+
+      // Optional modules
+      if (opts.rev) {
+        lines.push(h('Revenue Sketch'));
+        lines.push(li([
+          'Pricing idea: Free + Pro ($19–$49/mo) to start',
+          'Early channels: founder communities, accelerators',
+          'Unit: 1 generated kit ≈ 1 trial -> 10–20% convert']));
+      }
+      if (opts.tm) {
+        lines.push(h('TM / Domain Checks (stub)'));
+        lines.push('- Run quick search for name + obvious variants');
+        lines.push('- Check .com/.ai/.app availability');
+      }
+      if (opts.radar) {
+        lines.push(h('Stealth Radar (stub)'));
+        lines.push('- Scan news/funding for adjacent projects');
+        lines.push('- Flag overlap and positioning notes');
+      }
+
+      // CTA
+      lines.push(h('Next Actions'));
+      lines.push(li([
+        'Refine one-sentence pitch',
+        'Pick 3 hero screens and ship clickable mock',
+        'Share deck + demo to 3 advisors or an accelerator']));
+
+      return lines.join('\n');
+    }
+
+    goBtn.addEventListener('click', () => {
+      const idea = ideaEl.value || '';
+      const type = (buildType && buildType.value) || 'Web App';
+      const text = generate(idea, type, {
+        rev:   !!(rev   && rev.checked),
+        tm:    !!(tm    && tm.checked),
+        radar: !!(radar && radar.checked),
+      });
+      outBox.textContent = text;       // <pre> respects newlines
+      outBox.scrollIntoView({behavior:'smooth', block:'start'});
+    });
+
+    // Copy & download
+    const copyBtn = document.getElementById('copyBtn');
+    const downloadBtn = document.getElementById('downloadBtn');
+
+    copyBtn?.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(outBox?.textContent || '');
+        copyBtn.textContent = 'Copied!';
+        setTimeout(()=> copyBtn.textContent='Copy', 1200);
+      } catch (e) {}
+    });
+
+    downloadBtn?.addEventListener('click', () => {
+      const blob = new Blob([outBox?.textContent || ''], { type: 'text/plain' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'warpfoundary-output.txt';
+      a.click();
+      URL.revokeObjectURL(a.href);
+    });
+  })();
+  </script>
+</body>
+</html>
