@@ -6,54 +6,48 @@
   <title>WarpFoundary — AI Startup Factory</title>
   <meta name="description" content="WarpFoundary turns ideas into investor-ready MVPs with AI." />
   <link rel="stylesheet" href="styles.css" />
+
+  <!-- Minimal inline fix so mobile menu opens even if styles.css lacks it -->
+  <style>
+    @media (max-width: 768px){
+      header.nav { position: relative; z-index: 1000; }
+      .site-menu{
+        display: none;
+        position: absolute;
+        top: 64px; left: 16px; right: 16px;
+        padding: 16px; gap: 12px; flex-direction: column;
+        background: #0e1330; border: 1px solid rgba(234,242,255,0.08);
+        border-radius: 12px; box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+      }
+      header.nav.open .site-menu{ display: flex; }
+      .site-menu a{ display:block; padding:10px 12px; border-radius:8px; }
+    }
+  </style>
 </head>
-<script>
-(function () {
-  const header = document.querySelector('header.nav');
-  const toggle = document.getElementById('menuToggle');
-  const menu   = document.getElementById('site-menu');
-  if (!header || !toggle || !menu) return;
-
-  toggle.addEventListener('click', () => {
-    const open = header.classList.toggle('open');
-    toggle.setAttribute('aria-expanded', open);
-    toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
-  });
-
-  // close menu after tapping a link (mobile)
-  menu.querySelectorAll('a').forEach(a =>
-    a.addEventListener('click', () => {
-      header.classList.remove('open');
-      toggle.setAttribute('aria-expanded', 'false');
-      toggle.setAttribute('aria-label', 'Open menu');
-    })
-  );
-})();
-</script>
 <body>
   <!-- =================== HEADER / NAV =================== -->
   <header class="nav">
-  <div class="brand">
-    <a href="/" class="logo-text">Warp<span>Foundary</span></a>
-  </div>
+    <div class="brand">
+      <a href="/" class="logo-text">Warp<span>Foundary</span></a>
+    </div>
 
-  <!-- Hamburger -->
-  <button id="menuToggle" class="menu-toggle"
-          aria-expanded="false"
-          aria-controls="site-menu"
-          aria-label="Open menu">
-    <span></span><span></span><span></span>
-  </button>
+    <!-- Hamburger -->
+    <button id="menuToggle" class="menu-toggle"
+            aria-expanded="false"
+            aria-controls="site-menu"
+            aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
 
-  <!-- Links -->
-  <nav id="site-menu" class="site-menu">
-    <a href="#how" class="active">How it works</a>
-    <a href="#portfolio">Examples</a>
-    <a href="#generator">Try it</a>
-    <a href="#faq">FAQ</a>
-    <a href="#cta" class="btn small">Get early access</a>
-  </nav>
-</header>
+    <!-- Links -->
+    <nav id="site-menu" class="site-menu">
+      <a href="#how" class="active">How it works</a>
+      <a href="#portfolio">Examples</a>
+      <a href="#generator">Try it</a>
+      <a href="#faq">FAQ</a>
+      <a href="#cta" class="btn small">Get early access</a>
+    </nav>
+  </header>
 
   <!-- =================== HERO =================== -->
   <section class="hero">
@@ -116,44 +110,47 @@
         <!-- Your JS can populate a preview here -->
       </div>
     </div>
-<!-- Output Area -->
-<div class="output">
-  <h3>Generated Output</h3>
-  <pre id="outputBox">Your result will appear here...</pre>
 
-  <!-- Copy & Download buttons -->
-  <div class="out-actions">
-    <button id="copyBtn" class="btn small">Copy</button>
-    <button id="downloadBtn" class="btn ghost small">Download .txt</button>
-  </div>
-  </div>
-</section>
+    <!-- Output Area -->
+    <div class="output">
+      <h3>Generated Output</h3>
+      <pre id="outputBox">Your result will appear here...</pre>
+
+      <!-- Copy & Download buttons -->
+      <div class="out-actions">
+        <button id="copyBtn" class="btn small">Copy</button>
+        <button id="downloadBtn" class="btn ghost small">Download .txt</button>
+      </div>
+    </div>
+  </section>
 
   <!-- =================== PORTFOLIO / EXAMPLES =================== -->
   <section id="portfolio" class="portfolio">
     <h2>Example builds</h2>
     <div class="grid">
-<article class="card">
-  <div class="badge">Fintech</div>
-  <h3>PayPilot</h3>
-  <p>One-click checkout API with fraud rules. Built in 72 hours.</p>
-  <ul>
-    <li>API spec + docs</li>
-    <li>Stripe test integration</li>
-    <li>Pitch deck mock</li>
-  </ul>
-</article>
+      <article class="card">
+        <div class="badge">Fintech</div>
+        <h3>PayPilot</h3>
+        <p>One-click checkout API with fraud rules. Built in 72 hours.</p>
+        <ul>
+          <li>API spec + docs</li>
+          <li>Stripe test integration</li>
+          <li>Pitch deck mock</li>
+        </ul>
+      </article>
 
-<article class="card">
-  <div class="badge">AI/Creator</div>
-  <h3>ClipForge</h3>
-  <p>Auto-edit long videos into shorts with captions. Built in a weekend.</p>
-  <ul>
-    <li>Web app prototype</li>
-    <li>Brand kit + logo</li>
-    <li>Launch page copy</li>
-  </ul>
-</article>
+      <article class="card">
+        <div class="badge">AI/Creator</div>
+        <h3>ClipForge</h3>
+        <p>Auto-edit long videos into shorts with captions. Built in a weekend.</p>
+        <ul>
+          <li>Web app prototype</li>
+          <li>Brand kit + logo</li>
+          <li>Launch page copy</li>
+        </ul>
+      </article>
+
+      <article class="card">
         <div class="badge">Mobility</div>
         <h3>LoopRide</h3>
         <p>Dynamic bike-share pricing & routing. Built in 48 hours.</p>
@@ -163,361 +160,154 @@
           <li>Ops dashboard mock</li>
         </ul>
       </article>
-<article class="card">
-  <div class="badge">HealthTech</div>
-  <h3>WellNest</h3>
-  <p>AI-powered wellness coach with habit tracking. Built in 72 hours.</p>
-  <ul>
-    <li>Mobile-first app UI</li>
-    <li>Chatbot prototype</li>
-    <li>Marketing landing page</li>
-  </ul>
-</article>
 
-<article>
-      <h3>What do I get?</h3>
-      <p>A clickable demo, a founder‑friendly pitch, and brandable launch assets.</p>
-    </article>
-
-    <article>
-      <h3>How fast is “warp”?</h3>
-      <p>Initial assets usually ship within 24–48 hours.</p>
-    </article>
-
-      <!-- Add more example cards as needed -->
+      <article class="card">
+        <div class="badge">HealthTech</div>
+        <h3>WellNest</h3>
+        <p>AI-powered wellness coach with habit tracking. Built in 72 hours.</p>
+        <ul>
+          <li>Mobile-first app UI</li>
+          <li>Chatbot prototype</li>
+          <li>Marketing landing page</li>
+        </ul>
+      </article>
     </div>
   </section>
 
   <!-- =================== HOW IT WORKS =================== -->
   <section id="how" class="steps">
-  <h2>How it works</h2>
-  <ol>
-    <li><strong>Describe</strong> your idea in plain English.</li>
-    <li><strong>Assemble</strong> an investor-ready founder kit (pitch, brand, MVP scope).</li>
-    <li><strong>Share</strong> with cofounders, accelerators, or investors.</li>
-  </ol>
-</section>
+    <h2>How it works</h2>
+    <ol>
+      <li><strong>Describe</strong> your idea in plain English.</li>
+      <li><strong>Assemble</strong> an investor-ready founder kit (pitch, brand, MVP scope).</li>
+      <li><strong>Share</strong> with cofounders, accelerators, or investors.</li>
+    </ol>
+  </section>
+
   <!-- =================== CTA =================== -->
   <section id="cta" class="cta">
     <h2>Ready to move fast?</h2>
     <a href="https://forms.gle/" class="btn">Get early access</a>
   </section>
 
-</div>
-</section>
-<!-- ===== Waitlist (Netlify form) ===== -->
-<form name="waitlist" method="POST" data-netlify="true" class="waitlist">
-  <input type="hidden" name="form-name" value="waitlist" />
-  <label>Email
-    <input type="email" name="email" placeholder="you@startup.com" required />
-  </label>
-  <button class="btn">Join waitlist</button>
-</form>
+  <!-- ===== Waitlist (Netlify form) ===== -->
+  <form name="waitlist" method="POST" data-netlify="true" class="waitlist">
+    <input type="hidden" name="form-name" value="waitlist" />
+    <label>Email
+      <input type="email" name="email" placeholder="you@startup.com" required />
+    </label>
+    <button class="btn">Join waitlist</button>
+  </form>
 
-<!-- ================== FAQ ================== -->
-<section id="faq" class="faq">
-  <h2>Frequently Asked Questions</h2>
-  <div class="faq-list">
+  <!-- ================== FAQ (collapsible) ================== -->
+  <section id="faq" class="faq">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-list">
 
-    <details open>
-      <summary>How is WarpFoundary different from no-code tools?</summary>
-      <p>No-code platforms (Bubble, Webflow) give you building blocks. WarpFoundary goes further: it generates a whole startup kit (MVP prototype, pitch deck, brand kit) from a simple brief. It’s less “drag-and-drop” and more “press play and review.”</p>
-    </details>
+      <details open>
+        <summary>How is WarpFoundary different from no-code tools?</summary>
+        <p>No-code platforms (Bubble, Webflow) give you building blocks. WarpFoundary goes further: it generates a whole startup kit (MVP prototype, pitch deck, brand kit) from a simple brief. It’s less “drag-and-drop” and more “press play and review.”</p>
+      </details>
 
-    <details>
-      <summary>What’s your moat—couldn’t anyone copy this?</summary>
-      <p>Ideas can be copied, but moats come from execution. WarpFoundary builds defensibility through: (1) trademark + brand lock, (2) a growing founder community, (3) proprietary templates + training data, and (4) integrations (domains, TM checks, hosting). Competitors may overlap, but none will replicate our founder-centric funnel + ecosystem.</p>
-    </details>
+      <details>
+        <summary>What’s your moat—couldn’t anyone copy this?</summary>
+        <p>Ideas can be copied, but moats come from execution. WarpFoundary builds defensibility through: (1) trademark + brand lock, (2) a growing founder community, (3) proprietary templates + training data, and (4) integrations (domains, TM checks, hosting). Competitors may overlap, but none will replicate our founder-centric funnel + ecosystem.</p>
+      </details>
 
-    <details>
-      <summary>Who is this for?</summary>
-      <p>Solo founders, early-stage teams, accelerators, and VCs that need quick MVP validation. Also useful for agencies that want to generate branded prototypes for clients faster.</p>
-    </details>
+      <details>
+        <summary>Who is this for?</summary>
+        <p>Solo founders, early-stage teams, accelerators, and VCs that need quick MVP validation. Also useful for agencies that want to generate branded prototypes for clients faster.</p>
+      </details>
 
-    <details>
-      <summary>Will my ideas stay private?</summary>
-      <p>Yes. Your briefs and generated projects remain private to your account. Roadmap includes optional NDA + export mode for investor sharing.</p>
-    </details>
+      <details>
+        <summary>Will my ideas stay private?</summary>
+        <p>Yes. Your briefs and generated projects remain private to your account. Roadmap includes optional NDA + export mode for investor sharing.</p>
+      </details>
 
-    <details>
-      <summary>How do you make money?</summary>
-      <p>Free tier for hobbyists. Pro subscription for serious founders (extra exports, TM checks, priority templates). Enterprise tier for accelerators/VCs to generate 100+ startup kits per cohort.</p>
-    </details>
+      <details>
+        <summary>How do you make money?</summary>
+        <p>Free tier for hobbyists. Pro subscription for serious founders (extra exports, TM checks, priority templates). Enterprise tier for accelerators/VCs to generate 100+ startup kits per cohort.</p>
+      </details>
 
-    <details>
-      <summary>What about competitors like Decart or Builder.ai?</summary>
-      <p>Infra players (Decart, Anthropic) focus on models. Builder.ai and others build apps, but not full founder kits (pitch, brand, TM). WarpFoundary’s wedge: “the first stop for every founder.” Speed + UX now; roadmap expands into founder services beyond MVPs.</p>
-    </details>
+      <details>
+        <summary>What about competitors like Decart or Builder.ai?</summary>
+        <p>Infra players (Decart, Anthropic) focus on models. Builder.ai and others build apps, but not full founder kits (pitch, brand, TM). WarpFoundary’s wedge: “the first stop for every founder.” Speed + UX now; roadmap expands into founder services beyond MVPs.</p>
+      </details>
 
-    <details>
-      <summary>What’s next on the roadmap?</summary>
-      <p>Short term: polish examples + capture early-access signups. Medium term: interactive demo + founder community. Long term: partner with accelerators and expand into full-stack “startup studio as a service.”</p>
-    </details>
+      <details>
+        <summary>What’s next on the roadmap?</summary>
+        <p>Short term: polish examples + capture early-access signups. Medium term: interactive demo + founder community. Long term: partner with accelerators and expand into full-stack “startup studio as a service.”</p>
+      </details>
 
-  </div>
-</section>
+    </div>
+  </section>
 
   <!-- =================== SCRIPTS (load last) =================== -->
+
+  <!-- Nav / hamburger -->
   <script>
-    (function () {
-      const header = document.querySelector('header.nav');
-      const toggle = document.getElementById('menuToggle');
-      const links  = header.querySelectorAll('#site-menu a');
+  (() => {
+    const header = document.querySelector('header.nav');
+    const toggle = document.getElementById('menuToggle');
+    const menu   = document.getElementById('site-menu');
 
-      if (!toggle) return;
+    if (!header || !toggle || !menu) return;
 
-      toggle.addEventListener('click', () => {
-        const open = header.classList.toggle('open');
-        toggle.setAttribute('aria-expanded', open);
-        toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
-      });
+    // Toggle open/close
+    toggle.addEventListener('click', () => {
+      const isOpen = header.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', String(isOpen));
+      toggle.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+    });
 
-
-      links.forEach(a => a.addEventListener('click', () => {
+    // Close when clicking a link
+    menu.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
         header.classList.remove('open');
         toggle.setAttribute('aria-expanded', 'false');
         toggle.setAttribute('aria-label', 'Open menu');
-      }));
-    }());
-<script>
-(() => {
-  // Grab inputs
-  const ideaEl     = document.getElementById('idea');
-  const buildType  = document.getElementById('buildType');
-  const goBtn      = document.getElementById('go');
-  const outBox     = document.getElementById('outputBox');
-
-  // Optional toggles (if present in your markup)
-  const rev   = document.getElementById('rev');
-  const tm    = document.getElementById('tm');
-  const radar = document.getElementById('radar');
-
-  if (!ideaEl || !buildType || !goBtn || !outBox) return;
-
-  // Helpers
-  const h = (t) => `\n## ${t}\n`;
-  const li = (arr) => arr.map(a => `- ${a}`).join('\n');
-
-  // Tiny template engine (MVP)
-  function generate(idea, type, opts){
-    const lines = [];
-    lines.push(`# WarpFoundary — Founder Kit`);
-    lines.push(`*Idea:* ${idea.trim() || '—'}`);
-    lines.push(`*Build Type:* ${type}`);
-
-    // MVP Scope
-    lines.push(h('MVP Scope'));
-    const scope = {
-      "Web App": [
-        'Auth (email/magic link)',
-        'Core CRUD flow for the main object',
-        'Public landing page + explainers',
-        'Admin view (read-only)'],
-      "Mobile App": [
-        'Onboarding + permissions',
-        'Core action flow (3–5 screens)',
-        'Offline-friendly lists',
-        'Share sheet / deep links'],
-      "API": [
-        'REST endpoints for core resource',
-        'Auth with API keys',
-        'Rate limiting & basic analytics',
-        'Simple docs (OpenAPI + examples)']
-    }[type] || ['Core flow (TBD)'];
-    lines.push(li(scope));
-
-    // Pitch outline
-    lines.push(h('Pitch Outline (Lean)'));
-    lines.push(li([
-      'Problem — who hurts today and how',
-      'Solution — what your product does in one line',
-      'Why now — timing or tech shift',
-      'Secret — wedge/insight others miss',
-      'Go-to-market — first 100 users',
-      'Business model — how money flows',
-      'Team — why you ship this']));
-
-    // Brand kit (light)
-    lines.push(h('Brand Kit (Light)'));
-    lines.push(li([
-      'Name: (working) ' + (idea.split(' ')[0] || 'Project'),
-      'Color: #5b7cff / #eaf2ff (starter palette)',
-      'Tone: concise, confident, founder-first',
-      'Tagline: From prompt to product — in warp speed']));
-
-    // Optional modules
-    if (opts.rev) {
-      lines.push(h('Revenue Sketch'));
-      lines.push(li([
-        'Pricing idea: Free + Pro ($19–$49/mo) to start',
-        'Early channels: founder communities, accelerators',
-        'Unit: 1 generated kit ≈ 1 trial -> 10–20% convert']));
-    }
-    if (opts.tm) {
-      lines.push(h('TM / Domain Checks (stub)'));
-      lines.push('- Run quick search for name + obvious variants');
-      lines.push('- Check .com/.ai/.app availability');
-    }
-    if (opts.radar) {
-      lines.push(h('Stealth Radar (stub)'));
-      lines.push('- Scan news/funding for adjacent projects');
-      lines.push('- Flag overlap and positioning notes');
-    }
-
-    // CTA
-    lines.push(h('Next Actions'));
-    lines.push(li([
-      'Refine one-sentence pitch',
-      'Pick 3 hero screens and ship clickable mock',
-      'Share deck + demo to 3 advisors or an accelerator']));
-
-    return lines.join('\n');
-  }
-
-  goBtn.addEventListener('click', () => {
-    const idea = ideaEl.value || '';
-    const type = (buildType && buildType.value) || 'Web App';
-    const text = generate(idea, type, {
-      rev:   !!(rev   && rev.checked),
-      tm:    !!(tm    && tm.checked),
-      radar: !!(radar && radar.checked),
+      });
     });
-    outBox.textContent = text;       // <pre> respects newlines
-    outBox.scrollIntoView({behavior:'smooth', block:'start'});
-  });
-})();
-</script>
-<script>
-(function () {
-  const ideaEl = document.querySelector('#idea');       // your textarea
-  const outEl  = document.querySelector('#genOutput');
-  const genBtn = document.querySelector('#generateBtn');
-  const copyBtn = document.querySelector('#copyBtn');
-  const dlBtn = document.querySelector('#downloadBtn');
-
-  function slug(s) { return (s||'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,''); }
-
-  function synth(idea){
-    const nameSeeds = ["Pulse","Forge","Pilot","Stack","Flow","Nest","Spark","Foundry","Warp","Atlas"];
-    const tagSeeds  = ["in minutes, not months","from brief to MVP","build faster, pitch smarter","assemble your founder kit"];
-    const pick = arr => arr[Math.floor(Math.random()*arr.length)];
-
-    const product = `${idea.split(' ')[0] || 'Nova'} ${pick(nameSeeds)}`.trim();
-    const tagline = `“${pick(tagSeeds)}.”`;
-    const features = [
-      "Key Feature 1 — core user job",
-      "Key Feature 2 — undeniable value",
-      "Key Feature 3 — quick win for MVP"
-    ];
-    const users = ["Solo founder","Startup studio","Accelerator cohort","Internal innovation team"];
-    const scope = [
-      "- Landing page copy + sections",
-      "- Pitch outline (problem, solution, GTM, moat)",
-      "- 3 user stories + acceptance criteria",
-      "- Brand starter: name, tagline, palette suggestion"
-    ];
-
-    return [
-`# ${product}
-${tagline}
-
-## Problem
-Describe the pain in one paragraph.
-
-## Solution
-Explain how ${product} solves it in plain language.
-
-## Who's it for
-- ${pick(users)}
-- ${pick(users)}
-
-## 3 Core Features
-- ${features[0]}
-- ${features[1]}
-- ${features[2]}
-
-## MVP Scope
-${scope.join('\n')}
-
-## Go-To-Market (first 30–60 days)
-- Launch to 3 relevant communities
-- Collect 20 signups, 5 interviews
-- Iterate weekly on feedback
-
-## Moat / Defensibility (starter)
-- Speed to assemble founder kit
-- Opinionated templates + UX
-- Distribution via accelerators
-
---- 
-Generated by WarpFoundary demo from idea: "${idea}".`
-    ].join('\n');
-  }
-
-  function generate(){
-    const idea = (ideaEl?.value || '').trim();
-    if (!idea) { outEl.textContent = "Please enter your idea above."; return; }
-    outEl.textContent = synth(idea);
-  }
-
-  function copyOut(){
-    if (!outEl.textContent) return;
-    navigator.clipboard.writeText(outEl.textContent);
-    copyBtn.textContent = "Copied ✓"; setTimeout(()=>copyBtn.textContent="Copy",1200);
-  }
-
-  function downloadOut(){
-    if (!outEl.textContent) return;
-    const blob = new Blob([outEl.textContent], {type: 'text/markdown'});
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = slug('warpfoundary-demo') + '.md';
-    a.click();
-    URL.revokeObjectURL(a.href);
-  }
-
-  genBtn?.addEventListener('click', generate);
+  })();
   </script>
-<section id="faq" class="faq">
-  <h2>Frequently Asked Questions</h2>
-  <div class="faq-list">
 
-    <article>
-      <h3>How is WarpFoundary different from no-code tools?</h3>
-      <p>No-code platforms (Bubble, Webflow) give you building blocks. WarpFoundary goes further: it generates a whole startup kit (MVP prototype, pitch deck, brand kit) from a simple brief. It’s less “drag-and-drop” and more “press play and review.”</p>
-    </article>
+  <!-- Generator -->
+  <script>
+  (() => {
+    const ideaEl     = document.getElementById('idea');
+    const buildType  = document.getElementById('buildType');
+    const goBtn      = document.getElementById('go');
+    const outBox     = document.getElementById('outputBox');
 
-    <article>
-      <h3>What’s your moat—couldn’t anyone copy this?</h3>
-      <p>Ideas can be copied, but moats come from execution. WarpFoundary builds defensibility through: (1) trademark + brand lock, (2) a growing founder community, (3) proprietary templates + training data, and (4) integrations (domains, TM checks, hosting). Competitors may overlap, but none will replicate our founder-centric funnel + ecosystem.</p>
-    </article>
+    const rev   = document.getElementById('rev');
+    const tm    = document.getElementById('tm');
+    const radar = document.getElementById('radar');
 
-    <article>
-      <h3>Who is this for?</h3>
-      <p>Solo founders, early-stage teams, accelerators, and VCs that need quick MVP validation. It’s also useful for agencies that want to generate branded prototypes for clients faster.</p>
-    </article>
+    if (!ideaEl || !buildType || !goBtn || !outBox) return;
 
-    <article>
-      <h3>Will my ideas stay private?</h3>
-      <p>Yes. Your briefs and generated projects remain private to your account. Future roadmap includes optional NDA + export mode for investor sharing.</p>
-    </article>
+    const h = (t) => `\n## ${t}\n`;
+    const li = (arr) => arr.map(a => `- ${a}`).join('\n');
 
-    <article>
-      <h3>How do you make money?</h3>
-      <p>Free tier for hobbyists. Pro subscription for serious founders (extra exports, TM checks, priority templates). Enterprise tier for accelerators and VC firms to generate 100+ startup kits per cohort.</p>
-    </article>
+    function generate(idea, type, opts){
+      const lines = [];
+      lines.push(`# WarpFoundary — Founder Kit`);
+      lines.push(`*Idea:* ${idea.trim() || '—'}`);
+      lines.push(`*Build Type:* ${type}`);
 
-    <article>
-      <h3>What about competitors like Decart or Builder.ai?</h3>
-      <p>Infra players (Decart, Anthropic) focus on models. Builder.ai and others build apps, but not full founder kits (pitch, brand, TM). WarpFoundary’s wedge is: “the first stop for every founder.” Our speed + UX give us defensibility, while our roadmap expands into founder services beyond MVPs.</p>
-    </article>
-
-    <article>
-      <h3>What’s next on the roadmap?</h3>
-      <p>Short term: polish examples + capture early-access signups. Medium term: interactive demo + founder community. Long term: partner with accelerators and expand into full-stack “startup studio as a service.”</p>
-    </article>
-
-  </div>
-</section>
-</body>
-</html>
+      lines.push(h('MVP Scope'));
+      const scope = {
+        "Web App": [
+          'Auth (email/magic link)',
+          'Core CRUD flow for the main object',
+          'Public landing page + explainers',
+          'Admin view (read-only)'],
+        "Mobile App": [
+          'Onboarding + permissions',
+          'Core action flow (3–5 screens)',
+          'Offline-friendly lists',
+          'Share sheet / deep links'],
+        "API": [
+          'REST endpoints for core resource',
+          'Auth with API keys',
+          'Rate limiting & basic analytics',
+          'Simple docs (OpenAPI +
