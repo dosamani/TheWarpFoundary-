@@ -617,3 +617,30 @@ header.nav.open .menu-toggle span:nth-child(3) {
   align-items: center;
   color: #98a3c7;
 }
+/* --- Mobile Nav Fix --- */
+@media (max-width: 768px){
+  header.nav { position: relative; z-index: 1000; }
+  .site-menu{
+    display: none;
+    position: absolute;
+    top: 64px;                 /* below header */
+    left: 16px; right: 16px;
+    padding: 16px;
+    gap: 12px;
+    flex-direction: column;
+    background: #0e1330;
+    border: 1px solid rgba(234,242,255,0.08);
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+  }
+  header.nav.open .site-menu{
+    display: flex;             /* reveal when .open */
+  }
+
+  /* Make sure links fill width nicely on mobile */
+  .site-menu a{
+    display: block;
+    padding: 10px 12px;
+    border-radius: 8px;
+  }
+}
