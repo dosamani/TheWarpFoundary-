@@ -803,3 +803,14 @@ header.nav.open .site-menu {
 @media (max-width: 640px) {
   .deliv-grid { grid-template-columns: 1fr; }
 }
+/* =================== Unicorn Replicas =================== */
+.replicas { max-width:1100px; margin:24px auto; padding:0 16px; }
+.replicas h2 { font-size:26px; margin:18px 0; text-align:center; }
+.replicas .center { text-align:center; }
+
+.rep-grid {
+  display:grid; gap:16px;
+  grid-template-columns: repeat(3, 1fr);
+}
+@media (max-width: 900px){ .rep-grid{ grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px){ .rep
