@@ -228,16 +228,25 @@
   </section>
 
   <!-- ===== Waitlist (Netlify form) ===== -->
-  <form name="waitlist" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thanks/" class="waitlist">
-    <input type="hidden" name="form-name" value="waitlist" />
-    <p hidden>
-      <label>Don’t fill this out if you’re human: <input name="bot-field" /></label>
-    </p>
-    <label>Email
-      <input type="email" name="email" placeholder="you@startup.com" required />
+<form name="waitlist" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thanks/" class="waitlist">
+  <!-- Hidden form name field for Netlify -->
+  <input type="hidden" name="form-name" value="waitlist" />
+
+  <!-- Honeypot field (hidden from humans) -->
+  <p hidden>
+    <label>
+      Don’t fill this out if you’re human: <input name="bot-field" />
     </label>
-    <button class="btn">Join waitlist</button>
-  </form>
+  </p>
+
+  <!-- Email field -->
+  <label>Email
+    <input type="email" name="email" placeholder="you@startup.com" required />
+  </label>
+
+  <!-- Submit button -->
+  <button class="btn">Join waitlist</button>
+</form>
 
   <!-- ================== FAQ (collapsible) ================== -->
   <section id="faq" class="faq">
