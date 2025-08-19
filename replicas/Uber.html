@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Uber (Today’s MVP) — WarpFoundary Framework</title>
+  <meta name="description" content="Investor-ready founder kit for a rides marketplace MVP: scope, screens, data model, API, GTM." />
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body class="doc">
+  <header class="nav">
+    <div class="brand">
+      <a href="/" class="logo-text">Warp<span>Foundary</span></a>
+    </div>
+    <nav class="site-menu">
+      <a href="/">Home</a>
+      <a href="/#replicas">Replicas</a>
+      <a href="/#generator">Try it</a>
+      <a href="/#faq">FAQ</a>
+    </nav>
+  </header>
+
+  <section class="hero compact">
+    <div class="hero-inner">
+      <h1>Uber (today’s MVP) — <span class="gradient">Founder Kit</span></h1>
+      <p class="sub">Rides marketplace: driver onboarding, rider request flow, pricing, payouts.</p>
+      <div class="cta-row">
+        <a href="/#generator" class="btn" data-preset data-idea="MVP rides marketplace connecting riders to nearby drivers with upfront pricing, driver KYC, and weekly payouts." data-type="Mobile App">Generate this in demo</a>
+        <a href="/#cta" class="btn ghost">Get early access</a>
+      </div>
+    </div>
+  </section>
+
+  <main class="doc-wrap">
+    <article class="doc-card">
+      <h2>Overview</h2>
+      <p><strong>Goal:</strong> Validate a two-sided rides marketplace in one city with strict scope control and clear unit economics.</p>
+      <ul>
+        <li><strong>Primary users:</strong> Riders, Drivers, Ops Admin</li>
+        <li><strong>Platforms:</strong> Mobile App (rider), Mobile App (driver) or shared app with roles, Admin web panel</li>
+        <li><strong>Payments:</strong> Stripe (Connect Express) for payouts</li>
+        <li><strong>Risk controls:</strong> Driver KYC, background checks (stub), phone/email verification</li>
+      </ul>
+    </article>
+
+    <article class="doc-card">
+      <h2>MVP Scope (must-have)</h2>
+      <ul>
+        <li>Auth: email or phone OTP for riders &amp; drivers</li>
+        <li>Driver onboarding: profile, vehicle, license/KYC upload (stubbed provider), availability toggle</li>
+        <li>Rider request flow: pickup/dropoff, fare quote (distance+time estimator), request/accept, live status</li>
+        <li>Dispatch: simple nearest-available driver assignment (radius + FIFO)</li>
+        <li>Trip lifecycle: requested → accepted → picked up → in-progress → completed → rated</li>
+        <li>Payments: rider pay on complete; driver weekly payouts (Stripe Connect Express)</li>
+        <li>Ops dashboard (read-only v1): users, trips, payouts, flags</li>
+      </ul>
+    </article>
+
+    <article class="doc-card">
+      <h2>Key Screens (rider)</h2>
+      <ol>
+        <li>Map + Search: set pickup &amp; dropoff, see ETA &amp; price estimate</li>
+        <li>Request: confirm quote, payment method, place request</li>
+        <li>Live Trip: driver location, arrival ETA, contact driver (masked)</li>
+        <li>Receipt &amp; Rating: price breakdown, rate driver</li>
+      </ol>
+
+      <h3>Key Screens (driver)</h3>
+      <ol>
+        <li>Availability toggle + queue: go online/offline</li>
+        <li>Incoming request: pickup ETA, fare, accept/decline</li>
+        <li>In-trip: navigate pickup, start trip, end trip</li>
+        <li>Earnings: weekly payout summary</li>
+      </ol>
+    </article>
+
+    <article class="doc-card">
+      <h2>Data Model (starter)</h2>
+      <pre><code>User { id, role[rider|driver|admin], name, email, phone, rating, createdAt }
+DriverProfile { userId(FK), vehicleMake, vehicleModel, plate, licenseDocUrl, kycStatus }
+PaymentMethod { id, userId(FK), provider[stripe], token, last4 }
+Trip {
+  id, riderId(FK), driverId(FK|null), status[req|acc|pick|inprog|done|cancel],
+  pickupLat, pickupLng, dropLat, dropLng,
+  estimateFare, finalFare, distanceKm, durationMin,
+  requestedAt, acceptedAt, startedAt, completedAt
+}
+Payout { id, driverId(FK), amount, periodStart, periodEnd, status[pending|paid], providerRef }
+Flag { id, userId(FK), tripId(FK|null), reason, note, createdAt }
+</code></pre>
+    </article>
+
+    <article class="doc-card">
+      <h2>API (v1 outline)</h2>
+      <pre><code>POST   /auth/otp/request         → { phone/email }
+POST   /auth/otp/verify          → session
+
+GET    /drivers/me               → driver profile
+POST   /drivers/me               → update profile, docs, availability
+
+POST   /rider/quote              → { pickup, dropoff } → { estimateFare, etaMin }
+POST   /rider/request            → create Trip(req)
+WS     /rider/live               → trip status stream
+
+GET    /driver/queue             → next request (poll/WS)
+POST   /driver/accept            → Trip(acc)
+POST   /trip/start               → Trip(inprog)
+POST   /trip/complete            → Trip(done) → charge rider → enqueue payout
+
+GET    /admin/overview           → basic stats (read-only)
+</code></pre>
+      <p><strong>Notes:</strong> WebSocket (or SSE) channels for live status are ideal, but polling works for MVP. Payments integrate Stripe Checkout/Payment Intents for rider and Connect for driver payouts.</p>
+    </article>
+
+    <article class="doc-card">
+      <h2>Pricing &amp; Unit Economics (starter)</h2>
+      <ul>
+        <li>Fare = base + (per-km × distance) + (per-min × duration), surge multiplier optional</li>
+        <li>Marketplace take rate: 15–25% (MVP default 20%)</li>
+        <li>Driver payouts batched weekly to cut fees</li>
+      </ul>
+    </article>
+
+    <article class="doc-card">
+      <h2>GTM (first 30–60 days)</h2>
+      <ul>
+        <li>Start in one dense zone (university or downtown)</li>
+        <li>Recruit 50–100 drivers with cash signup bonus (capped) &amp; weekly leaderboards</li>
+        <li>Acquire 500 riders via campus groups &amp; local ads; measure request→accept→complete funnel</li>
+        <li>Hit reliability > 85% within target radius &amp; time windows</li>
+      </ul>
+    </article>
+
+    <article class="doc-card">
+      <h2>Risks &amp; Mitigations</h2>
+      <ul>
+        <li><strong>Safety/KYC:</strong> start with basic doc upload + manual review; upgrade providers later</li>
+        <li><strong>Liquidity:</strong> constrain geo/time, driver floors, request throttling to protect SLAs</li>
+        <li><strong>Regulatory:</strong> limited pilot under existing T&amp;C; counsel for expansion</li>
+      </ul>
+    </article>
+
+    <footer class="footer">
+      <p>© WarpFoundary</p>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/#replicas">Replicas</a>
+        <a href="/#generator">Try it</a>
+        <a href="mailto:hello@warpfoundary.com">Contact</a>
+      </nav>
+    </footer>
+  </main>
+
+  <!-- Reuse your existing script so the "Generate this in demo" button auto-fills -->
+  <script src="../script.js"></script>
+</body>
+</html>
