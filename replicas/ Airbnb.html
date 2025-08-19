@@ -4,19 +4,16 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Airbnb (Today’s MVP) — WarpFoundary Framework</title>
-  <meta name="description" content="Investor-ready founder kit for a short-stay marketplace MVP: scope, core screens, data model, API, GTM." />
+  <meta name="description" content="Investor-ready founder kit for a short-stay marketplace MVP: scope, key screens, data model, API, GTM." />
   <link rel="stylesheet" href="../styles.css" />
 </head>
 <body class="doc">
-  <!-- =================== HEADER =================== -->
+  <!-- ======= HEADER ======= -->
   <header class="nav">
     <div class="brand">
       <a href="/" class="logo-text">Warp<span>Foundary</span></a>
     </div>
-    <button id="menuToggle" class="menu-toggle" aria-expanded="false" aria-controls="site-menu" aria-label="Open menu">
-      <span></span><span></span><span></span>
-    </button>
-    <nav id="site-menu" class="site-menu">
+    <nav class="site-menu">
       <a href="/">Home</a>
       <a href="/#replicas">Replicas</a>
       <a href="/#generator">Try it</a>
@@ -24,60 +21,131 @@
     </nav>
   </header>
 
-  <!-- =================== HERO =================== -->
-  <section class="hero compact">
-    <div class="hero-inner">
-      <h1>Airbnb (today’s MVP) — <span class="gradient">Founder Kit</span></h1>
-      <p class="sub">Short-stay listings: host onboarding, search + filters, bookings, payouts, reviews.</p>
-
-      <div class="cta-row">
-        <a href="/#generator"
-           class="btn"
-           data-preset
-           data-idea="Short-stay marketplace for unique homes with host onboarding, search/filters, secure booking and payouts, and review system."
-           data-type="Web App">Generate this in demo</a>
-        <a href="/#cta" class="btn ghost">Get early access</a>
+  <main>
+    <!-- ======= HERO ======= -->
+    <section class="hero compact">
+      <div class="hero-inner">
+        <h1>Airbnb (today’s MVP) — <span class="gradient">Founder Kit</span></h1>
+        <p class="sub">Short-stay marketplace: host onboarding, search + filters, bookings, payouts, reviews.</p>
+        <div class="cta-row">
+          <a href="/#generator" class="btn"
+             data-preset
+             data-idea="Short-stay marketplace for unique homes with host onboarding, search/filters, secure booking and payouts, and review system."
+             data-type="Web App">Generate this in demo</a>
+          <a href="/#cta" class="btn ghost">Get early access</a>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <main class="doc-main">
-    <!-- ========== OVERVIEW ========== -->
+    <!-- ======= OVERVIEW ======= -->
     <section class="doc-section">
       <h2>Overview</h2>
-      <p><strong>Goal:</strong> Validate a supply + demand marketplace in one region with high-quality listings and safe, reliable bookings.</p>
       <ul>
-        <li><strong>Primary users:</strong> Guests, Hosts, Ops Admin</li>
-        <li><strong>Platforms:</strong> Web App (guest + host), lightweight Admin panel</li>
-        <li><strong>Payments:</strong> Stripe Connect (host payouts), escrowed charges, refunds</li>
-        <li><strong>Risk controls:</strong> Email/phone verification, ID/KYC stub, simple fraud checks</li>
+        <li><strong>Goal:</strong> Validate a two-sided short-stay marketplace in one city with tight scope and clear unit economics.</li>
+        <li><strong>Primary users:</strong> Guests, Hosts, Ops Admin.</li>
+        <li><strong>Platforms:</strong> Web App (guest/host), Admin web panel.</li>
+        <li><strong>Payments:</strong> Stripe (Connect Express) split payments & payouts.</li>
+        <li><strong>Risk controls:</strong> Host KYC (stub), phone/email verification, basic fraud checks.</li>
       </ul>
     </section>
 
-    <!-- ========== MVP SCOPE ========== -->
+    <!-- ======= MVP SCOPE ======= -->
     <section class="doc-section">
       <h2>MVP Scope (must-have)</h2>
       <ul>
-        <li><strong>Auth</strong>: email + magic link (or OAuth stub)</li>
-        <li><strong>Guest</strong>: search, filters (price, dates, guests), listing details, calendar, booking + payment</li>
-        <li><strong>Host</strong>: onboarding, create/edit listing, photos upload, pricing, availability calendar, payouts</li>
-        <li><strong>Reviews</strong>: guest→host and host→guest (post-stay)</li>
-        <li><strong>Admin</strong>: view users/listings/bookings, resolve disputes, refunds</li>
+        <li>Auth: email + magic-link; profile basics (name, phone, photo).</li>
+        <li>Host onboarding: list a place (title, photos, address, price, availability calendar, rules).</li>
+        <li>Search & filters: location, dates, guests, price range, property type.</li>
+        <li>Listing page (PDP): gallery, amenities, calendar, reviews, house rules, “Request to book.”</li>
+        <li>Booking flow: date picker, price breakdown, payment, confirmation, receipt.</li>
+        <li>Payouts: Stripe Connect onboarding for hosts; automatic weekly payouts.</li>
+        <li>Reviews: 1–5 stars + short text; basic moderation.</li>
+        <li>Admin (read-only): users, listings, bookings, payouts, flags.</li>
       </ul>
     </section>
 
-    <!-- ========== CORE SCREENS ========== -->
+    <!-- ======= CORE SCREENS ======= -->
     <section class="doc-section">
       <h2>Core Screens</h2>
       <ol>
-        <li>Home/search: location + date picker, results grid with map preview</li>
-        <li>Listing details: gallery, amenities, host profile, calendar, reviews, “Reserve” CTA</li>
-        <li>Checkout: price breakdown, fees, payment capture, confirmation</li>
-        <li>Host dashboard: listings table, create/edit flow, availability, payouts</li>
-        <li>Admin read-only panel: users, listings, bookings with basic actions</li>
+        <li><strong>Home / Search</strong> — hero search, map toggle (defer map to v2), featured categories.</li>
+        <li><strong>Results</strong> — cards with photo, price, rating, quick filters (price, type, “superhost”).</li>
+        <li><strong>Listing (PDP)</strong> — gallery, host badge, amenities, calendar, reviews, booking module.</li>
+        <li><strong>Host: Create Listing</strong> — stepper: basics → photos → pricing → availability → review & publish.</li>
+        <li><strong>Checkout</strong> — guest details, payment, terms, confirmation.</li>
       </ol>
     </section>
 
-    <!-- ========== DATA MODEL ========== -->
+    <!-- ======= DATA MODEL ======= -->
     <section class="doc-section">
-      <h
+      <h2>Data Model (simplified)</h2>
+      <ul>
+        <li><code>User</code> { id, role: guest|host|admin, name, email, phone, photo }</li>
+        <li><code>Listing</code> { id, hostId, title, desc, address, coords, photos[], nightlyPrice, maxGuests, amenities[], rules[], ratingAvg }</li>
+        <li><code>Availability</code> { listingId, date, isBlocked }</li>
+        <li><code>Booking</code> { id, listingId, guestId, checkIn, checkOut, guests, amountTotal, status }</li>
+        <li><code>Review</code> { id, listingId, authorId, rating, text, createdAt }</li>
+        <li><code>Payout</code> { id, hostId, bookingId, amount, status }</li>
+      </ul>
+    </section>
+
+    <!-- ======= API STUB ======= -->
+    <section class="doc-section">
+      <h2>API (stub)</h2>
+      <pre>
+POST /auth/magic-link
+GET  /listings?city=&dates=&guests=&priceMin=&priceMax=
+GET  /listings/:id
+POST /bookings { listingId, checkIn, checkOut, guests, paymentToken }
+POST /hosts/onboard (Stripe Connect)
+POST /reviews { listingId, rating, text }
+      </pre>
+    </section>
+
+    <!-- ======= GTM ======= -->
+    <section class="doc-section">
+      <h2>Go-to-Market</h2>
+      <ul>
+        <li><strong>Wedge:</strong> niche stays (e.g., cabins near &lt;City&gt;), curated quality → faster liquidity.</li>
+        <li><strong>Supply first:</strong> recruit 30–50 hosts in one area via local FB groups/IG/real-estate contacts.</li>
+        <li><strong>Demand:</strong> SEM on “cabins near &lt;City&gt;”, collabs with local creators, newsletter partners.</li>
+        <li><strong>Pricing:</strong> 12–15% guest fee; 3% host fee (start simple).</li>
+      </ul>
+    </section>
+
+    <!-- ======= RISKS ======= -->
+    <section class="doc-section">
+      <h2>Risks & Mitigations</h2>
+      <ul>
+        <li>Regulatory zoning → start in host-friendly locales, add address checks.</li>
+        <li>Fraud/chargebacks → Stripe Radar, verified profiles, deposit for high-risk bookings.</li>
+        <li>Cold start → focus on one area; curated supply; concierge onboarding for first 50 hosts.</li>
+      </ul>
+    </section>
+
+    <!-- ======= NEXT ======= -->
+    <section class="doc-section">
+      <h2>Next actions</h2>
+      <ol>
+        <li>Publish 3–5 hero screens as a clickable demo.</li>
+        <li>Onboard first 20 local listings (concierge) and run a friends-and-family beta.</li>
+        <li>Measure request→booking rate and host payout satisfaction.</li>
+      </ol>
+    </section>
+  </main>
+
+  <!-- ======= FOOTER ======= -->
+  <footer class="footer">
+    <p>© WarpFoundary</p>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/#replicas">Replicas</a>
+      <a href="/#generator">Try it</a>
+      <a href="mailto:hello@warpfoundary.com">Contact</a>
+    </nav>
+  </footer>
+
+  <!-- Reuse site JS for the demo button auto-fill -->
+  <script src="../script.js"></script>
+</body>
+</html>
