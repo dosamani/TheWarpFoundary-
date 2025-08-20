@@ -1,2 +1,11 @@
+# minimal, static-site-friendly config
+
 [build]
-  publish = "."
+  publish = "/"
+
+# (Optional) nice URL for the thanks page
+[[redirects]]
+  from = "/thanks"
+  to   = "/thanks/"
+  status = 301
+  force = true
