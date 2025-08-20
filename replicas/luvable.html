@@ -1,157 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Luvable (today’s MVP) – Founder Kit</title>
-  <meta name="description" content="D2C baby-care brand: storefront, PDPs, checkout, subscriptions, UGC reviews — founder kit." />
-  <link rel="stylesheet" href="/styles.css?v=13" />
+  <link rel="stylesheet" href="/styles.css?v=7">
 </head>
-<body class="doc">
-  <!-- HEADER -->
-  <header class="nav">
-    <div class="brand">
-      <a href="/" class="logo-text">Warp<span>Foundary</span></a>
-    </div>
-    <nav class="site-menu">
-      <a href="/">Home</a>
-      <a href="/#replicas">Replicas</a>
-      <a href="/#generator">Try it</a>
-      <a href="/#faq">FAQ</a>
-    </nav>
+<body>
+  <header>
+    <h1>WarpFoundary</h1>
   </header>
 
-  <main class="doc-main">
-    <!-- HERO -->
-    <section class="hero compact">
-      <div class="hero-inner">
-        <h1>Luvable (today’s MVP) — <span class="gradient">Founder Kit</span></h1>
-        <p class="sub">D2C baby-care brand: storefront, PDPs, checkout, subscriptions, UGC reviews.</p>
-        <div class="cta-row">
-          <button class="btn" data-preset
-                  data-idea="D2C baby-care brand with storefront, product detail pages, checkout, subscriptions, and UGC reviews."
-                  data-type="Web App">Generate this in demo</button>
-          <a href="/#cta" class="btn ghost">Get early access</a>
-        </div>
-      </div>
-    </section>
+  <main>
+    <h2>Luvable (today’s MVP) – Founder Kit</h2>
+    <p>Luvable is a Swedish unicorn redefining D2C with sustainable, design-first consumer products.</p>
 
-    <!-- OVERVIEW -->
-    <section class="doc-section">
-      <h2>Overview</h2>
+    <section>
+      <h3>Overview</h3>
+      <p><strong>Goal:</strong> Validate a direct-to-consumer brand with premium product storytelling, seamless checkout, and recurring subscriptions.</p>
       <ul>
-        <li><strong>Users:</strong> Shoppers, Marketing, Ops</li>
+        <li><strong>Primary users:</strong> Shoppers, Admin</li>
         <li><strong>Platform:</strong> Web storefront (mobile-first), lightweight admin</li>
-        <li><strong>Catalog:</strong> Diapers, wipes, creams, bundles</li>
-        <li><strong>Monetization:</strong> One-time + subscriptions</li>
+        <li><strong>Catalog:</strong> Sustainable lifestyle products (expandable product lines)</li>
+        <li><strong>Monetization:</strong> One-time sales + subscriptions</li>
       </ul>
     </section>
 
-    <!-- MVP SCOPE -->
-    <section class="doc-section">
-      <h2>MVP Scope (must-have)</h2>
+    <section>
+      <h3>MVP Scope (must-have)</h3>
       <ul>
         <li>Home + collections + product detail pages (PDPs)</li>
         <li>Cart & checkout (Stripe or Shopify Checkout)</li>
-        <li>Subscriptions (monthly bundles) & order history</li>
-        <li>UGC reviews (text + rating) with light moderation</li>
+        <li>Subscriptions & order history</li>
+        <li>User-generated reviews (text + rating)</li>
         <li>CMS blocks for promos, hero banners, FAQs, policies</li>
       </ul>
     </section>
 
-    <!-- CORE SCREENS -->
-    <section class="doc-section">
-      <h2>Core Screens</h2>
-      <ol>
-        <li>Home: hero, featured products, social proof</li>
-        <li>Collection: filters (size, price, category)</li>
-        <li>PDP: gallery, variant/size selector, subs toggle, reviews</li>
-        <li>Cart/Checkout: address, shipping, payments, confirmation</li>
-        <li>Account: subscriptions, orders, address book</li>
-      </ol>
-    </section>
-
-    <!-- DATA MODEL -->
-    <section class="doc-section">
-      <h2>Data Model (simplified)</h2>
-      <pre>
-User{id, email, name}
-Product{id, title, desc, images[], variants[], price}
-Review{id, productId, userId, rating, text, createdAt}
-Order{id, userId, items[], total, status}
-Subscription{id, userId, productId|bundleId, interval, status}
-      </pre>
-    </section>
-
-    <!-- API STUB -->
-    <section class="doc-section">
-      <h2>API (stub)</h2>
-      <pre>
-GET  /api/products?collection=bundles
-GET  /api/products/:id
-POST /api/cart/add { productId, variantId, qty, subscribe }
-POST /api/checkout/create { cartId }
-GET  /api/orders/:id
-POST /api/reviews { productId, rating, text }
-      </pre>
-    </section>
-
-    <!-- GTM -->
-    <section class="doc-section">
-      <h2>Go-to-Market (0–6 weeks)</h2>
+    <section>
+      <h3>Stretch Goals (nice-to-have)</h3>
       <ul>
-        <li>Influencer seeding (new parent creators) + UGC</li>
-        <li>Bundles with free first-month shipping</li>
-        <li>Email flows: abandoned cart, reorder reminder, milestone coupons</li>
-      </ul>
-    </section>
-
-    <!-- RISKS -->
-    <section class="doc-section">
-      <h2>Risks & Mitigations</h2>
-      <ul>
-        <li><strong>Retention:</strong> subscription discounts, flexible skips</li>
-        <li><strong>Trust:</strong> dermatology claims → clear labeling & reviews</li>
-        <li><strong>Ops:</strong> track OOS + backorder messaging</li>
-      </ul>
-    </section>
-
-    <!-- NEXT -->
-    <section class="doc-section">
-      <h2>Next Actions</h2>
-      <ul>
-        <li>Ship PDP + checkout demo with a starter bundle</li>
-        <li>Add 20 real reviews (seeded/testimonials)</li>
-        <li>Run a 100-customer beta with subscription incentives</li>
+        <li>Mobile app (React Native)</li>
+        <li>Loyalty & referral programs</li>
+        <li>Localized storefronts (multi-region, multi-currency)</li>
       </ul>
     </section>
   </main>
-
-  <!-- FOOTER -->
-  <footer class="footer">
-    <p>© WarpFoundary</p>
-    <nav>
-      <a href="/">Home</a>
-      <a href="/#replicas">Replicas</a>
-      <a href="/#generator">Try it</a>
-      <a href="mailto:hello@warpfoundary.com">Contact</a>
-    </nav>
-  </footer>
-
-  <!-- Preset → Home generator -->
-  <script>
-    document.addEventListener('click', (e) => {
-      const btn = e.target.closest('[data-preset]');
-      if (!btn) return;
-      const idea = btn.getAttribute('data-idea') || '';
-      const type = btn.getAttribute('data-type') || 'Web App';
-      try {
-        localStorage.setItem('wf_idea', idea);
-        localStorage.setItem('wf_type', type);
-        localStorage.setItem('wf_from_preset', '1');
-      } catch(e){}
-      window.location.href = '/#generator';
-    });
-  </script>
 </body>
 </html>
