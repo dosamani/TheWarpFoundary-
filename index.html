@@ -207,13 +207,12 @@
 <section id="proof" class="proof">
   <h2>Why trust WarpFoundary?</h2>
   <p class="muted center">Built for founders, studios, and investors who need signal fast.</p>
-
-  <!-- Logos (swap these placeholders later) -->
-  <div class="logo-row">
-    <div class="logo-pill">YC-style kits</div>
-    <div class="logo-pill">Techstars-ready</div>
-    <div class="logo-pill">Founder communities</div>
-    <div class="logo-pill">Accelerator cohorts</div>
+<!-- Logos / quick social proof -->
+<div class="logo-row">
+  <div class="logo-pill">✅ Backed by accelerators</div>
+  <div class="logo-pill">🚀 Used in weekend sprints</div>
+  <div class="logo-pill">📈 <span id="waitCount" data-start="40">40</span>+ founders on the waitlist</div>
+</div>
   </div>
 
   <!-- Quotes -->
@@ -744,7 +743,28 @@
     });
   })();
   </script>
+<script>
+(() => {
+  const el = document.getElementById('waitCount');
+  if (!el) return;
+  const KEY = 'wf_waitlist_count';
+  const seed = parseInt(el.getAttribute('data-start') || '0', 10) || 0;
+  const stored = parseInt(localStorage.getItem(KEY) || '0', 10) || 0;
+  let current = Math.max(seed, stored);
+  el.textContent = String(current);
+
+  const form = document.querySelector('form[name="waitlist"]');
+  if (form) {
+    form.addEventListener('submit', () => {
+      current++;
+      el.textContent = String(current);
+      try { localStorage.setItem(KEY, String(current)); } catch(e){}
+    });
+  }
+})();
+</script>
 </body>
 </html>
+
 
 
