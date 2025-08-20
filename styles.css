@@ -942,3 +942,32 @@ header.nav.open .site-menu {
 .qcard { background:#1c1f2a; color:#e7e7e7; border-radius:12px; padding:1.1rem 1.2rem; width:300px; box-shadow:0 4px 12px rgba(0,0,0,.25); }
 .qcard p { margin:0 0 .6rem; line-height:1.45; }
 .qcard footer { opacity:.75; font-size:.9rem; }
+
+/* =================== SOCIAL PROOF =================== */
+.social-proof {
+  padding: 4rem 2rem;
+  background: #f9fafc;
+  text-align: center;
+}
+
+.social-proof h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.social-proof .muted {
+  margin-bottom: 2rem;
+}
+
+.proof-grid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  margin-bottom: 2.5rem;
+}
+
+.pitem {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 6px rgba(0,0
