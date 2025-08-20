@@ -931,3 +931,14 @@ header.nav.open .site-menu {
 .deliv-grid { composes: grid-3; }
 .dcard { composes: cardish; }
 .dcard h3 { color:#60a5fa; } /* blue accent for variety vs. timeline’s green */
+
+/* Social Proof */
+.proof { padding: 3rem 1rem; background:#0b0d17; color:#fff; text-align:center; }
+.proof h2 { font-size:1.8rem; margin-bottom: .5rem; }
+.proof .muted { opacity:.85; margin-bottom:1.5rem; }
+.logo-row { display:flex; flex-wrap:wrap; gap:.75rem; justify-content:center; margin: 0 auto 2rem; max-width:900px; }
+.logo-pill { padding:.6rem .9rem; border-radius:999px; background:#1c1f2a; border:1px solid rgba(255,255,255,.06); font-size:.9rem; }
+.quote-grid { display:flex; flex-wrap:wrap; gap:1rem; justify-content:center; }
+.qcard { background:#1c1f2a; color:#e7e7e7; border-radius:12px; padding:1.1rem 1.2rem; width:300px; box-shadow:0 4px 12px rgba(0,0,0,.25); }
+.qcard p { margin:0 0 .6rem; line-height:1.45; }
+.qcard footer { opacity:.75; font-size:.9rem; }
