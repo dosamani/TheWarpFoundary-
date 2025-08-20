@@ -848,3 +848,53 @@ header.nav.open .site-menu {
   line-height: 1.5;
   color: #ddd;
 }
+
+/* Timeline Section */
+.timeline {
+  padding: 3rem 1rem;
+  background: #0b0d17; /* dark bg for contrast */
+  color: #fff;
+  text-align: center;
+}
+
+.timeline h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.timeline .muted {
+  font-size: 1rem;
+  opacity: 0.8;
+  margin-bottom: 2rem;
+}
+
+.timeline-grid {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.timeline .tcard {
+  background: #1c1f2a;
+  border-radius: 12px;
+  padding: 1.5rem;
+  width: 260px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  transition: transform 0.2s ease;
+}
+
+.timeline .tcard:hover {
+  transform: translateY(-6px);
+}
+
+.timeline .tcard h3 {
+  font-size: 1.3rem;
+  color: #4ade80; /* highlight green */
+  margin-bottom: 0.5rem;
+}
+
+.timeline .tcard p {
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
