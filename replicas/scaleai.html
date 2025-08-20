@@ -1,15 +1,161 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Scale AI Test</title>
-  <link rel="stylesheet" href="/styles.css?v=8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Scale AI (today’s MVP) – Founder Kit</title>
+  <meta name="description" content="Labeling platform: project setup, task routing, QA loop, analytics & exports — founder kit." />
+  <link rel="stylesheet" href="/styles.css?v=12" />
 </head>
-<body>
-  <header><h1>WarpFoundary</h1></header>
-  <main>
-    <h2>Scale AI — test</h2>
-    <p>If you can read this, the path is correct.</p>
+<body class="doc">
+  <!-- HEADER -->
+  <header class="nav">
+    <div class="brand">
+      <a href="/" class="logo-text">Warp<span>Foundary</span></a>
+    </div>
+    <nav class="site-menu">
+      <a href="/">Home</a>
+      <a href="/#replicas">Replicas</a>
+      <a href="/#generator">Try it</a>
+      <a href="/#faq">FAQ</a>
+    </nav>
+  </header>
+
+  <main class="doc-main">
+    <!-- HERO -->
+    <section class="hero compact">
+      <div class="hero-inner">
+        <h1>Scale AI (today’s MVP) — <span class="gradient">Founder Kit</span></h1>
+        <p class="sub">Labeling platform: project setup, task routing, QA loop, analytics & exports.</p>
+        <div class="cta-row">
+          <button class="btn" data-preset
+                  data-idea="Data labeling platform with project setup, task routing to workers, QA review loop, analytics dashboard, and dataset export API."
+                  data-type="Web App">Generate this in demo</button>
+          <a href="/#cta" class="btn ghost">Get early access</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- OVERVIEW -->
+    <section class="doc-section">
+      <h2>Overview</h2>
+      <ul>
+        <li><strong>Users:</strong> Project Manager, Annotator, QA Reviewer, Admin</li>
+        <li><strong>Platforms:</strong> Web app + lightweight Admin</li>
+        <li><strong>Data:</strong> image/text datasets, tasks, labels, reviews, exports</li>
+        <li><strong>Payments:</strong> usage-based SaaS (by task or dataset size)</li>
+      </ul>
+    </section>
+
+    <!-- MVP SCOPE -->
+    <section class="doc-section">
+      <h2>MVP Scope (must-have)</h2>
+      <ul>
+        <li>Auth (email + magic link), roles & permissions</li>
+        <li>Project setup: import dataset, define label schema, create tasks</li>
+        <li>Task routing: assign to annotators; simple work queue</li>
+        <li>QA loop: approve/reject with comments; requeue on reject</li>
+        <li>Analytics: progress %, per-label distribution, reject rate</li>
+        <li>Export: JSON/CSV w/ task ids, label geometry/attrs</li>
+      </ul>
+    </section>
+
+    <!-- CORE SCREENS -->
+    <section class="doc-section">
+      <h2>Core Screens</h2>
+      <ol>
+        <li>Projects list → create new project (schema, import)</li>
+        <li>Labeling workspace (keyboard shortcuts; next/prev task)</li>
+        <li>QA review queue (diff view, comments)</li>
+        <li>Analytics dashboard (throughput, quality)</li>
+        <li>Exports (format, sample, download)</li>
+      </ol>
+    </section>
+
+    <!-- DATA MODEL -->
+    <section class="doc-section">
+      <h2>Data Model (simplified)</h2>
+      <pre>
+User{id, email, role}
+Project{id, name, ownerId, schema}
+Task{id, projectId, inputUri, status: NEW|IN_PROGRESS|DONE|REVIEW|REJECTED}
+Annotation{id, taskId, type, data, createdBy}
+Review{id, taskId, decision: APPROVE|REJECT, comment, reviewerId}
+Export{id, projectId, format, createdAt, url}
+      </pre>
+    </section>
+
+    <!-- API STUB -->
+    <section class="doc-section">
+      <h2>API (stub)</h2>
+      <pre>
+POST /api/projects { name, schema }
+POST /api/projects/:id/import { files[] }
+GET  /api/tasks?projectId=...&status=NEW
+POST /api/tasks/:id/annotate { annotation }
+POST /api/tasks/:id/review { decision, comment }
+GET  /api/projects/:id/analytics
+POST /api/projects/:id/export { format }
+      </pre>
+    </section>
+
+    <!-- GTM -->
+    <section class="doc-section">
+      <h2>Go-to-Market (0–6 weeks)</h2>
+      <ul>
+        <li>Target teams labeling images/text for GenAI fine-tuning</li>
+        <li>Offer “first 5k tasks free” to seed datasets & testimonials</li>
+        <li>Partner with agencies/collectives for overflow capacity</li>
+      </ul>
+    </section>
+
+    <!-- RISKS -->
+    <section class="doc-section">
+      <h2>Risks & Mitigations</h2>
+      <ul>
+        <li><strong>Quality:</strong> add double-pass + consensus on high-risk tasks</li>
+        <li><strong>Throughput:</strong> queue autoscaling; hotkeys; pre-labels</li>
+        <li><strong>Security:</strong> signed URLs, per-project ACLs, audit log</li>
+      </ul>
+    </section>
+
+    <!-- NEXT -->
+    <section class="doc-section">
+      <h2>Next Actions</h2>
+      <ul>
+        <li>Ship clickable labeling workspace demo</li>
+        <li>Import 1 public dataset; publish export samples</li>
+        <li>Pilot with 2 design partners; iterate weekly</li>
+      </ul>
+    </section>
   </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>© WarpFoundary</p>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/#replicas">Replicas</a>
+      <a href="/#generator">Try it</a>
+      <a href="mailto:hello@warpfoundary.com">Contact</a>
+    </nav>
+  </footer>
+
+  <!-- Site-wide helpers (if present) -->
+  <script>
+    // Minimal preset handler: send idea back to home generator
+    document.addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-preset]');
+      if (!btn) return;
+      const idea = btn.getAttribute('data-idea') || '';
+      const type = btn.getAttribute('data-type') || 'Web App';
+      try {
+        localStorage.setItem('wf_idea', idea);
+        localStorage.setItem('wf_type', type);
+        localStorage.setItem('wf_from_preset', '1');
+      } catch(e){}
+      window.location.href = '/#generator';
+    });
+  </script>
 </body>
 </html>
