@@ -1,61 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Canonical pages (no # fragments) -->
+  <url><loc>https://thewarpfoundary.ai/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
 
-  <!-- Homepage -->
-  <url>
-    <loc>https://thewarpfoundary.ai/</loc>
-    <priority>1.0</priority>
-  </url>
+  <url><loc>https://thewarpfoundary.ai/privacy.html</loc><changefreq>yearly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://thewarpfoundary.ai/terms.html</loc><changefreq>yearly</changefreq><priority>0.4</priority></url>
 
-  <!-- Main sections (anchors) -->
-  <url>
-    <loc>https://thewarpfoundary.ai/#founder</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://thewarpfoundary.ai/#how</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://thewarpfoundary.ai/#portfolio</loc>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://thewarpfoundary.ai/#generator</loc>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://thewarpfoundary.ai/#faq</loc>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://thewarpfoundary.ai/#replicas</loc>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://thewarpfoundary.ai/#cta</loc>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://thewarpfoundary.ai/#waitlist</loc>
-    <priority>0.6</priority>
-  </url>
+  <!-- Replicas / other real pages -->
+  <url><loc>https://thewarpfoundary.ai/replicas/uber.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://thewarpfoundary.ai/replicas/airbnb.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
 
-  <!-- Replica subpages -->
-  <url>
-    <loc>https://thewarpfoundary.ai/replicas/Uber.html</loc>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://thewarpfoundary.ai/replicas/Airbnb.html</loc>
-    <priority>0.9</priority>
-  </url>
-  <!-- Add more replicas as you create them -->
-  <!-- Example:
-  <url>
-    <loc>https://thewarpfoundary.ai/replicas/Amazon.html</loc>
-    <priority>0.9</priority>
-  </url>
-  -->
-
+  <!-- Root-level pages you have -->
+  <url><loc>https://thewarpfoundary.ai/creditkarma.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://thewarpfoundary.ai/scaleai.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
 </urlset>
