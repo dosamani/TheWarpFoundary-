@@ -64,13 +64,27 @@
   </div>
 </section>
    
+<!-- ================== UNICORN REPLICAS ================== -->
+<section id="replicas" class="replicas">
+  <h2>Unicorn Replicas (instant founder kits)</h2>
 
-  <!-- =================== UNICORN REPLICAS =================== -->
-  <section id="replicas" class="replicas">
-    <h2>Unicorn Replicas (instant founder kits)</h2>
-    <p class="muted center">Click a preset to see how WarpFoundary would assemble their MVP today.</p>the
+  <!-- Search box for replicas -->
+  <div class="replica-search">
+    <input
+      type="text"
+      id="replicaSearch"
+      placeholder="Search replicas..."
+    />
+    <button id="clearReplicaSearch">Clear</button>
+  </div>
 
-    <div class="rep-grid">
+  <p class="muted center">
+    Click a preset to see how WarpFoundary would assemble their MVP today.
+  </p>
+
+  <div class="rep-grid">
+    <!-- your replica cards start here -->
+   
       <article class="rcard">
   <header><span class="pill">Mobility</span><h3>Uber (today’s MVP)</h3></header>
   <p>Rides marketplace: driver onboarding, rider request flow, pricing, payouts.</p>
@@ -628,6 +642,8 @@
 
 </section>
 
+</section>
+
 
    <!-- ============== FOOTER ============== -->
 <footer class="footer">
@@ -844,6 +860,36 @@
       try { localStorage.setItem(KEY, String(current)); } catch(e){}
     });
   }
+})();
+
+<script>
+(() => {
+  const q = document.getElementById('replicaSearch');
+  const clearBtn = document.getElementById('clearReplicaSearch');
+  const cards = Array.from(document.querySelectorAll('#replicaList .replica'));
+
+  if (!q || !cards.length) return;
+
+  const normalize = s => (s || '').toLowerCase().trim();
+
+  const filter = () => {
+    const needle = normalize(q.value);
+    cards.forEach(card => {
+      const title = normalize(card.querySelector('h3')?.textContent);
+      const tags = normalize(card.getAttribute('data-tags'));
+      const hit = !needle || title.includes(needle) || tags.includes(needle);
+      card.style.display = hit ? '' : 'none';
+    });
+  };
+
+  q.addEventListener('input', filter);
+  clearBtn?.addEventListener('click', () => { 
+    q.value = ''; 
+    filter(); 
+  });
+
+  // Initial render
+  filter();
 })();
 </script>
 </body>
