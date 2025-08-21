@@ -7,7 +7,7 @@
     <priority>1.0</priority>
   </url>
 
-  <!-- Main sections -->
+  <!-- Main sections (anchors) -->
   <url>
     <loc>https://thewarpfoundary.ai/#founder</loc>
     <priority>0.8</priority>
@@ -40,5 +40,22 @@
     <loc>https://thewarpfoundary.ai/#waitlist</loc>
     <priority>0.6</priority>
   </url>
+
+  <!-- Replica subpages -->
+  <url>
+    <loc>https://thewarpfoundary.ai/replicas/Uber.html</loc>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://thewarpfoundary.ai/replicas/Airbnb.html</loc>
+    <priority>0.9</priority>
+  </url>
+  <!-- Add more replicas as you create them -->
+  <!-- Example:
+  <url>
+    <loc>https://thewarpfoundary.ai/replicas/Amazon.html</loc>
+    <priority>0.9</priority>
+  </url>
+  -->
 
 </urlset>
