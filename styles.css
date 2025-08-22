@@ -1015,3 +1015,7 @@ header::after {
 
 .site-menu.open { display: block; }        /* mobile open state */
 @media (min-width: 768px){ .site-menu.open { display: flex; } }
+
+/* Put header items on one line and push the button to the right */
+header { display: flex; align-items: center; }
+.menu-toggle { margin-left: auto; }
