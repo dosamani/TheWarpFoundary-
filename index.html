@@ -83,21 +83,42 @@
 </header>
 
 
+
 <script>
 (function () {
-  var btn  = document.getElementById('wfMenuToggle');
-  var menu = document.getElementById('wfSiteMenu');
+  var btn  = document.getElementById('menuToggle');
+  var menu = document.getElementById('site-menu');
   if (!btn || !menu) return;
 
-  // reset closed state
+  // Always start closed on load/refresh
   btn.classList.remove('open');
-  btn.setAttribute('aria-expanded','false');
+  btn.setAttribute('aria-expanded', 'false');
+  btn.setAttribute('aria-label', 'Open menu');
   menu.classList.remove('open');
+  menu.style.display = 'none';
 
-  btn.addEventListener('click', function () {
-    var isOpen = btn.classList.toggle('open');
-    btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-    menu.classList.toggle('open', isOpen);
+  btn.addEventListener('click', function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    var nowOpen = btn.classList.toggle('open');
+    btn.setAttribute('aria-expanded', nowOpen ? 'true' : 'false');
+    btn.setAttribute('aria-label', nowOpen ? 'Close menu' : 'Open menu');
+
+    // Force visibility regardless of any old CSS
+    menu.classList.toggle('open', nowOpen);
+    menu.style.display = nowOpen ? 'flex' : 'none';
+  });
+
+  // Close if user taps outside (optional but nice)
+  document.addEventListener('click', function (e) {
+    if (!menu.contains(e.target) && !btn.contains(e.target)) {
+      btn.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+      btn.setAttribute('aria-label', 'Open menu');
+      menu.classList.remove('open');
+      menu.style.display = 'none';
+    }
   });
 })();
 </script>
