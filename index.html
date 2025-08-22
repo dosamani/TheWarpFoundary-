@@ -92,6 +92,37 @@
     <a href="#cta" class="btn small">Get early access</a>
   </nav>
 </header>
+
+<script>
+(function(){
+  var cb   = document.getElementById('wfNavToggle');
+  var menu = document.querySelector('header.wf-header .wf-menu');
+  var btn  = document.querySelector('header.wf-header label.wf-hamburger');
+  if(!cb || !menu || !btn) return;
+
+  // Make sure we start closed
+  cb.checked = false;
+  menu.classList.remove('open');
+
+  // Keep ARIA in sync + toggle class so CSS conflicts can’t hide it
+  function sync(){
+    var open = cb.checked;
+    btn.setAttribute('aria-expanded', String(open));
+    menu.classList.toggle('open', open);
+  }
+  // Clicking the label should flip the checkbox (native), we also sync UI
+  btn.addEventListener('click', function(){ 
+    // small timeout lets the native checkbox toggle first
+    setTimeout(sync, 0); 
+  });
+  // If anything else toggles the checkbox, keep in sync
+  cb.addEventListener('change', sync);
+
+  // Safety: ensure the hamburger is definitely clickable above everything
+  btn.style.position = 'relative';
+  btn.style.zIndex = 100;
+})();
+</script>
  
 
   <!-- =================== HERO =================== -->
