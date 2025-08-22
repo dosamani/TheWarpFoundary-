@@ -86,27 +86,21 @@
 
 
 <script>
-(function () {
-  const btn  = document.getElementById('menuToggle');
-  const menu = document.getElementById('site-menu');
+(function(){
+  var btn = document.getElementById('menuToggle');
+  var menu = document.getElementById('site-menu');
   if (!btn || !menu) return;
 
-  function setOpen(open) {
-    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-    btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
-    menu.classList.toggle('open', open);
-    document.body.classList.toggle('no-scroll', open);
-  }
-
-  // make sure we start CLOSED (hamburger shows)
-  setOpen(false);
-
-  btn.addEventListener('click', () => {
-    const isOpen = btn.getAttribute('aria-expanded') === 'true';
-    setOpen(!isOpen);
+  btn.addEventListener('click', function(){
+    var open = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', String(!open));
+    btn.setAttribute('aria-label', open ? 'Open menu' : 'Close menu');
+    btn.classList.toggle('open', !open);   // <--- new line
+    menu.classList.toggle('open', !open);
   });
 })();
 </script>
+
 <!-- === /HEADER FIX === -->
 </header>
     
