@@ -1012,3 +1012,6 @@ header::after {
   position: absolute; left: 0; right: 0; bottom: -1px; height: 1px;
   background: linear-gradient(to right, transparent, rgba(255,255,255,.08), transparent);
 }
+
+.site-menu.open { display: block; }        /* mobile open state */
+@media (min-width: 768px){ .site-menu.open { display: flex; } }
