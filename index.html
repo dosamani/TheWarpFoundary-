@@ -1134,6 +1134,91 @@ header * {
     });
   });
 </script>
+<script>
+/* ONE-PASTE HEADER FIX: builds a clean header, styles it, and wires the toggle */
+(function () {
+  // 1) Drop a scoped style tag (won't fight your other CSS)
+  var css = `
+  header.nav.__fixed{
+    position:sticky; top:0; z-index:50;
+    display:flex; align-items:center; gap:12px;
+    padding:12px 16px; background:var(--bg,#0b0b12);
+  }
+  header.nav.__fixed .brand{ flex:0 0 auto; }
+  header.nav.__fixed .menu-toggle{
+    margin-left:auto; width:36px; height:32px;
+    display:inline-flex; flex-direction:column; justify-content:center; gap:5px;
+    background:transparent; border:0; cursor:pointer;
+  }
+  header.nav.__fixed .menu-toggle .bar{
+    display:block; height:2px; background:#eaf2ff;
+    transition:transform .2s ease, opacity .2s ease;
+  }
+  header.nav.__fixed #site-menu{ display:none; flex-direction:column; gap:.75rem; padding-top:.5rem; }
+  header.nav.__fixed #site-menu.open{ display:flex; }
+  @media (min-width:768px){
+    header.nav.__fixed .menu-toggle{ display:none; }
+    header.nav.__fixed #site-menu{
+      display:flex !important; flex-direction:row; gap:18px; margin-left:auto; padding-top:0;
+    }
+  }
+  /* animate to X */
+  header.nav.__fixed .menu-toggle.open .bar:nth-child(1){ transform:translateY(7px) rotate(45deg); }
+  header.nav.__fixed .menu-toggle.open .bar:nth-child(2){ opacity:0; }
+  header.nav.__fixed .menu-toggle.open .bar:nth-child(3){ transform:translateY(-7px) rotate(-45deg); }
+  `;
+  var style = document.createElement('style');
+  style.textContent = css;
+  document.head.appendChild(style);
+
+  // 2) Build the new header markup
+  var headerHTML = `
+    <header class="nav __fixed">
+      <div class="brand">
+        <a href="/" class="logo-text">Warp<span>Foundary</span></a>
+      </div>
+      <button id="menuToggle" class="menu-toggle" aria-expanded="false" aria-controls="site-menu" aria-label="Open menu">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </button>
+      <nav id="site-menu" class="site-menu" aria-label="Primary">
+        <a href="#how">How it works</a>
+        <a href="#portfolio">Examples</a>
+        <a href="#generator">Try it</a>
+        <a href="#faq">FAQ</a>
+        <a href="#cta" class="btn small">Get early access</a>
+      </nav>
+    </header>
+  `;
+
+  // 3) Replace any existing header on the page
+  var old = document.querySelector('header');
+  var wrapper = document.createElement('div');
+  wrapper.innerHTML = headerHTML.trim();
+  var fresh = wrapper.firstElementChild;
+
+  if (old && old.parentNode) {
+    old.parentNode.replaceChild(fresh, old);
+  } else {
+    // if no header, prepend to body
+    document.body.insertBefore(fresh, document.body.firstChild);
+  }
+
+  // 4) Wire the toggle
+  var btn  = document.getElementById('menuToggle');
+  var menu = document.getElementById('site-menu');
+  if (!btn || !menu) return;
+
+  btn.classList.remove('open');
+  btn.setAttribute('aria-expanded','false');
+  menu.classList.remove('open');
+
+  btn.addEventListener('click', function(){
+    var open = btn.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    menu.classList.toggle('open', open);
+  });
+})();
+</script>
 </body>
 </html>
 
