@@ -1043,5 +1043,23 @@ header .menu-toggle {
   margin: 0 !important;   /* override earlier margins */
   order: 0 !important;    /* ignore flex order tricks */
 }
+/* Hard-fix hamburger placement & open state (scoped to header.nav) */
+header.nav { position: relative; display: flex; align-items: center; padding: 12px 16px; }
+
+header.nav > .menu-toggle {
+  position: absolute !important;
+  right: 16px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  margin: 0 !important;
+}
+
+#site-menu { display: none; }
+#site-menu.open { display: flex; flex-direction: column; gap: .75rem; padding-top: .5rem; }
+
+@media (min-width: 768px) {
+  header.nav > .menu-toggle { display: none !important; }
+  #site-menu { display: flex !important; flex-direction: row; gap: 18px; margin-left: auto; padding-top: 0; }
+}
 
 
