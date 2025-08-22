@@ -1356,3 +1356,46 @@ header.wf-header .wf-hamburger {
   transform: rotate(-45deg) translate(5px, -5px);
 }
 
+/* Keep the hamburger button visible above the menu */
+.wf-hamburger {
+  position: relative;
+  z-index: 1001;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* The three bars */
+.wf-hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  margin: 5px 0;
+  background: #eaf2ff;
+  transition: transform .25s ease, opacity .25s ease;
+}
+
+/* Fallback "X" built with pseudo-elements so it works even if spans get reset */
+.wf-hamburger::before,
+.wf-hamburger::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 22px;
+  height: 2px;
+  background: #eaf2ff;
+  transform-origin: center;
+  opacity: 0;
+  transition: transform .25s ease, opacity .25s ease;
+}
+
+/* When checked: hide the bars and show the X */
+#wfNavToggle:checked + label.wf-hamburger span { opacity: 0 !important; }
+#wfNavToggle:checked + label.wf-hamburger::before {
+  opacity: 1; transform: translateY(-1px) rotate(45deg);
+}
+#wfNavToggle:checked + label.wf-hamburger::after {
+  opacity: 1; transform: translateY(-1px) rotate(-45deg);
+}
+
