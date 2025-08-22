@@ -20,7 +20,7 @@
     <priority>0.4</priority>
   </url>
 
-  <!-- Replica pages -->
+  <!-- Replicas / example pages -->
   <url>
     <loc>https://www.thewarpfoundary.ai/replicas/uber.html</loc>
     <changefreq>monthly</changefreq>
@@ -33,7 +33,7 @@
     <priority>0.7</priority>
   </url>
 
-  <!-- Root-level pages -->
+  <!-- Other real pages -->
   <url>
     <loc>https://www.thewarpfoundary.ai/creditkarma.html</loc>
     <changefreq>monthly</changefreq>
