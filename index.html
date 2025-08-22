@@ -986,6 +986,20 @@
   filter();
 })();
 </script>
+<script>
+  // Robust attach (waits for DOM)
+  document.addEventListener('DOMContentLoaded', function () {
+    const btn  = document.getElementById('menuToggle');
+    const menu = document.getElementById('site-menu');
+    if (!btn || !menu) return;
+
+    btn.addEventListener('click', function () {
+      const open = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!open));
+      menu.classList.toggle('open', !open);
+    });
+  });
+</script>
 </body>
 </html>
 
