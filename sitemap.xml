@@ -1,16 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <!-- Canonical pages (no # fragments) -->
-  <url><loc>https://www.thewarpfoundary.ai/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
 
-  <url><loc>https://www.thewarpfoundary.ai/privacy.html</loc><changefreq>yearly</changefreq><priority>0.4</priority></url>
-  <url><loc>https://www.thewarpfoundary.ai/terms.html</loc><changefreq>yearly</changefreq><priority>0.4</priority></url>
+  <!-- Canonical pages -->
+  <url>
+    <loc>https://www.thewarpfoundary.ai/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
 
-  <!-- Replicas / other real pages -->
-  <url><loc>https://www.thewarpfoundary.ai/replicas/uber.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.thewarpfoundary.ai/replicas/airbnb.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url>
+    <loc>https://www.thewarpfoundary.ai/privacy.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
 
-  <!-- Root-level pages you have -->
-  <url><loc>https://www.thewarpfoundary.ai/creditkarma.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://www.thewarpfoundary.ai/scaleai.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url>
+    <loc>https://www.thewarpfoundary.ai/terms.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+
+  <!-- Replica pages -->
+  <url>
+    <loc>https://www.thewarpfoundary.ai/replicas/uber.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.thewarpfoundary.ai/replicas/airbnb.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Root-level pages -->
+  <url>
+    <loc>https://www.thewarpfoundary.ai/creditkarma.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://www.thewarpfoundary.ai/scaleai.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
 </urlset>
