@@ -88,6 +88,22 @@ header * {
 
 </style>
 
+<style>
+  /* Make header a single row and hide the checkbox from layout */
+  header.wf-header { display: flex !important; align-items: center; }
+
+  /* Visually hide the checkbox so it doesn't take space */
+  #wfNavToggle { position: absolute; left: -9999px; }
+
+  /* Push hamburger to the far right */
+  .wf-hamburger { margin-left: auto !important; order: 2; display: inline-flex; }
+</style>
+
+<style>
+  /* Make sure flex layout is active and items don't stretch */
+  header.wf-header > * { flex: 0 0 auto; }
+</style>
+
 <header class="wf-header" role="banner">
   <div class="wf-brand">
     <a href="/" class="logo-text">Warp<span>Foundary</span></a>
