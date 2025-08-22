@@ -28,120 +28,71 @@
 </head>
 
 <body>
-<!-- === HEADER (self-contained fix) === -->
+<!-- === HEADER (CSS-only toggle, zero JS) === -->
 <style>
-  /* scoped so we don't fight old rules */
-  header.nav.__fixed {
+  /* Namespaced to avoid collisions */
+  header.wf-header {
     position: sticky; top: 0; z-index: 50;
-    display: flex; align-items: center;
-    background: var(--bg, #0b0b12);
-    padding: 12px 16px;
+    display: flex; align-items: center; gap: 16px;
+    background: var(--bg, #0b0b12); padding: 12px 16px;
   }
-  header.nav.__fixed .brand { flex: 0 0 auto; }
-  header.nav.__fixed .menu-toggle {
-    margin-left: auto;
-    width: 36px; height: 32px;
-    display: inline-flex; flex-direction: column; justify-content: center; gap: 5px;
-    background: transparent; border: 0; cursor: pointer;
+  .wf-brand { flex: 0 0 auto; }
+  .wf-brand .logo-text { text-decoration: none; color: inherit; }
+
+  /* Hidden checkbox drives the toggle */
+  #wfNavToggle { position: absolute; left: -9999px; }
+
+  /* Hamburger (right side) */
+  .wf-hamburger {
+    margin-left: auto; width: 36px; height: 32px;
+    display: inline-flex; flex-direction: column; justify-content: center; gap: 6px;
+    cursor: pointer; -webkit-tap-highlight-color: transparent;
   }
-  header.nav.__fixed .menu-toggle span {
-    display: block; height: 2px; background: #eaf2ff;
+  .wf-hamburger span {
+    display: block; height: 2px; background: #eaf2ff; transition: transform .2s ease, opacity .2s ease;
   }
-  /* menu closed by default on mobile */
-  header.nav.__fixed #site-menu { display: none; flex-direction: column; gap: .75rem; padding-top: .5rem; }
-  header.nav.__fixed #site-menu.open { display: flex; }
-  /* desktop */
+
+  /* Menu (closed by default on mobile) */
+  .wf-menu { display: none; flex-direction: column; gap: .75rem; padding-top: .5rem; width: 100%; }
+  .wf-menu a { text-decoration: none; }
+
+  /* When checked: open + animate to X */
+  #wfNavToggle:checked ~ .wf-menu { display: flex; }
+  #wfNavToggle:checked ~ .wf-hamburger span:nth-child(1){ transform: translateY(8px) rotate(45deg); }
+  #wfNavToggle:checked ~ .wf-hamburger span:nth-child(2){ opacity: 0; }
+  #wfNavToggle:checked ~ .wf-hamburger span:nth-child(3){ transform: translateY(-8px) rotate(-45deg); }
+
+  /* Desktop */
   @media (min-width: 768px){
-    header.nav.__fixed .menu-toggle { display:none; }
-    header.nav.__fixed #site-menu { display: flex !important; flex-direction: row; gap: 18px; margin-left: auto; padding-top:0; }
+    .wf-hamburger { display: none; }
+    .wf-menu {
+      display: flex !important; flex-direction: row; gap: 18px;
+      margin-left: auto; padding-top: 0; width: auto;
+    }
   }
 </style>
 
-<header class="nav __fixed">
-  <div class="brand">
+<header class="wf-header" role="banner">
+  <div class="wf-brand">
     <a href="/" class="logo-text">Warp<span>Foundary</span></a>
   </div>
 
-  <!-- Hamburger -->
-<button
-  id="menuToggle"
-  class="menu-toggle"
-  aria-expanded="false"
-  aria-controls="site-menu"
-  aria-label="Open menu"
-  onclick="toggleMenu(event)"
->
-  <span class="bar"></span>
-  <span class="bar"></span>
-  <span class="bar"></span>
-</button>
+  <!-- Checkbox + label = hamburger -->
+  <input type="checkbox" id="wfNavToggle" aria-label="Toggle navigation">
+  <label for="wfNavToggle" class="wf-hamburger" aria-hidden="true">
+    <span></span><span></span><span></span>
+  </label>
 
-
-<nav id="wfSiteMenu" class="site-menu">
-  <a href="#how">How it works</a>
-  <a href="#portfolio">Examples</a>
-  <a href="#generator">Try it</a>
-  <a href="#faq">FAQ</a>
-  <a href="#cta" class="btn small">Get early access</a>
-</nav>
+  <!-- Nav links -->
+  <nav class="wf-menu" aria-label="Primary">
+    <a href="#how">How it works</a>
+    <a href="#portfolio">Examples</a>
+    <a href="#generator">Try it</a>
+    <a href="#faq">FAQ</a>
+    <a href="#cta" class="btn small">Get early access</a>
+  </nav>
 </header>
-
-
-
-<script>
-  function toggleMenu(ev){
-    if (ev) { ev.preventDefault(); ev.stopPropagation(); }
-
-    var btn  = document.getElementById('menuToggle');
-    var menu = document.getElementById('site-menu');
-    if (!btn || !menu) return;
-
-    // compute new state
-    var nowOpen = btn.getAttribute('aria-expanded') === 'true' ? false : true;
-
-    // update button state
-    btn.setAttribute('aria-expanded', nowOpen ? 'true' : 'false');
-    btn.setAttribute('aria-label', nowOpen ? 'Close menu' : 'Open menu');
-    btn.classList.toggle('open', nowOpen);
-
-    // **force** visibility regardless of old CSS
-    menu.classList.toggle('open', nowOpen);
-    menu.style.setProperty('display', nowOpen ? 'flex' : 'none', 'important');
-
-    // make sure it stacks above content
-    menu.style.position = 'relative';
-    menu.style.zIndex = '999';
-  }
-
-  // start CLOSED on load
-  (function(){
-    var btn  = document.getElementById('menuToggle');
-    var menu = document.getElementById('site-menu');
-    if (!btn || !menu) return;
-    btn.classList.remove('open');
-    btn.setAttribute('aria-expanded','false');
-    btn.setAttribute('aria-label','Open menu');
-    menu.classList.remove('open');
-    menu.style.setProperty('display','none','important');
-
-    // optional: tap outside to close
-    document.addEventListener('click', function(e){
-      if (!menu.contains(e.target) && !btn.contains(e.target)) {
-        btn.classList.remove('open');
-        btn.setAttribute('aria-expanded','false');
-        btn.setAttribute('aria-label','Open menu');
-        menu.classList.remove('open');
-        menu.style.setProperty('display','none','important');
-      }
-    }, {passive:true});
-  })();
-</script>
-
-
-
-<!-- === /HEADER FIX === -->
-</header>
-    
+ 
 
   <!-- =================== HERO =================== -->
 <section class="hero">
