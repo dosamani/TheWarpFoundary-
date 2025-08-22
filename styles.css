@@ -1221,4 +1221,25 @@ body.no-scroll{ overflow:hidden; }
 /* Optional: prevent background scroll when menu is open (JS toggles .no-scroll) */
 .no-scroll { overflow: hidden; }
 
+/* menu closed by default on mobile */
+header.nav.__fixed .site-menu {
+  display: none;
+  flex-direction: column;
+  gap: .75rem;
+  padding-top: .5rem;
+}
+header.nav.__fixed .site-menu.open { display: flex; }
+
+/* desktop */
+@media (min-width: 768px){
+  header.nav.__fixed .menu-toggle { display: none; }
+  header.nav.__fixed .site-menu {
+    display: flex !important;
+    flex-direction: row;
+    gap: 18px;
+    margin-left: auto;
+    padding-top: 0;
+  }
+}
+
 
