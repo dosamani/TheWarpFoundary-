@@ -1032,4 +1032,16 @@ header .menu-toggle {
   order: 2; /* push to far right */
 }
 
+/* --- Force hamburger to the far right regardless of layout --- */
+header { position: relative; }  /* anchor for absolute child */
+
+header .menu-toggle {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  margin: 0 !important;   /* override earlier margins */
+  order: 0 !important;    /* ignore flex order tricks */
+}
+
 
