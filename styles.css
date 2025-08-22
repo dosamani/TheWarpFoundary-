@@ -1287,3 +1287,39 @@ header.wf-header .wf-hamburger {
   order: 2 !important;
 }
 
+/* Force hamburger & close X to stay on the right */
+header.wf-header {
+  display: flex;
+  align-items: center;
+}
+
+header.wf-header .wf-hamburger {
+  margin-left: auto !important;
+  order: 2 !important;
+  position: relative;
+  right: 0;
+}
+
+/* Align hamburger/X perfectly with brand text */
+header.wf-header .wf-hamburger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;   /* matches header height */
+  padding: 0;     /* no extra padding */
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+/* Shrink hamburger/X clickable area */
+header.wf-header .wf-hamburger {
+  width: 32px;   /* smaller box */
+  height: 28px;  /* reduce tall feel */
+  gap: 4px;      /* less space between bars */
+}
+
+header.wf-header .wf-hamburger span {
+  height: 2px;   /* thin bars */
+  border-radius: 2px;
+}
+
