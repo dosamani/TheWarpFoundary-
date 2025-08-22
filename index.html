@@ -86,20 +86,35 @@
 
 
 <script>
-(function(){
-  var btn = document.getElementById('menuToggle');
+(function () {
+  var btn  = document.getElementById('menuToggle');
   var menu = document.getElementById('site-menu');
   if (!btn || !menu) return;
 
-  btn.addEventListener('click', function(){
-    var open = btn.getAttribute('aria-expanded') === 'true';
-    btn.setAttribute('aria-expanded', String(!open));
-    btn.setAttribute('aria-label', open ? 'Open menu' : 'Close menu');
-    btn.classList.toggle('open', !open);   // <--- new line
-    menu.classList.toggle('open', !open);
+  // Remove any previously attached listeners by cloning the button
+  var newBtn = btn.cloneNode(true);
+  btn.parentNode.replaceChild(newBtn, btn);
+  btn = newBtn;
+
+  function setOpen(open) {
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    btn.classList.toggle('open', open);   // sync icon state
+    menu.classList.toggle('open', open);  // show/hide menu
+    document.body.classList.toggle('no-scroll', open);
+  }
+
+  // Start closed
+  setOpen(false);
+
+  // Toggle on click
+  btn.addEventListener('click', function () {
+    var isOpen = btn.getAttribute('aria-expanded') === 'true';
+    setOpen(!isOpen);
   });
 })();
 </script>
+
 
 <!-- === /HEADER FIX === -->
 </header>
