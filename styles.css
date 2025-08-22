@@ -1175,4 +1175,50 @@ body.no-scroll{ overflow:hidden; }
   }
 }
 
+/* === Hamburger icon visuals === */
+.menu-toggle {
+  position: relative;
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+/* the three bars */
+.menu-toggle span {
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  height: 2px;
+  background: currentColor; /* inherits text color */
+  border-radius: 2px;
+  transition: transform .2s ease, opacity .2s ease, top .2s ease;
+}
+
+/* positions for the bars */
+.menu-toggle span:nth-child(1) { top: 12px; }
+.menu-toggle span:nth-child(2) { top: 17px; }
+.menu-toggle span:nth-child(3) { top: 22px; }
+
+/* when menu is open, morph to X */
+.menu-toggle.open span:nth-child(1) {
+  top: 17px;
+  transform: rotate(45deg);
+}
+.menu-toggle.open span:nth-child(2) {
+  opacity: 0;
+}
+.menu-toggle.open span:nth-child(3) {
+  top: 17px;
+  transform: rotate(-45deg);
+}
+
+/* Optional: prevent background scroll when menu is open (JS toggles .no-scroll) */
+.no-scroll { overflow: hidden; }
+
 
