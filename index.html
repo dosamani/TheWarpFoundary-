@@ -109,14 +109,13 @@ header * {
     <a href="/" class="logo-text">Warp<span>Foundary</span></a>
   </div>
 
-  <!-- Checkbox + label = hamburger -->
+  <!-- Checkbox (hidden) -->
   <input type="checkbox" id="wfNavToggle" aria-label="Toggle navigation">
- <label for="wfNavToggle"
-       class="wf-hamburger"
-       style="margin-left:auto; display:inline-flex; position:static; order:2;"
-       aria-hidden="true">
-  <span></span><span></span><span></span>
-</label>
+
+  <!-- Hamburger (label for checkbox) -->
+  <label for="wfNavToggle" class="wf-hamburger" aria-hidden="true">
+    <span></span><span></span><span></span>
+  </label>
 
   <!-- Nav links -->
   <nav class="wf-menu" aria-label="Primary">
@@ -127,6 +126,7 @@ header * {
     <a href="#cta" class="btn small">Get early access</a>
   </nav>
 </header>
+
 
 <script>
 (function(){
