@@ -1335,3 +1335,24 @@ header.wf-header .wf-hamburger {
   order: 2;            /* make sure it's after logo */
 }
 
+/* Hamburger bars */
+.wf-hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  margin: 5px 0;
+  background: #eaf2ff;
+  transition: 0.3s ease;
+}
+
+/* When menu is open (checkbox checked), animate into X */
+#wfNavToggle:checked + label.wf-hamburger span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+#wfNavToggle:checked + label.wf-hamburger span:nth-child(2) {
+  opacity: 0;
+}
+#wfNavToggle:checked + label.wf-hamburger span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
