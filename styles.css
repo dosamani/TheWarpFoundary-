@@ -1265,6 +1265,7 @@ header.wf-header .wf-hamburger {
   display: none; 
 }
 
+
 /* desktop: show menu, hide hamburger */
 @media (min-width: 768px){
   header.wf-header .wf-hamburger { display: none; }
@@ -1275,4 +1276,14 @@ header.wf-header .wf-hamburger {
   }
 }
 
+/* Force hamburger to the right */
+header.wf-header {
+  display: flex;
+  align-items: center;
+}
+
+header.wf-header .wf-hamburger {
+  margin-left: auto !important;
+  order: 2 !important;
+}
 
