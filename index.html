@@ -63,57 +63,45 @@
   </div>
 
   <!-- Hamburger -->
-<button id="menuToggle"
+<<button id="wfMenuToggle"
         class="menu-toggle"
         aria-expanded="false"
-        aria-controls="site-menu"
+        aria-controls="wfSiteMenu"
         aria-label="Open menu">
   <span class="bar"></span>
   <span class="bar"></span>
   <span class="bar"></span>
+</button>
 
-  </button>
-
-  <!-- Links -->
-  <nav id="site-menu" class="site-menu" aria-label="Primary">
-    <a href="#how" class="active">How it works</a>
-    <a href="#portfolio">Examples</a>
-    <a href="#generator">Try it</a>
-    <a href="#faq">FAQ</a>
-    <a href="#cta" class="btn small">Get early access</a>
-  </nav>
+<nav id="wfSiteMenu" class="site-menu">
+  <a href="#how">How it works</a>
+  <a href="#portfolio">Examples</a>
+  <a href="#generator">Try it</a>
+  <a href="#faq">FAQ</a>
+  <a href="#cta" class="btn small">Get early access</a>
+</nav>
 </header>
 
 
 <script>
 (function () {
-  var btn  = document.getElementById('menuToggle');
-  var menu = document.getElementById('site-menu');
+  var btn  = document.getElementById('wfMenuToggle');
+  var menu = document.getElementById('wfSiteMenu');
   if (!btn || !menu) return;
 
-  // Remove any previously attached listeners by cloning the button
-  var newBtn = btn.cloneNode(true);
-  btn.parentNode.replaceChild(newBtn, btn);
-  btn = newBtn;
+  // reset closed state
+  btn.classList.remove('open');
+  btn.setAttribute('aria-expanded','false');
+  menu.classList.remove('open');
 
-  function setOpen(open) {
-    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-    btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
-    btn.classList.toggle('open', open);   // sync icon state
-    menu.classList.toggle('open', open);  // show/hide menu
-    document.body.classList.toggle('no-scroll', open);
-  }
-
-  // Start closed
-  setOpen(false);
-
-  // Toggle on click
   btn.addEventListener('click', function () {
-    var isOpen = btn.getAttribute('aria-expanded') === 'true';
-    setOpen(!isOpen);
+    var isOpen = btn.classList.toggle('open');
+    btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    menu.classList.toggle('open', isOpen);
   });
 })();
 </script>
+
 
 
 <!-- === /HEADER FIX === -->
