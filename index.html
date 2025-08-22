@@ -104,6 +104,36 @@ header * {
   header.wf-header > * { flex: 0 0 auto; }
 </style>
 
+<style>
+  /* hide the checkbox itself */
+  #wfNavToggle { position:absolute; left:-9999px; }
+
+  /* hamburger button */
+  .wf-hamburger { 
+    margin-left:auto; display:inline-flex; flex-direction:column; 
+    gap:6px; width:30px; height:24px; cursor:pointer;
+  }
+  .wf-hamburger span {
+    display:block; height:2px; background:#eaf2ff;
+    transition:transform .2s ease, opacity .2s ease;
+  }
+
+  /* menu open/close */
+  .wf-menu{ display:none; flex-direction:column; gap:12px; padding-top:8px; }
+  #wfNavToggle:checked ~ .wf-menu{ display:flex; }
+
+  /* transform bars into an X */
+  #wfNavToggle:checked + label.wf-hamburger span:nth-child(1){
+    transform: translateY(7px) rotate(45deg);
+  }
+  #wfNavToggle:checked + label.wf-hamburger span:nth-child(2){
+    opacity:0;
+  }
+  #wfNavToggle:checked + label.wf-hamburger span:nth-child(3){
+    transform: translateY(-7px) rotate(-45deg);
+  }
+</style>
+
 <header class="wf-header" role="banner">
   <div class="wf-brand">
     <a href="/" class="logo-text">Warp<span>Foundary</span></a>
