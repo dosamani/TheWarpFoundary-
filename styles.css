@@ -1019,3 +1019,15 @@ header::after {
 /* Put header items on one line and push the button to the right */
 header { display: flex; align-items: center; }
 .menu-toggle { margin-left: auto; }
+
+/* Force header items into flex row and push menu toggle right */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header .menu-toggle {
+  margin-left: auto;
+  order: 2; /* push to far right */
+}
