@@ -1,1 +1,9 @@
-https://thewarpfoundary.ai/*   https://www.thewarpfoundary.ai/:splat   301
+# 1) Redirect all HTTP to HTTPS
+http://thewarpfoundary.ai/*        https://thewarpfoundary.ai/:splat        301!
+http://www.thewarpfoundary.ai/*    https://www.thewarpfoundary.ai/:splat    301!
+
+# 2) Redirect bare domain to canonical WWW over HTTPS
+https://thewarpfoundary.ai/*       https://www.thewarpfoundary.ai/:splat    301!
+
+# 3) (Optional) send Netlify subdomain to canonical
+https://thewarpfoundarymvp.netlify.app/*  https://www.thewarpfoundary.ai/:splat  301!
