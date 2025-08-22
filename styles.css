@@ -971,3 +971,44 @@ header.nav.open .site-menu {
   border-radius: 12px;
   padding: 1.5rem;
   box-shadow: 0 2px 6px rgba(0,0
+
+/* === Header layout fixes === */
+header {
+  position: sticky; top: 0; z-index: 50;
+  background: var(--bg, #0b0b12);
+}
+header .brand,
+header .menu-toggle,
+header .site-menu {
+  /* ensure flex children behave predictably */
+  flex: 0 0 auto;
+}
+
+/* Put the header on a single row and push the toggle to the right */
+header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+}
+.menu-toggle { margin-left: auto; }   /* <- pushes hamburger to the right */
+
+/* Mobile: hide menu links by default */
+.site-menu { display: none; }
+
+/* Desktop: hide hamburger, show links and right-align them */
+@media (min-width: 768px) {
+  .menu-toggle { display: none; }
+  .site-menu {
+    display: flex;
+    gap: 18px;
+    margin-left: auto;                /* links align right on desktop */
+  }
+}
+
+/* Optional: a subtle shadow under sticky header */
+header::after {
+  content: "";
+  position: absolute; left: 0; right: 0; bottom: -1px; height: 1px;
+  background: linear-gradient(to right, transparent, rgba(255,255,255,.08), transparent);
+}
