@@ -63,15 +63,19 @@
   </div>
 
   <!-- Hamburger -->
-<button id="wfMenuToggle"
-        class="menu-toggle"
-        aria-expanded="false"
-        aria-controls="wfSiteMenu"
-        aria-label="Open menu">
+<button
+  id="menuToggle"
+  class="menu-toggle"
+  aria-expanded="false"
+  aria-controls="site-menu"
+  aria-label="Open menu"
+  onclick="toggleMenu(event)"
+>
   <span class="bar"></span>
   <span class="bar"></span>
   <span class="bar"></span>
 </button>
+
 
 <nav id="wfSiteMenu" class="site-menu">
   <a href="#how">How it works</a>
@@ -85,42 +89,52 @@
 
 
 <script>
-(function () {
-  var btn  = document.getElementById('menuToggle');
-  var menu = document.getElementById('site-menu');
-  if (!btn || !menu) return;
+  function toggleMenu(ev){
+    if (ev) { ev.preventDefault(); ev.stopPropagation(); }
 
-  // Always start closed on load/refresh
-  btn.classList.remove('open');
-  btn.setAttribute('aria-expanded', 'false');
-  btn.setAttribute('aria-label', 'Open menu');
-  menu.classList.remove('open');
-  menu.style.display = 'none';
+    var btn  = document.getElementById('menuToggle');
+    var menu = document.getElementById('site-menu');
+    if (!btn || !menu) return;
 
-  btn.addEventListener('click', function (e) {
-    e.preventDefault();
-    e.stopPropagation();
+    // compute new state
+    var nowOpen = btn.getAttribute('aria-expanded') === 'true' ? false : true;
 
-    var nowOpen = btn.classList.toggle('open');
+    // update button state
     btn.setAttribute('aria-expanded', nowOpen ? 'true' : 'false');
     btn.setAttribute('aria-label', nowOpen ? 'Close menu' : 'Open menu');
+    btn.classList.toggle('open', nowOpen);
 
-    // Force visibility regardless of any old CSS
+    // **force** visibility regardless of old CSS
     menu.classList.toggle('open', nowOpen);
-    menu.style.display = nowOpen ? 'flex' : 'none';
-  });
+    menu.style.setProperty('display', nowOpen ? 'flex' : 'none', 'important');
 
-  // Close if user taps outside (optional but nice)
-  document.addEventListener('click', function (e) {
-    if (!menu.contains(e.target) && !btn.contains(e.target)) {
-      btn.classList.remove('open');
-      btn.setAttribute('aria-expanded', 'false');
-      btn.setAttribute('aria-label', 'Open menu');
-      menu.classList.remove('open');
-      menu.style.display = 'none';
-    }
-  });
-})();
+    // make sure it stacks above content
+    menu.style.position = 'relative';
+    menu.style.zIndex = '999';
+  }
+
+  // start CLOSED on load
+  (function(){
+    var btn  = document.getElementById('menuToggle');
+    var menu = document.getElementById('site-menu');
+    if (!btn || !menu) return;
+    btn.classList.remove('open');
+    btn.setAttribute('aria-expanded','false');
+    btn.setAttribute('aria-label','Open menu');
+    menu.classList.remove('open');
+    menu.style.setProperty('display','none','important');
+
+    // optional: tap outside to close
+    document.addEventListener('click', function(e){
+      if (!menu.contains(e.target) && !btn.contains(e.target)) {
+        btn.classList.remove('open');
+        btn.setAttribute('aria-expanded','false');
+        btn.setAttribute('aria-label','Open menu');
+        menu.classList.remove('open');
+        menu.style.setProperty('display','none','important');
+      }
+    }, {passive:true});
+  })();
 </script>
 
 
