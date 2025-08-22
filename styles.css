@@ -1323,3 +1323,15 @@ header.wf-header .wf-hamburger span {
   border-radius: 2px;
 }
 
+/* Force hamburger to the right side */
+header.wf-header {
+  display: flex;
+  justify-content: space-between; /* logo left, hamburger right */
+  align-items: center;
+}
+
+header.wf-header .wf-hamburger {
+  margin-left: auto;   /* push to far right */
+  order: 2;            /* make sure it's after logo */
+}
+
