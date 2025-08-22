@@ -1061,5 +1061,33 @@ header.nav > .menu-toggle {
   header.nav > .menu-toggle { display: none !important; }
   #site-menu { display: flex !important; flex-direction: row; gap: 18px; margin-left: auto; padding-top: 0; }
 }
+/* === Fix hamburger icon states === */
+.menu-toggle span{
+  display:block;
+  width:24px;
+  height:2px;
+  margin:6px 0;
+  background: currentColor;
+  transition: transform .2s ease, opacity .2s ease;
+}
+
+/* CLOSED (hamburger visible) */
+.menu-toggle[aria-expanded="false"] span:nth-child(1){ transform:none; }
+.menu-toggle[aria-expanded="false"] span:nth-child(2){ opacity:1; }
+.menu-toggle[aria-expanded="false"] span:nth-child(3){ transform:none; }
+
+/* OPEN (show X) */
+.menu-toggle[aria-expanded="true"] span:nth-child(1){
+  transform: translateY(8px) rotate(45deg);
+}
+.menu-toggle[aria-expanded="true"] span:nth-child(2){
+  opacity:0;
+}
+.menu-toggle[aria-expanded="true"] span:nth-child(3){
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Prevent background scroll when menu is open (optional) */
+body.no-scroll{ overflow:hidden; }
 
 
