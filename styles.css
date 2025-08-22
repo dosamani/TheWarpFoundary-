@@ -1242,4 +1242,37 @@ header.nav.__fixed .site-menu.open { display: flex; }
   }
 }
 
+/* === Wire up the *current* header markup === */
+header.wf-header { 
+  display: flex; 
+  align-items: center; 
+  gap: 12px;
+}
+
+/* push hamburger to the right */
+header.wf-header .wf-hamburger { 
+  margin-left: auto; 
+}
+
+/* hide the real checkbox */
+#wfNavToggle { 
+  position: absolute; 
+  left: -9999px; 
+}
+
+/* mobile: menu closed by default unless checked */
+#wfNavToggle:not(:checked) ~ nav.wf-menu { 
+  display: none; 
+}
+
+/* desktop: show menu, hide hamburger */
+@media (min-width: 768px){
+  header.wf-header .wf-hamburger { display: none; }
+  nav.wf-menu { 
+    display: flex !important; 
+    gap: 18px; 
+    margin-left: auto; 
+  }
+}
+
 
