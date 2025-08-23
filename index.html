@@ -1380,6 +1380,15 @@ header * {
   overlay.addEventListener('click', function(){ toggle(false); });
 })();
 </script>
+<!-- CLEANUP: hide leftover placeholders/dupes without deleting -->
+<style>
+  /* Any demo/template cards that slipped through */
+  .rcard:has([data-preset*="ONE SENTENCE MVP"]) { display: none !important; }
+  .rcard:has(.pill:contains("CATEGORY HERE")) { display: none !important; }
+
+  /* Old alternate FAQ heading blocks (if any stray) */
+  section.faq h2:where(:is(*))::before { content: ""; } /* noop safeguard */
+</style>
 </body>
 </html>
 
