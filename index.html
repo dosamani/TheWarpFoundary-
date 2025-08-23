@@ -205,7 +205,7 @@ header * {
    
 <!-- ================= UNICORN REPLICAS ================= -->
 <section id="replicas" class="replicas">
-  <h2>Unicorn Replicas (instant founder kits)</h2>
+  <h poo2>Unicorn Replicas (instant founder kits)</h2>
 
   <!-- Search box for replicas -->
   <div class="replica-search">
@@ -1220,6 +1220,81 @@ header * {
   });
 })();
 </script>
+<!-- === DROP-IN HEADER (one-paste fix) === -->
+<style>
+  /* Hide any existing header to avoid conflicts */
+  header, .nav, .wf-header { display:none !important; }
+
+  /* New fixed header */
+  .fixhdr{position:sticky;top:0;z-index:9999;display:flex;align-items:center;gap:12px;
+          padding:12px 16px;background:#0b0b12}
+  .fixhdr .brand{font-weight:700;font-size:20px;color:#eaf2ff;text-decoration:none}
+  .fixhdr .menu{display:none;flex-direction:column;gap:.75rem;padding-top:.5rem}
+  .fixhdr .btn{margin-left:auto}
+
+  /* Hamburger */
+  .fixhdr .toggle{width:36px;height:32px;display:inline-flex;flex-direction:column;
+                  justify-content:center;gap:5px;background:transparent;border:0;cursor:pointer}
+  .fixhdr .toggle span{display:block;height:2px;background:#eaf2ff;transition:transform .2s,opacity .2s}
+
+  /* Open state */
+  .fixhdr.open .menu{display:flex}
+  .fixhdr.open .toggle span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .fixhdr.open .toggle span:nth-child(2){opacity:0}
+  .fixhdr.open .toggle span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+  /* Desktop */
+  @media (min-width:768px){
+    .fixhdr .toggle{display:none}
+    .fixhdr .menu{display:flex !important;flex-direction:row;gap:18px;margin-left:auto;padding-top:0}
+  }
+
+  /* Simple link styling */
+  .fixhdr a{color:#eaf2ff;text-decoration:none;opacity:.95}
+  .fixhdr a:hover{opacity:1}
+  .fixhdr .cta{background:linear-gradient(90deg,#7f7aff,#a277ff);color:#0b0b12;
+               padding:8px 14px;border-radius:10px;font-weight:600}
+</style>
+
+<header class="fixhdr" id="fixhdr">
+  <a href="/" class="brand">Warp<span style="opacity:.7">Foundary</span></a>
+
+  <button class="toggle" id="fixToggle" aria-expanded="false" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+
+  <nav class="menu" id="fixMenu" aria-label="Primary">
+    <a href="#how">How it works</a>
+    <a href="#portfolio">Examples</a>
+    <a href="#generator">Try it</a>
+    <a href="#faq">FAQ</a>
+    <a href="#cta" class="cta">Get early access</a>
+  </nav>
+</header>
+
+<script>
+  (function(){
+    var hdr=document.getElementById('fixhdr');
+    var btn=document.getElementById('fixToggle');
+    var menu=document.getElementById('fixMenu');
+    if(!hdr||!btn||!menu) return;
+
+    // start closed on load
+    hdr.classList.remove('open'); btn.setAttribute('aria-expanded','false');
+
+    btn.addEventListener('click', function(){
+      var open = hdr.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    });
+
+    // close when a menu link is tapped
+    menu.addEventListener('click', function(e){
+      if(e.target.tagName==='A'){ hdr.classList.remove('open'); btn.setAttribute('aria-expanded','false'); }
+    });
+  })();
+</script>
+<!-- === END DROP-IN HEADER === -->
 </body>
 </html>
 
