@@ -1461,3 +1461,17 @@ html, body { overflow-x: hidden; }
 
 .trustbar { display: none !important; }
 
+/* Prevent long company names from wrapping awkwardly on mobile */
+.rcard h3 {
+  word-break: keep-all;       /* don't break words mid-word */
+  overflow-wrap: anywhere;    /* but allow wrap between words if needed */
+  line-height: 1.25;
+  margin-top: 2px;
+}
+
+/* Keep buttons from wrapping onto two lines */
+.rcard .btn.small { white-space: nowrap; }
+
+/* Give the header row a little breathing room */
+.rcard header { gap: 8px; align-items: baseline; }
+
