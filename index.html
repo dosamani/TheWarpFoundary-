@@ -1295,6 +1295,69 @@ header * {
   })();
 </script>
 <!-- === END DROP-IN HEADER === -->
+<style>
+  /* Emergency floating menu */
+  #em-menu-btn{
+    position:fixed; top:12px; right:14px; z-index:9999;
+    width:36px; height:32px; display:inline-flex; flex-direction:column;
+    justify-content:center; gap:5px; background:transparent; border:0; cursor:pointer;
+  }
+  #em-menu-btn .bar{display:block; height:2px; background:#eaf2ff;}
+  #em-overlay{
+    position:fixed; inset:0; background:rgba(0,0,0,.35);
+    opacity:0; pointer-events:none; transition:opacity .2s; z-index:9997;
+    backdrop-filter:blur(1px);
+  }
+  #em-overlay.show{opacity:1; pointer-events:auto;}
+  #em-drawer{
+    position:fixed; top:0; right:-80%; height:100vh; width:78%; max-width:360px;
+    background:#0b0b12; z-index:9998; padding:20px 18px; display:flex; flex-direction:column; gap:16px;
+    box-shadow:-14px 0 28px rgba(0,0,0,.35); transition:right .25s ease;
+  }
+  #em-drawer a{color:#eaf2ff; text-decoration:none; font-size:18px;}
+  #em-drawer.open{right:0;}
+  /* Desktop: hide button, show links inline as a normal bar (optional) */
+  @media (min-width:768px){
+    #em-menu-btn{display:none;}
+    #em-overlay{display:none;}
+    #em-drawer{
+      position:fixed; top:18px; right:18px; height:auto; width:auto; background:transparent;
+      box-shadow:none; flex-direction:row; gap:18px; padding:0;
+    }
+  }
+</style>
+
+<div id="em-overlay"></div>
+
+<button id="em-menu-btn" aria-expanded="false" aria-controls="em-drawer" aria-label="Open menu">
+  <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+</button>
+
+<nav id="em-drawer" aria-label="Primary">
+  <a href="#how">How it works</a>
+  <a href="#portfolio">Examples</a>
+  <a href="#generator">Try it</a>
+  <a href="#faq">FAQ</a>
+  <a href="#cta" class="btn small">Get early access</a>
+</nav>
+
+<script>
+(function(){
+  var btn=document.getElementById('em-menu-btn'),
+      drawer=document.getElementById('em-drawer'),
+      overlay=document.getElementById('em-overlay');
+  if(!btn||!drawer||!overlay) return;
+  function toggle(open){
+    drawer.classList.toggle('open', open);
+    overlay.classList.toggle('show', open);
+    btn.setAttribute('aria-expanded', open? 'true':'false');
+  }
+  btn.addEventListener('click', function(){
+    toggle(!drawer.classList.contains('open'));
+  });
+  overlay.addEventListener('click', function(){ toggle(false); });
+})();
+</script>
 </body>
 </html>
 
