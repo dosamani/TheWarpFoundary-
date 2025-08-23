@@ -335,7 +335,6 @@ header * {
   <a class="btn ghost small" href="/replicas/Uber.html">View framework</a>
 </article>
 
-
     <article class="rcard" data-tags="travel airbnb rentals">
       <header>
         <span class="pill">Travel</span>
@@ -1388,6 +1387,19 @@ header * {
 
   /* Old alternate FAQ heading blocks (if any stray) */
   section.faq h2:where(:is(*))::before { content: ""; } /* noop safeguard */
+</style>
+<style>
+  /* Force replica card titles to show */
+  .rep-grid .rcard h3{
+    display:block !important;
+    font-weight:600;
+    line-height:1.2;
+    margin:4px 0 0;
+    font-size:1rem;
+    color:var(--text, #eaf2ff);
+  }
+  .rep-grid .rcard header{display:flex; align-items:center; gap:.5rem;}
+  .rep-grid .rcard .pill{display:inline-block;}
 </style>
 </body>
 </html>
