@@ -1459,3 +1459,5 @@ body { font-size: 16px; line-height: 1.5; }
 /* Kill any accidental horizontal scroll that forces you to pan to see the header */
 html, body { overflow-x: hidden; }
 
+.trustbar { display: none !important; }
+
