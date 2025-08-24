@@ -1,6 +1,28 @@
 
 <head>
 <style>
+  /* Hide any "As featured in" / logos sections & remove their space */
+  #featured,
+  .featured,
+  .featured-logos,
+  .press,
+  .press-logos,
+  .as-featured,
+  .trustbar,
+  section.trustbar,
+  section#featured,
+  .logos,
+  .logos:empty {
+    display: none !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    background: transparent !important;
+  }
+</style>
+
+<style>
   /* Stack pill above title inside replica cards */
   section.replicas .rep-grid .rcard > header { 
     display: block !important;
