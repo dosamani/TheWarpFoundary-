@@ -1508,3 +1508,23 @@ html, body { overflow-x: hidden; }
   margin: 0;
 }
 
+/* Force category and title to stack vertically */
+.replicas .rep-grid .rcard header {
+  display: block !important;
+}
+
+.replicas .rep-grid .rcard header .pill {
+  display: block !important;
+  margin-bottom: 4px;
+  font-size: 0.85rem;
+  color: #ccc;
+}
+
+.replicas .rep-grid .rcard header h3 {
+  display: block !important;
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+}
+
