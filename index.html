@@ -60,6 +60,22 @@ section#featured {
 </style>
 
 <style>
+  /* Remove leftover white space from "As featured in" */
+  .trustbar,
+  section.trustbar,
+  .trust-logos,
+  .trust-title,
+  [aria-label="Trust logos"] {
+    display: none !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    background: transparent !important;
+  }
+</style>
+
+<style>
   /* Stack pill above title inside replica cards */
   section.replicas .rep-grid .rcard > header { 
     display: block !important;
