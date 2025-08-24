@@ -25,6 +25,19 @@ section#featured,
 </style>
 
 <style>
+/* Completely remove "As featured in" block + its white space */
+section:has(.trust-title),
+section.trustbar,
+section.featured,
+section#featured {
+  display: none !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+</style>
+
+<style>
   /* Hide any "As featured in" / logos sections & remove their space */
   #featured,
   .featured,
@@ -901,18 +914,6 @@ section#featured,
 
 </section>
 
-<!-- ============ TRUST BAR (placeholder logos) ============ 
-<section class="trustbar" aria-label="Trust logos">
-  <p class="trust-title">Trusted by early adopters</p>
-  <div class="trust-logos">
-    <span>Founder Lab</span>
-    <span>Seed Studio</span>
-    <span>Pilot VC</span>
-    <span>Launch Guild</span>
-    <span>Beta Circle</span>
-  </div>
-</section>
-=========== END TRUST BAR ============ -->
 
 <style>
   .trustbar{
