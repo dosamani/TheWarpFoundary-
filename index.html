@@ -1,5 +1,21 @@
 
 <head>
+<style>
+  /* Make replica card titles visible again */
+  .replicas .rep-grid .rcard header{
+    display:flex !important;
+    align-items:center;
+    gap:.5rem;
+    margin:0 0 .25rem;
+  }
+  .replicas .rep-grid .rcard .pill{ display:inline-block !important; }
+  .replicas .rep-grid .rcard h3{
+    display:inline-block !important;
+    color:#fff !important;
+    font-weight:600; font-size:1rem; line-height:1.2;
+    margin:0;
+  }
+</style>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -23,15 +39,6 @@
   <meta name="twitter:description" content="AI Startup Factory that transforms ideas into investor-ready MVPs in warp speed." />
   <meta name="twitter:image" content="/og-image.png" />
 
-<style>
-/* === Reset old header rules so only the new ones apply === */
-header,
-header .brand,
-header .menu-toggle,
-header .site-menu,
-header::after {
-  all: unset !important;
-}
 
 header,
 header * {
