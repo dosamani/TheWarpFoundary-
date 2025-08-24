@@ -1488,3 +1488,23 @@ html, body { overflow-x: hidden; }
   opacity: 0.8;
 }
 
+/* Force replica card titles to stack vertically */
+.replicas .rep-grid .rcard header {
+  display: flex !important;
+  flex-direction: column !important;  /* stack items */
+  align-items: flex-start !important; /* align left */
+  gap: 0.25rem !important;
+}
+
+.replicas .rep-grid .rcard .pill {
+  display: block !important;
+  font-size: 0.85rem;
+  opacity: 0.8;
+  margin-bottom: 0.2rem;
+}
+
+.replicas .rep-grid .rcard h3 {
+  display: block !important;
+  margin: 0;
+}
+
