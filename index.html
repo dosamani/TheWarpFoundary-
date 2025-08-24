@@ -1,6 +1,47 @@
 
 <head>
 <style>
+  /* 1) Nuke any ‘As featured in’ / logo / press / testimonials strips */
+  #featured, .featured, .featured-logos, .press, .press-logos, .as-featured,
+  .trustbar, section.trustbar,
+  .testimonials, section.testimonials, .quotes, .social-proof,
+  .logos, .logos:empty {
+    display: none !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    background: transparent !important;
+  }
+
+  /* 2) If a wrapper section still exists with those children, hide that wrapper too */
+  section:has(.trust-logos),
+  section:has(.trust-title),
+  section:has(.featured-logos),
+  section:has(.press-logos),
+  section:has(.quotes),
+  section:has(.testimonials) {
+    display: none !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    background: transparent !important;
+  }
+
+  /* 3) Kill common leftover separators around that area */
+  hr, .divider {
+    display: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+  }
+
+  /* 4) Make sure the next real section pulls up tight */
+  section + section { margin-top: clamp(16px, 3.5vw, 40px) !important; }
+</style>
+
+<style>
   /* Hide logos / press / trustbar + testimonials and remove their space */
   #featured, .featured, .featured-logos, .press, .press-logos,
   .as-featured, .logos, .logos:empty,
