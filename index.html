@@ -1,6 +1,22 @@
 
 <head>
 <style>
+  /* Hide logos / press / trustbar + testimonials and remove their space */
+  #featured, .featured, .featured-logos, .press, .press-logos,
+  .as-featured, .logos, .logos:empty,
+  .trustbar, section.trustbar,
+  .testimonials, section.testimonials, .quotes, .quote, .social-proof,
+  .trust-title {
+    display: none !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    background: transparent !important;
+  }
+</style>
+
+<style>
   .trustbar, #featured, .featured-logos, .press-logos { display:none !important; height:0 !important; margin:0 !important; padding:0 !important; border:0 !important; }
 </style>
 
