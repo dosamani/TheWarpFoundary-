@@ -1458,6 +1458,30 @@ section#featured {
   .rep-grid .rcard header{display:flex; align-items:center; gap:.5rem;}
   .rep-grid .rcard .pill{display:inline-block;}
 </style>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // 1) Find & remove any “As featured in” / trustbar / press sections (by class/id or text)
+  const suspects = Array.from(document.querySelectorAll('section, div'))
+    .filter(el => {
+      const sig = (el.className + ' ' + el.id).toLowerCase();
+      const txt = (el.textContent || '').toLowerCase();
+      return /trustbar|featured|press|trust-logos|trust title/.test(sig) ||
+             txt.includes('as featured in') || txt.includes('trusted by');
+    });
+  suspects.forEach(el => el.remove());
+
+  // 2) Remove any now-empty sections that might still reserve space
+  document.querySelectorAll('section').forEach(s => {
+    const hasContent = s.querySelector('img, video, canvas, svg, li, article, details, button, .rcard, .gen-grid, .steps, .portfolio');
+    if (!hasContent && !s.textContent.trim()) s.remove();
+  });
+
+  // 3) Normalize spacing between what’s left (prevents phantom top/bottom margins)
+  document.querySelectorAll('section + section').forEach(s => {
+    s.style.marginTop = 'clamp(16px, 3.5vw, 40px)';
+  });
+});
+</script>
 </body>
 </html>
 
