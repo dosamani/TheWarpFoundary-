@@ -118,6 +118,22 @@ section#featured,
 </style>
 
 <style>
+  /* Fix footer getting cut off */
+  footer.footer {
+    padding-bottom: 2.5rem !important; /* extra breathing room */
+  }
+  body {
+    padding-bottom: 2.5rem !important;
+  }
+
+  /* Make sure FAQ questions start closed */
+  section.faq details[open] {
+    /* remove auto-open on page load */
+    open: false;
+  }
+</style>
+
+<style>
   /* Hide testimonials block & remove its space */
   #testimonials,
   .testimonials,
