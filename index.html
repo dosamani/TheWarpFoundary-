@@ -1,6 +1,27 @@
 
 <head>
 <style>
+  /* Hide testimonials block & remove its space */
+  #testimonials,
+  .testimonials,
+  section.testimonials,
+  .quotes,
+  .what-users-are-saying {
+    display: none !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: 0 !important;
+  }
+
+  /* Make sure there's no gap after the waitlist */
+  .waitlist + section {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+</style>
+<style>
   /* Hide the Netlify waitlist form section completely */
   form.waitlist {
     display: none !important;
