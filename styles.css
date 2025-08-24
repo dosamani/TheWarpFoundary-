@@ -1617,3 +1617,23 @@ section:has(.trust-title) {
     text-shadow:0 1px 2px rgba(0,0,0,.6) !important;
   }
 </style>
+
+<style>
+/* Fix footer cutoff + center align links */
+footer.footer {
+  padding-bottom: 2.5rem !important; /* extra space */
+  text-align: center !important;     /* center everything */
+}
+
+footer.footer nav {
+  display: inline-block;             /* shrink to content */
+}
+
+footer.footer nav a {
+  display: inline-block;
+  margin: 0 0.75rem;                 /* spacing between links */
+  white-space: nowrap;               /* keep words intact */
+}
+</style>
+</body>
+</html>
