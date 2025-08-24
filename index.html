@@ -100,6 +100,24 @@ section#featured,
 </style>
 
 <style>
+/* Force all replica cards to align flush */
+.replicas .rep-grid {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 2rem !important;         /* even spacing between cards */
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.replicas .rep-grid .rcard {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 auto !important;    /* center in container */
+  box-sizing: border-box !important;
+}
+</style>
+
+<style>
   /* Hide testimonials block & remove its space */
   #testimonials,
   .testimonials,
