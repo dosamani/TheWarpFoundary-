@@ -1,6 +1,23 @@
 
 <head>
 <style>
+  /* Hide the Netlify waitlist form section completely */
+  form.waitlist {
+    display: none !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: 0 !important;
+  }
+
+  /* Also hide any section immediately after the CTA if it's empty */
+  #cta + form.waitlist {
+    display: none !important;
+  }
+</style>
+
+<style>
   /* 1) Nuke any ‘As featured in’ / logo / press / testimonials strips */
   #featured, .featured, .featured-logos, .press, .press-logos, .as-featured,
   .trustbar, section.trustbar,
