@@ -1528,3 +1528,26 @@ html, body { overflow-x: hidden; }
   color: #fff;
 }
 
+/* Replica card header polish */
+.replicas .rep-grid .rcard header {
+  display: block !important;       /* stack pill above title */
+  margin-bottom: 0.5rem;           /* space between header and description */
+}
+
+.replicas .rep-grid .rcard .pill {
+  display: inline-block !important;
+  font-size: 0.75rem;               /* smaller pill text */
+  font-weight: 500;
+  color: #9ca3af;                   /* light gray text */
+  margin-bottom: 0.25rem;           /* tighten space above title */
+}
+
+.replicas .rep-grid .rcard h3 {
+  display: block !important;
+  color: #fff !important;           /* keep titles white */
+  font-weight: 700;                 /* stronger than pill */
+  font-size: 1rem;
+  margin: 0;                        /* remove weird gaps */
+  line-height: 1.3;
+}
+
