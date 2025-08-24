@@ -47,20 +47,23 @@ section#featured,
 </style>
 
 <style>
-/* === Replicas cleanup & polish === */
-
-/* Pill / category label (Fintech, Productivity, etc.) */
-section.replicas .rep-grid .rcard > header > .pill {
+/* Category pill styling */
+.replicas .rep-grid .rcard header .pill {
   display: inline-block !important;
   margin: 0 0 .3rem 0 !important;
   text-decoration: underline !important;
   text-underline-offset: 3px !important;
   font-weight: 600 !important;
-  color: #a5b4fc !important; /* light violet pop */
+  color: #a5b4fc !important; /* violet accent */
+  transition: color 0.2s ease-in-out, text-decoration-color 0.2s ease-in-out;
+}
+.replicas .rep-grid .rcard header .pill:hover {
+  color: #c4b5fd !important; /* lighter violet on hover */
+  text-decoration-color: #c4b5fd !important;
 }
 
 /* Company title */
-section.replicas .rep-grid .rcard > header > h3 {
+.replicas .rep-grid .rcard header h3 {
   display: block !important;
   margin: 0 !important;
   font-weight: 600;
@@ -69,10 +72,15 @@ section.replicas .rep-grid .rcard > header > h3 {
 }
 
 /* Generate this button */
-section.replicas .rep-grid .rcard button.btn.small {
+.replicas .rep-grid .rcard button.btn.small {
   color: #fff !important;
   font-weight: 700 !important;
   text-shadow: 0 1px 2px rgba(0,0,0,0.6) !important;
+  transition: background 0.2s ease-in-out, transform 0.15s ease-in-out;
+}
+.replicas .rep-grid .rcard button.btn.small:hover {
+  background: linear-gradient(90deg, #6366f1, #8b5cf6) !important;
+  transform: translateY(-2px);
 }
 </style>
 
