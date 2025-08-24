@@ -1740,6 +1740,70 @@ document.addEventListener('DOMContentLoaded', () => {
     padding-bottom: 0 !important;
   }
 </style>
+<script>
+/* === WarpFoundary backend hook (calls /.netlify/functions/generate-kit) === */
+(function () {
+  const goBtn     = document.getElementById('go');
+  const ideaEl    = document.getElementById('idea');
+  const buildType = document.getElementById('buildType');
+  const outBox    = document.getElementById('outputBox');
+
+  const rev   = document.getElementById('rev');
+  const tm    = document.getElementById('tm');
+  const radar = document.getElementById('radar');
+
+  async function callBackend(idea, type, extras){
+    try {
+      const res = await fetch('/.netlify/functions/generate-kit', {
+        method: 'POST',
+        headers: { 'Content-Type':'application/json' },
+        body: JSON.stringify({ idea, buildType: type, extras })
+      });
+      return await res.json();
+    } catch (e){
+      return { ok:false, error: String(e) };
+    }
+  }
+
+  async function onGenerateClick(){
+    const idea = (ideaEl?.value || '').trim();
+    const type = buildType?.value || 'Web App';
+    const extras = { rev: !!(rev?.checked), tm: !!(tm?.checked), radar: !!(radar?.checked) };
+
+    // Show a tiny “working” line
+    if (outBox) {
+      outBox.textContent = (outBox.textContent || '') + '\n\n[Contacting WarpFoundary backend…]';
+    }
+
+    const resp = await callBackend(idea, type, extras);
+
+    if (!outBox) return;
+    if (resp?.ok) {
+      outBox.textContent += '\n[Server Kit]\n' + JSON.stringify(resp.kit, null, 2);
+    } else {
+      outBox.textContent += `\n[Server Error] ${resp?.error || 'Unknown error'}`;
+    }
+    outBox.scrollIntoView({ behavior:'smooth', block:'start' });
+  }
+
+  // Wire main Generate button
+  goBtn?.addEventListener('click', onGenerateClick);
+
+  // Also wire any “Generate this” preset buttons (if present)
+  document.querySelectorAll('[data-preset],[data-idea]').forEach(btn => {
+    btn.addEventListener('click', async (e) => {
+      const el = e.currentTarget;
+      const presetIdea = el.getAttribute('data-preset') || el.getAttribute('data-idea') || '';
+      const presetType = el.getAttribute('data-type') || (buildType?.value || 'Web App');
+
+      if (ideaEl) ideaEl.value = presetIdea;
+      if (buildType) buildType.value = presetType;
+
+      await onGenerateClick();
+    });
+  });
+})();
+</script>
 </body>
 </html>
 
