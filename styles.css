@@ -1581,3 +1581,39 @@ section:has(.trust-title) {
     box-sizing: border-box;
   }
 </style>
+
+<style>
+  /* Layout: stack cards flush with even spacing */
+  .replicas .rep-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 2rem !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  .replicas .rcard {
+    margin: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  /* Header formatting */
+  .replicas .rcard header { display:block !important; }
+  .replicas .rcard header .pill {
+    display:inline-block !important;
+    margin: 0 0 .3rem 0 !important;
+    text-decoration: underline !important;
+    text-underline-offset: 3px !important;
+    font-weight: 600 !important;
+    color: #a5b4fc !important;
+  }
+  .replicas .rcard header h3 {
+    margin:0 !important;
+    font-weight:600; font-size:1rem; color:#fff !important;
+  }
+  /* Button readability (you already added—keeping for completeness) */
+  .replicas .rcard button.btn.small {
+    color:#fff !important; font-weight:700 !important;
+    text-shadow:0 1px 2px rgba(0,0,0,.6) !important;
+  }
+</style>
