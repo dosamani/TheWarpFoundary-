@@ -98,6 +98,23 @@ section#featured,
 }
 </style>
 
+/* Normalize replica card alignment & spacing */
+.replicas .rep-grid { 
+  display: grid;
+  gap: 2rem !important;
+  padding-inline: 16px;         /* consistent side padding on mobile */
+}
+
+.replicas .rep-grid .rcard {
+  margin: 0 !important;         /* kill stray left margins */
+  margin-left: 0 !important;    /* belt & suspenders */
+  width: 100%;
+  box-sizing: border-box;
+  padding: 1.25rem !important;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.02);
+}
+
 <style>
   /* Hide testimonials block & remove its space */
   #testimonials,
