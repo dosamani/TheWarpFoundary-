@@ -1475,3 +1475,16 @@ html, body { overflow-x: hidden; }
 /* Give the header row a little breathing room */
 .rcard header { gap: 8px; align-items: baseline; }
 
+/* Replica card layout: stack category above company title */
+.replicas .rep-grid .rcard header {
+  display: flex;
+  flex-direction: column; /* stack items vertically */
+  align-items: flex-start; /* left align */
+  gap: 0.25rem; /* small spacing between category and title */
+}
+
+.replicas .rep-grid .rcard .pill {
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+
