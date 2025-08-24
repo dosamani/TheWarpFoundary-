@@ -1,6 +1,52 @@
 
 <head>
 <style>
+/* --- CLEANUP & FINAL NAV / LAYOUT FIXES --- */
+
+/* Prevent horizontal scroll */
+html, body {
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+}
+
+/* Ensure replicas grid, headers, and pills stack nicely */
+section.replicas .rep-grid .rcard > header {
+  display: block !important;
+}
+section.replicas .rep-grid .rcard > header > .pill {
+  display: block !important;
+  margin: 0 0 .3rem 0 !important;
+}
+section.replicas .rep-grid .rcard > header > h3 {
+  display: block !important;
+  margin: 0 !important;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #fff !important;
+}
+
+/* Hide any leftover "As featured in" / trustbar sections */
+.trustbar,
+section.trustbar,
+#featured,
+section#featured,
+.featured,
+.featured-logos,
+.press,
+.press-logos,
+.as-featured,
+.logos,
+.logos:empty {
+  display: none !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+}
+</style>
+
+<style>
   /* Hide testimonials block & remove its space */
   #testimonials,
   .testimonials,
