@@ -1707,6 +1707,39 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 </script>
+<style>
+  /* --- Footer never cut off on mobile (Android/iOS) --- */
+  :root { --safe-bottom: env(safe-area-inset-bottom, 0px); }
+
+  /* Add extra breathing room for the whole page */
+  html, body {
+    min-height: 100%;
+  }
+  body {
+    /* Big cushion so browser bars don't overlap the footer */
+    padding-bottom: calc(80px + var(--safe-bottom)) !important;
+  }
+
+  /* Footer: more bottom padding + centered links */
+  footer.footer {
+    position: relative;
+    margin-top: 24px !important;
+    padding: 16px 16px calc(32px + var(--safe-bottom)) !important;
+    text-align: center !important;
+  }
+  footer.footer nav { display: inline-block; }
+  footer.footer nav a {
+    display: inline-block;
+    margin: 0 0.75rem;
+    white-space: nowrap;
+  }
+
+  /* Ensure the last content section doesn't “eat” the footer */
+  section:last-of-type {
+    margin-bottom: 24px !important;
+    padding-bottom: 0 !important;
+  }
+</style>
 </body>
 </html>
 
