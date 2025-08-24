@@ -1567,3 +1567,17 @@ section:has(.trust-title) {
   padding: 0 !important;
   height: 0 !important;
 }
+
+<style>
+  /* Prevent sideways scroll on mobile */
+  html, body {
+    overflow-x: hidden !important;
+    max-width: 100% !important;
+  }
+
+  /* Ensure all sections fit screen */
+  section, div, header, footer {
+    max-width: 100% !important;
+    box-sizing: border-box;
+  }
+</style>
