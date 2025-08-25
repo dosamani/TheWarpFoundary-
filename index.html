@@ -1091,6 +1091,29 @@ section#featured {
   </p>
 </section>
 
+<!-- ============ KIT GENERATOR (beta) ============ -->
+<section id="generator" class="container">
+  <h2>Generate a quick founder kit (beta)</h2>
+
+  <form id="ideaForm" class="gen-form">
+    <label for="idea">Your idea (one sentence)</label>
+    <input id="idea" name="idea" type="text" placeholder="Example: Uber for pet sitters" required />
+
+    <label for="buildType">Target build</label>
+    <select id="buildType" name="buildType">
+      <option value="Web App">Web App</option>
+      <option value="Mobile App">Mobile App</option>
+      <option value="SaaS">SaaS</option>
+    </select>
+
+    <button class="btn" type="submit">Generate</button>
+    <button class="btn ghost" id="downloadBtn" type="button" disabled>Download .md</button>
+  </form>
+
+  <pre id="output" class="gen-output" aria-live="polite">Ready.</pre>
+</section>
+<!-- ============ /KIT GENERATOR ============ -->
+
 <!-- =================== WAITLIST =================== -->
 <section id="waitlist" class="waitlist">
   <h2>Join the Waitlist</h2>
