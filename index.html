@@ -1858,6 +1858,45 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 })();
 </script>
+
+<script>
+const form = document.getElementById('ideaForm');
+const output = document.getElementById('output');
+const downloadBtn = document.getElementById('downloadBtn');
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  output.textContent = "Generating kit...";
+  downloadBtn.disabled = true;
+
+  const idea = document.getElementById('idea').value.trim();
+  const buildType = document.getElementById('buildType').value;
+
+  try {
+    const res = await fetch('/.netlify/functions/generate-kit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ idea, buildType })
+    });
+
+    const data = await res.json();
+    if (!data.ok) throw new Error(data.error || 'Unknown error');
+
+    output.textContent = data.markdown;
+    // enable download
+    downloadBtn.disabled = false;
+    downloadBtn.onclick = () => {
+      const blob = new Blob([data.markdown], { type: "text/markdown" });
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = data.filename || "kit.md";
+      a.click();
+    };
+  } catch (err) {
+    output.textContent = "Error: " + err.message;
+  }
+});
+</script>
 </body>
 </html>
 
