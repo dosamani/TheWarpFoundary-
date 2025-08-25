@@ -1198,6 +1198,57 @@ section#featured {
   })();
   </script>
 
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.querySelector("#ideaForm");
+  const output = document.querySelector("#output");
+  const downloadBtn = document.querySelector("#downloadBtn");
+
+  let lastFile = null;
+
+  if (form) {
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      output.textContent = "⏳ Generating founder kit...";
+
+      try {
+        const idea = document.querySelector("#idea").value;
+        const buildType = document.querySelector("#buildType").value;
+
+        const res = await fetch("/.netlify/functions/generate-kit", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ idea, buildType }),
+        });
+
+        const data = await res.json();
+        if (!data.ok) throw new Error(data.error || "Generation failed");
+
+        output.textContent = JSON.stringify(data.kit, null, 2);
+        lastFile = { markdown: data.markdown, filename: data.filename };
+        downloadBtn.disabled = false;
+      } catch (err) {
+        output.textContent = "❌ " + err.message;
+        downloadBtn.disabled = true;
+      }
+    });
+  }
+
+  if (downloadBtn) {
+    downloadBtn.addEventListener("click", () => {
+      if (!lastFile) return;
+      const blob = new Blob([lastFile.markdown], { type: "text/markdown" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = lastFile.filename || "founder-kit.md";
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+  }
+});
+</script>
+
   <!-- Generator -->
   <script>
   (() => {
