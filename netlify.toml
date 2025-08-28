@@ -33,3 +33,6 @@
     X-Content-Type-Options = "nosniff"
     X-Frame-Options = "SAMEORIGIN"
     Referrer-Policy = "no-referrer-when-downgrade"
+
+[functions]
+  node_bundler = "esbuild"
