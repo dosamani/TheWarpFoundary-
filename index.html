@@ -1982,6 +1982,15 @@ form?.addEventListener('submit', async (e) => {
     appendLine(`[Server Error] ${e.message}`);
   }
 </script>
+<!-- Hidden form: captures each generated kit via Netlify Forms -->
+<form name="kit-log" netlify data-netlify="true" hidden>
+  <input type="text" name="idea" />
+  <input type="text" name="buildType" />
+  <input type="text" name="llm" />
+  <input type="text" name="features" />
+  <textarea name="kitMarkdown"></textarea>
+  <input type="text" name="receivedAt" />
+</form>
 </body>
 </html>
 
