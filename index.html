@@ -1950,6 +1950,38 @@ form?.addEventListener('submit', async (e) => {
   }
 });
 </script>
+
+<script>
+  async function callBackend(payload) {
+    const res = await fetch('/api/generate-kit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+
+    let data = null;
+    try { data = await res.json(); } catch (_) {}
+
+    if (!res.ok || !data || data.ok !== true) {
+      const msg = (data && (data.message || data.error)) || res.statusText || 'Unknown error';
+      throw new Error(msg);
+    }
+    return data; // { ok:true, message, kit:{...} }
+  }
+
+  // …inside your generate handler, after you build `payload` and have a function `appendLine(text)`:
+  appendLine('[Contacting WarpFoundary backend…]');
+  try {
+    const server = await callBackend(payload);
+    appendLine(`[Server OK] ${server.message}`);
+    appendLine('Echoed kit:');
+    appendLine('```json');
+    appendLine(JSON.stringify(server.kit, null, 2));
+    appendLine('```');
+  } catch (e) {
+    appendLine(`[Server Error] ${e.message}`);
+  }
+</script>
 </body>
 </html>
 
