@@ -1897,6 +1897,59 @@ form.addEventListener('submit', async (e) => {
   }
 });
 </script>
+
+<script>
+const $ = (sel) => document.querySelector(sel);
+
+const form        = $('#ideaForm');
+const output      = $('#output');
+const downloadBtn = $('#downloadBtn');
+
+function getIdeaValue() {
+  // Works whether your input is <textarea id="idea"> or name="idea"
+  const byId   = $('#idea');
+  const byName = document.querySelector('[name="idea"]');
+  return (byId?.value || byName?.value || '').trim();
+}
+
+function getBuildType() {
+  const byId   = $('#buildType');
+  const byName = document.querySelector('[name="buildType"]');
+  return (byId?.value || byName?.value || 'Web App').trim();
+}
+
+form?.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  output.textContent = 'Generating kit...';
+  downloadBtn.disabled = true;
+
+  const idea = getIdeaValue();
+  const buildType = getBuildType();
+
+  try {
+    const res = await fetch('/.netlify/functions/generate-kit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ idea, buildType })
+    });
+
+    const data = await res.json();
+    if (!data.ok) throw new Error(data.error || 'Unknown error');
+    output.textContent = data.markdown;
+
+    downloadBtn.disabled = false;
+    downloadBtn.onclick = () => {
+      const blob = new Blob([data.markdown], { type: 'text/markdown' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = data.filename || 'kit.md';
+      a.click();
+    };
+  } catch (err) {
+    output.textContent = 'Error: ' + err.message;
+  }
+});
+</script>
 </body>
 </html>
 
