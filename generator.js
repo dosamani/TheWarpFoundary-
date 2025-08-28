@@ -1,5 +1,4 @@
-// generator.js — one-drop: pretty output + sample idea + remember last idea + top loading bar
-
+// generator.js — pretty output + sample idea + remember last idea + loading bar + Netlify Form submit
 (function () {
   const FN_URL = '/.netlify/functions/generate-kit';
   const LS_KEY = 'wf:lastIdea';
@@ -29,11 +28,10 @@
   // ---- tiny helpers ----
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+  const loaderEl = () => $('#wfTopLoader');
+  const showLoader = on => { const l = loaderEl(); if (l) l.style.display = on ? 'block' : 'none'; };
 
-  const loader = () => $('#wfTopLoader');
-  const showLoader = (on) => { const l = loader(); if (!l) return; l.style.display = on ? 'block' : 'none'; };
-
-  // ---- Output mount (create if missing) ----
+  // ---- Output mount ----
   let out = $('#generated-output') || (function createOut(){
     const el = document.createElement('section');
     el.id = 'generated-output';
@@ -92,7 +90,7 @@
   const llmEl   = $('[name="llm"]') || $('#llm');
   const featureEls = $$('input[name="features[]"], input[data-feature]');
 
-  // Add “Use sample idea” helper just under the idea input
+  // Sample idea helper
   if (ideaEl && !$('#wfSampleIdea')) {
     const sample = document.createElement('a');
     sample.id = 'wfSampleIdea';
@@ -108,10 +106,7 @@
   }
 
   // Restore last idea
-  try {
-    const saved = localStorage.getItem(LS_KEY);
-    if (saved && ideaEl && !ideaEl.value.trim()) ideaEl.value = saved;
-  } catch{}
+  try { const saved = localStorage.getItem(LS_KEY); if (saved && ideaEl && !ideaEl.value.trim()) ideaEl.value = saved; } catch{}
 
   // Find the Generate button by id OR by text
   const genBtn = $('#generateBtn') || $$('button').find(b => /generate\s+startup/i.test(b.textContent||''));
@@ -145,6 +140,17 @@
         const md = data.kitMarkdown || fallbackMd(payload);
         const meta = `Generated at ${data.receivedAt || new Date().toISOString()} · name: ${data.name || '—'} · palette: ${data.palette?.name || '—'}`;
         setOutput(md, meta);
+
+        // --- NEW: submit to Netlify Forms (stored + can email you) ---
+        await submitToNetlify({
+          idea: payload.idea,
+          buildType: payload.buildType,
+          llm: payload.llm,
+          features: payload.features.join(', '),
+          kitMarkdown: md,
+          receivedAt: data.receivedAt || new Date().toISOString()
+        });
+
         toast('Kit generated 🚀');
       } catch(err){
         console.error(err);
@@ -152,6 +158,15 @@
           `# WarpFoundary — Founder Kit (offline)\n\n*Idea:* ${payload.idea}\n\n> Sorry, we couldn’t reach the backend.\n> ${err.message || 'Unknown error.'}`,
           ''
         );
+        // still log locally so you don't lose ideas
+        await submitToNetlify({
+          idea: payload.idea,
+          buildType: payload.buildType,
+          llm: payload.llm,
+          features: payload.features.join(', '),
+          kitMarkdown: '(offline fallback)',
+          receivedAt: new Date().toISOString()
+        }).catch(()=>{});
         toast('Failed to reach backend', true);
       } finally {
         lock(genBtn,false); showLoader(false);
@@ -180,6 +195,18 @@
       `- Pick 3 hero screens and ship clickable mock`,
       `- Share deck + demo to 3 advisors or an accelerator`,
     ].join('\n');
+  }
+
+  // ---- Netlify Forms submit ----
+  async function submitToNetlify(fields){
+    const formName = 'kit-log';
+    // Netlify picks up the form because it exists in HTML; here we post programmatically
+    const body = new URLSearchParams({ 'form-name': formName, ...fields }).toString();
+    await fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body
+    });
   }
 
   // ---- UX bits ----
