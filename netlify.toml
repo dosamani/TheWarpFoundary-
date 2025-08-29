@@ -1,7 +1,7 @@
 # --- Build (static site) ---
 [build]
   publish = "/"
-
+  functions = "netlify/functions"
 # --- Canonical domain: always use https://www.thewarpfoundary.ai ---
 [[redirects]]
   from = "http://thewarpfoundary.ai/*"
