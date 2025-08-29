@@ -1,6 +1,9 @@
-// netlify/functions/generate-kit.js
-// Production-safe stub that returns a realistic “Founder Kit”
-// No external deps. Handles CORS + validation.
+// /netlify/functions/generate-kit.js
+// Minimal production-safe endpoint your front-end can call now.
+// - CORS handled (OPTIONS + response headers)
+// - Validates incoming payload
+// - Reads env vars (MY_SITE_ID, NETLIFY_AUTH_TOKEN) for future use
+// - Returns a JSON shape your UI can render immediately
 
 const CORS_HEADERS = {
   'Access-Control-Allow-Origin': '*',
@@ -8,201 +11,122 @@ const CORS_HEADERS = {
   'Access-Control-Allow-Headers': 'Content-Type',
   'Access-Control-Max-Age': '86400',
   'Vary': 'Origin',
+  'Content-Type': 'application/json; charset=utf-8',
 };
+
+const ok = (body, extraHeaders = {}) => ({
+  statusCode: 200,
+  headers: { ...CORS_HEADERS, ...extraHeaders },
+  body: JSON.stringify(body, null, 2),
+});
+
+const bad = (statusCode, message, detail) => ({
+  statusCode,
+  headers: CORS_HEADERS,
+  body: JSON.stringify({ error: message, detail }, null, 2),
+});
 
 exports.handler = async (event) => {
   // --- CORS preflight ---
   if (event.httpMethod === 'OPTIONS') {
-    return { statusCode: 204, headers: CORS_HEADERS };
-  }
-
-  if (event.httpMethod !== 'POST') {
     return {
-      statusCode: 405,
-      headers: { ...CORS_HEADERS, 'Content-Type': 'application/json; charset=utf-8' },
-      body: JSON.stringify({ ok: false, error: 'Method not allowed. Use POST.' }),
+      statusCode: 204,
+      headers: CORS_HEADERS,
+      body: '',
     };
   }
 
-  // --- Parse payload (JSON or form) ---
-  let payload = {};
+  if (event.httpMethod !== 'POST') {
+    return bad(405, 'Method Not Allowed', `Use POST for /.netlify/functions/generate-kit`);
+  }
+
+  // --- Parse + validate payload ---
+  let payload;
   try {
-    if (event.headers['content-type']?.includes('application/json')) {
-      payload = JSON.parse(event.body || '{}');
-    } else {
-      const params = new URLSearchParams(event.body || '');
-      payload = Object.fromEntries(params.entries());
-      if (payload.features && typeof payload.features === 'string') {
-        try { payload.features = JSON.parse(payload.features); } catch {}
-      }
-    }
+    payload = JSON.parse(event.body || '{}');
   } catch (e) {
-    return badRequest('Invalid JSON payload');
+    return bad(400, 'Invalid JSON', 'Request body must be valid JSON');
   }
 
   const idea = (payload.idea || '').toString().trim();
-  const buildType = (payload.buildType || '').toString().trim() || 'Web App';
+  const buildType = (payload.buildType || 'Web App').toString().trim();
   const llm = (payload.llm || 'smart').toString().trim();
   const features = Array.isArray(payload.features) ? payload.features : [];
 
-  if (!idea) return badRequest('Missing required field: "idea"');
+  if (!idea) {
+    return bad(400, 'Missing required field: idea', 'Provide a non-empty idea string.');
+  }
 
-  // --- Enrichment helpers (no deps) ---
-  const nowIso = new Date().toISOString();
+  // --- Env vars (available in Netlify UI > Site settings > Environment variables) ---
+  const siteId = process.env.MY_SITE_ID || null;              // you set this
+  const netlifyToken = process.env.NETLIFY_AUTH_TOKEN || null; // optional; for future API calls
 
-  const palettes = [
-    { name: 'Indigo Frost', primary: '#5b7cff', surface: '#0b0b12', tint: '#eaf2ff' },
-    { name: 'Electric Violet', primary: '#7c4dff', surface: '#0b0b12', tint: '#efeaff' },
-    { name: 'Mint Night', primary: '#3ddc97', surface: '#0b0b12', tint: '#e7fff3' },
-  ];
-  const palette = palettes[Math.floor(Math.random() * palettes.length)];
+  // --- Generate lightweight kit (mock) the UI can render today ---
+  const receivedAt = new Date().toISOString();
 
-  const normalizedWords = idea
-    .toLowerCase()
-    .replace(/[^a-z0-9\s]/g, ' ')
-    .split(/\s+/)
-    .filter(Boolean);
-
-  const interesting = normalizedWords.filter(w => w.length > 3).slice(0, 3);
-  const prefixes = ['Nova', 'Prime', 'Spark', 'Warp', 'Meta', 'Hyper', 'Pilot', 'Velo'];
-  const suffixes = ['Forge', 'Kit', 'Foundry', 'Lab', 'Stack', 'Hub', 'Mint', 'Flow'];
-
-  function titleCase(s) { return s.replace(/\b\w/g, c => c.toUpperCase()); }
-
-  const nameCandidates = [
-    `${prefixes[rand(prefixes.length)]}${suffixes[rand(suffixes.length)]}`,
-    `${titleCase(interesting[0] || 'Warp')}${suffixes[rand(suffixes.length)]}`,
-    `${prefixes[rand(prefixes.length)]}${titleCase(interesting[1] || 'Kit')}`,
-  ].filter(Boolean);
-
-  const name = nameCandidates[0];
-
-  function rand(n) { return Math.floor(Math.random() * n); }
-
-  // MVP scope by build type
-  const scopes = {
-    'Web App': [
-      'Auth (email / magic link)',
-      'Core CRUD for the main object',
-      'Public landing page',
-      'Admin view (read-only)',
-    ],
-    'Mobile App': [
-      'Onboarding + auth',
-      'Offline-friendly data store',
-      'Push notifications',
-      'Simple settings screen',
-    ],
-    'API Service': [
-      'Key-based auth',
-      'Rate limiting & logging',
-      'OpenAPI spec',
-      'Example client (JS)',
-    ],
-    'Internal Tool': [
-      'Single-sign-on (SSO)',
-      'Data grid + filters',
-      'Audit trail',
-      'Admin overrides',
-    ],
-  };
-  const mvpScope = scopes[buildType] || scopes['Web App'];
-
-  const pitchOutline = [
-    'Problem — who hurts today and how',
-    'Solution — what your product does in one line',
-    'Why now — timing or tech shift',
-    'Secret — wedge/insight others miss',
-    'Go-to-market — first 100 users',
-    'Business model — how money flows',
-    'Team — why you ship this',
-  ];
-
-  const revenueSketch = {
-    pricing: 'Free + Pro ($19–$49/mo) to start',
-    channels: 'Founder communities, accelerators',
-    unit: '1 generated kit ≈ 1 trial → 10–20% convert',
-  };
-
-  const tmDomain = [
-    'Run quick search for name + obvious variants',
-    'Check .com/.ai/.app availability',
-  ];
-
-  const stealthRadar = [
-    'Scan Product Hunt, GitHub, YC/accelerator blogs',
-    'Flag overlap + positioning notes',
-  ];
-
-  const nextActions = [
-    'Refine one-sentence pitch',
-    'Pick 3 hero screens and ship clickable mock',
-    'Share deck + demo to 3 advisors or an accelerator',
-  ];
-
-  const tagline = 'From prompt to product — in warp speed';
-
-  // Build Markdown
-  const md = [
-    `# ${name} — Founder Kit (server-enriched)`,
+  const markdown = [
+    `# WarpFoundary — Founder Kit`,
     ``,
     `*Idea:* ${idea}`,
     `*Build Type:* ${buildType}`,
     ``,
     `## MVP Scope`,
-    ...mvpScope.map(i => `- ${i}`),
+    `- Auth (email / magic link)`,
+    `- Core CRUD flow for the main object`,
+    `- Public landing page + explainers`,
+    `- Admin view (read-only)`,
     ``,
     `## Pitch Outline (Lean)`,
-    ...pitchOutline.map(i => `- ${i}`),
+    `- Problem — who hurts today and how`,
+    `- Solution — what your product does in one line`,
+    `- Why now — timing or tech shift`,
+    `- Secret — wedge/insight others miss`,
+    `- Go-to-market — first 100 users`,
+    `- Business model — how money flows`,
+    `- Team — why you ship this`,
     ``,
     `## Brand Kit (Light)`,
-    `- Name: (working) ${name}`,
-    `- Palette: ${palette.name} (${palette.primary} / ${palette.tint})`,
+    `- Name: (working) A`,
+    `- Color: #5b7cff / #eaf2ff (starter palette)`,
     `- Tone: concise, confident, founder-first`,
-    `- Tagline: ${tagline}`,
+    `- Tagline: From prompt to product — in warp speed`,
     ``,
     `## Revenue Sketch`,
-    `- Pricing: ${revenueSketch.pricing}`,
-    `- Channels: ${revenueSketch.channels}`,
-    `- Unit: ${revenueSketch.unit}`,
+    `- Pricing idea: Free + Pro ($19–$49/mo) to start`,
+    `- Early channels: founder communities, accelerators`,
+    `- Unit: 1 generated kit ≈ 1 trial -> 10–20% convert`,
     ``,
     `## TM / Domain Checks (stub)`,
-    ...tmDomain.map(i => `- ${i}`),
+    `- Run quick search for name + obvious variants`,
+    `- Check .com/.ai/.app availability`,
     ``,
     `## Stealth Radar (stub)`,
-    ...stealthRadar.map(i => `- ${i}`),
+    `- Scan news/funding for adjacent projects`,
+    `- Flag overlap and positioning notes`,
     ``,
     `## Next Actions`,
-    ...nextActions.map(i => `- ${i}`),
-    ``,
-    `> Generated at ${nowIso} · llm: ${llm}`,
+    `- Refine one-sentence pitch`,
+    `- Pick 3 hero screens and ship clickable mock`,
+    `- Share deck + demo to 3 advisors or an accelerator`,
   ].join('\n');
 
-  const body = {
-    ok: true,
+  const serverKit = {
     idea,
     buildType,
     llm,
     features,
-    name,
-    nameCandidates,
-    palette,
-    receivedAt: nowIso,
-    kitMarkdown: md,
+    siteId,         // echoes your env for sanity
+    receivedAt,
   };
 
-  return {
-    statusCode: 200,
-    headers: { ...CORS_HEADERS, 'Content-Type': 'application/json; charset=utf-8' },
-    body: JSON.stringify(body),
-  };
+  // NOTE: This is where you can later:
+  // - call OpenAI/Anthropic to generate richer content
+  // - hit Netlify or external APIs using netlifyToken
+  // - store to KV/DB, email the user, etc.
+
+  return ok({
+    ok: true,
+    markdown,     // your UI prints this into the "Generated Output" area
+    serverKit,    // your UI can show this JSON under "[Server Kit]"
+  });
 };
-
-// --- helpers ---
-function badRequest(msg) {
-  return {
-    statusCode: 400,
-    headers: { ...CORS_HEADERS, 'Content-Type': 'application/json; charset=utf-8' },
-    body: JSON.stringify({ ok: false, error: msg }),
-  };
-}
