@@ -1,24 +1,46 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Thank you — redirecting…</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thank you!</title>
 
-  <!-- Instant no-JS redirect to the homepage -->
-  <meta http-equiv="refresh" content="0; url=/" />
-  <link rel="canonical" href="/" />
+  <!-- Auto redirect after 2 seconds -->
+  <meta http-equiv="refresh" content="2; url=/" />
+  
+  <style>
+    body {
+      background-color: #0a0a0a;
+      color: #f2f2f2;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .box {
+      background: #1c1c1c;
+      padding: 20px 30px;
+      border-radius: 10px;
+      text-align: center;
+    }
+    .box h1 {
+      margin: 0 0 10px;
+      font-size: 24px;
+    }
+    .box p {
+      margin: 0;
+      font-size: 16px;
+      color: #aaa;
+    }
+  </style>
 </head>
-<body style="margin:0;background:#0b0b12;color:#eaf2ff;font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;display:grid;place-items:center;height:100vh">
-  <div style="text-align:center;padding:24px;border:1px solid rgba(255,255,255,.08);background:#13131b;border-radius:14px;max-width:560px">
-    <h1 style="margin:0 0 8px">Thank you!</h1>
-    <p style="margin:0 0 10px;opacity:.8">Redirecting you back to the site…</p>
-    <p style="margin:0"><a href="/" style="color:#aab4ff;text-decoration:underline">Click here if you are not redirected</a></p>
+<body>
+  <div class="box">
+    <h1>Thank you!</h1>
+    <p>Your form submission has been received.</p>
+    <p>Redirecting you back to the homepage...</p>
   </div>
-<script>
-  setTimeout(function() {
-    window.location.href = "/";
-  }, 2000); // 2 seconds
-</script>
 </body>
 </html>
