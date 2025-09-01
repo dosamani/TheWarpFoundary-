@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thank you!</title>
+
+  <!-- Auto redirect after 2 seconds -->
+  <meta http-equiv="refresh" content="2; url=/" />
+
+  <style>
+    body {
+      background-color: #0a0a0a;
+      color: #f2f2f2;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .box {
+      background: #1c1c1c;
+      padding: 20px 30px;
+      border-radius: 10px;
+      text-align: center;
+    }
+    .box h1 {
+      margin: 0 0 10px;
+      font-size: 24px;
+    }
+    .box p {
+      margin: 0;
+      font-size: 16px;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h1>Thank you!</h1>
+    <p>Your form submission has been received.</p>
+    <p>Redirecting you back to the homepage...</p>
+  </div>
+
+  <!-- JS fallback in case meta refresh fails -->
+  <script>
+    setTimeout(() => {
+      window.location.href = "/";
+    }, 2000);
+  </script>
+</body>
+</html>
