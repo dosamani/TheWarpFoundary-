@@ -3,20 +3,29 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Thanks – WarpFoundary</title>
-  <link rel="stylesheet" href="/styles.css" />
+  <title>Thanks — WarpFoundary</title>
+  <style>
+    :root{--bg:#0b0b12;--fg:#eaf2ff;--muted:#9aa7c7;}
+    html,body{height:100%}
+    body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial}
+    .wrap{min-height:100%;display:flex;align-items:center;justify-content:center;padding:40px 16px}
+    .card{max-width:720px;width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:28px}
+    h1{margin:0 0 .25rem;font-size:1.75rem}
+    p{margin:.5rem 0;color:var(--muted)}
+    .cta{margin-top:1rem;display:inline-block;padding:.75rem 1rem;border-radius:12px;border:1px solid rgba(255,255,255,.2);text-decoration:none;color:var(--fg)}
+    .note{margin-top:1rem;font-size:.9rem;color:var(--muted)}
+  </style>
+  <!-- Auto-redirect back to demo after 4s -->
+  <meta http-equiv="refresh" content="4; url=/#kit-generator">
 </head>
-<body class="hero">
-  <div class="hero-inner" style="max-width:720px; text-align:center; margin:auto; padding:40px;">
-    <h1>🎉 You're on the list!</h1>
-    <p class="sub">
-      We’ll email you when WarpFoundary early access opens.  
-      <br><br>
-      Want to accelerate? Reply to the confirmation email with 1-2 lines about your idea 🚀
-    </p>
-    <div class="cta-row" style="margin-top:20px;">
-      <a href="/" class="btn">⬅ Back to Home</a>
-    </div>
-  </div>
+<body>
+  <main class="wrap">
+    <section class="card" role="status" aria-live="polite">
+      <h1>You're on the list 🚀</h1>
+      <p>Thanks for your interest in WarpFoundary. We’ll email you as soon as new kits go live.</p>
+      <a class="cta" href="/#kit-generator">Back to the demo</a>
+      <p class="note">You’ll be sent back automatically in a few seconds.</p>
+    </section>
+  </main>
 </body>
 </html>
