@@ -1,4 +1,6 @@
+// netlify/functions/generate-kit.js
 exports.handler = async (event) => {
+  // CORS preflight
   if (event.httpMethod === 'OPTIONS') {
     return {
       statusCode: 204,
@@ -11,30 +13,44 @@ exports.handler = async (event) => {
   }
 
   if (event.httpMethod !== 'POST') {
-    return { statusCode: 405, body: 'Method Not Allowed' };
+    return {
+      statusCode: 405,
+      headers: { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'text/plain' },
+      body: 'Method Not Allowed'
+    };
   }
 
   try {
-    const data = event.body ? JSON.parse(event.body) : {};
+    const raw = event.body || '';
+    let data = {};
+    try {
+      data = raw ? JSON.parse(raw) : {};
+    } catch (e) {
+      return {
+        statusCode: 400,
+        headers: { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json' },
+        body: JSON.stringify({ error: 'Bad JSON body', raw })
+      };
+    }
 
     const response = {
-      idea: data.idea || "(missing idea)",
-      buildType: data.buildType || "(missing buildType)",
-      llm: data.llm || "smart",
-      features: data.features || [],
-      receivedAt: new Date().toISOString(),
+      idea: data.idea || '(missing idea)',
+      buildType: data.buildType || '(missing buildType)',
+      llm: data.llm || 'smart',
+      features: Array.isArray(data.features) ? data.features : [],
+      receivedAt: new Date().toISOString()
     };
 
     return {
       statusCode: 200,
-      headers: { "Access-Control-Allow-Origin": "*" },
-      body: JSON.stringify(response, null, 2),
+      headers: { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json' },
+      body: JSON.stringify(response, null, 2)
     };
   } catch (err) {
     return {
       statusCode: 500,
-      headers: { "Access-Control-Allow-Origin": "*" },
-      body: JSON.stringify({ error: "Server crashed", details: err.message }),
+      headers: { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json' },
+      body: JSON.stringify({ error: 'Server crashed', details: String(err && err.message || err) })
     };
   }
 };
