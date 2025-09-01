@@ -3,55 +3,17 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Thank you!</title>
+  <title>Thank you — redirecting…</title>
 
-  <!-- No-JS fallback: redirect after 4s -->
-  <meta http-equiv="refresh" content="4; url=/" />
-
-  <style>
-    :root{--bg:#0b0b12;--card:#13131b;--text:#eaf2ff;}
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0; background:var(--bg); color:var(--text);
-      font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;
-      display:grid; place-items:center; padding:24px;
-    }
-    .card{
-      background:var(--card); border:1px solid rgba(255,255,255,.08);
-      border-radius:14px; padding:24px 20px; max-width:560px; width:100%;
-      box-shadow:0 10px 30px rgba(0,0,0,.35); text-align:left;
-    }
-    h1{margin:0 0 8px; font-size:1.5rem}
-    p{margin:0 0 10px}
-    .muted{opacity:.75}
-    a.btn{
-      display:inline-block; margin-top:6px; text-decoration:none;
-      padding:10px 14px; border-radius:10px;
-      background:linear-gradient(90deg,#6366f1,#8b5cf6);
-      color:#fff; font-weight:600;
-    }
-    .count{font-variant-numeric:tabular-nums}
-  </style>
+  <!-- Instant no-JS redirect to the homepage -->
+  <meta http-equiv="refresh" content="0; url=/" />
+  <link rel="canonical" href="/" />
 </head>
-<body>
-  <div class="card" role="status" aria-live="polite">
-    <h1>Thank you!</h1>
-    <p>Your form submission has been received.</p>
-    <p class="muted">You’ll be redirected back in <span id="count" class="count">4</span> seconds…</p>
-    <a class="btn" href="/">Back to our site</a>
+<body style="margin:0;background:#0b0b12;color:#eaf2ff;font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;display:grid;place-items:center;height:100vh">
+  <div style="text-align:center;padding:24px;border:1px solid rgba(255,255,255,.08);background:#13131b;border-radius:14px;max-width:560px">
+    <h1 style="margin:0 0 8px">Thank you!</h1>
+    <p style="margin:0 0 10px;opacity:.8">Redirecting you back to the site…</p>
+    <p style="margin:0"><a href="/" style="color:#aab4ff;text-decoration:underline">Click here if you are not redirected</a></p>
   </div>
-
-  <script>
-    // JS redirect + visible countdown
-    (function () {
-      const seconds = 4;
-      const el = document.getElementById('count');
-      let t = seconds;
-      el.textContent = t;
-      const iv = setInterval(()=>{ if(--t<=0){ clearInterval(iv); } el.textContent=t; }, 1000);
-      setTimeout(()=>{ window.location.href = "/"; }, seconds * 1000);
-    })();
-  </script>
 </body>
 </html>
