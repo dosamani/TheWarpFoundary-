@@ -1124,12 +1124,27 @@ section#featured {
     Drop your email to get early access to kits as we roll them out.
   </p>
 
-  <form name="waitlist" method="POST" data-netlify="true" class="waitlist-form">
-    <input type="hidden" name="form-name" value="waitlist" />
-    <label for="email">Your email</label>
-    <input type="email" id="email" name="email" placeholder="you@example.com" required />
-    <button type="submit" class="btn">Request Invite</button>
-  </form>
+<!-- Waitlist form (Netlify) -->
+<form name="waitlist"
+      method="POST"
+      action="/thanks/"
+      data-netlify="true"
+      data-netlify-honeypot="bot-field"
+      class="waitlist-form">
+
+  <!-- Required hidden fields -->
+  <input type="hidden" name="form-name" value="waitlist">
+  <p style="display:none">
+    <label>Don’t fill this out: <input name="bot-field"></label>
+  </p>
+
+  <!-- Email field -->
+  <label for="email">Your email</label>
+  <input type="email" id="email" name="email" placeholder="you@example.com" required />
+
+  <!-- Submit button -->
+  <button type="submit" class="btn">Request Invite</button>
+</form>
 
   <p class="muted">
     We’ll only use your email for beta access notifications. No spam.
