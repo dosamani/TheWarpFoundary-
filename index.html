@@ -1140,6 +1140,41 @@ section#featured {
     <label>Don’t fill this out: <input name="bot-field"></label>
   </p>
 
+<!-- ================= API Fusion WAITLIST ================ -->
+<section id="waitlist-api" class="waitlist">
+  <h2>Join the API Fusion Waitlist</h2>
+  <p>
+    WarpFoundary’s API Fusion Layer is launching in private beta.  
+    Drop your email to get early access.
+  </p>
+
+  <!-- Waitlist form (Netlify) -->
+  <form name="waitlist-api"
+        method="POST"
+        action="/thanks-api.html"
+        data-netlify="true"
+        data-netlify-honeypot="bot-field"
+        class="waitlist-form">
+
+    <!-- Hidden field required for Netlify -->
+    <input type="hidden" name="form-name" value="waitlist-api">
+    <p style="display:none">
+      <label>Don’t fill this out: <input name="bot-field"></label>
+    </p>
+
+    <!-- Email field -->
+    <label for="email-api">Your email</label>
+    <input type="email" id="email-api" name="email" placeholder="you@example.com" required>
+
+    <!-- Submit button -->
+    <button type="submit" class="btn">Request Invite</button>
+  </form>
+
+  <p class="muted">
+    We’ll only use your email for beta access notifications. No spam.
+  </p>
+</section>
+
   <!-- Email field -->
   <label for="email">Your email</label>
   <input type="email"
