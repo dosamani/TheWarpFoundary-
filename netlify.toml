@@ -1,8 +1,7 @@
-# --- Build (static site) ---
 [build]
   publish = "/"
 
-# --- Canonical domain: always use https://www.thewarpfoundary.ai ---
+# --- Force HTTPS on correct domain ---
 [[redirects]]
   from = "http://thewarpfoundary.ai/*"
   to   = "https://www.thewarpfoundary.ai/:splat"
@@ -14,13 +13,3 @@
   to   = "https://www.thewarpfoundary.ai/:splat"
   status = 301
   force  = true
-
-# --- Security headers (fix mixed content + HSTS) ---
-[[headers]]
-  for = "/*"
-    [headers.values]
-    Content-Security-Policy = "upgrade-insecure-requests"
-    Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
-    X-Content-Type-Options = "nosniff"
-    X-Frame-Options = "SAMEORIGIN"
-    Referrer-Policy = "no-referrer-when-downgrade"
