@@ -1124,9 +1124,8 @@ section#featured {
     Drop your email to get early access to kits as we roll them out.
   </p>
 
-
 <!-- Waitlist form (Netlify) -->
-<form name="waitlist"
+<form name="waitlist-compliance"
       method="POST"
       action="/thanks.html"
       data-netlify="true"
@@ -1134,10 +1133,9 @@ section#featured {
       class="waitlist-form">
 
   <!-- Hidden field required for Netlify -->
-  <input type="hidden" name="form-name" value="waitlist">
-<input type="hidden" name="tag" value="compliance">
+  <input type="hidden" name="form-name" value="waitlist-compliance">
 
-  <!-- Honeypot field (hidden from humans) -->
+  <!-- Honeypot (leave as-is) -->
   <p style="display:none">
     <label>Don’t fill this out: <input name="bot-field"></label>
   </p>
