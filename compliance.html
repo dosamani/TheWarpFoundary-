@@ -1,63 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Compliance Hub | WarpFoundary</title>
-  <style>
-    body {
-      background: #0b0b12;
-      color: #ffffff;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      padding: 40px 20px;
-      line-height: 1.6;
-      font-size: 18px;
-      max-width: 800px;
-      margin: auto;
-    }
-    h1 {
-      color: #5b7cff;
-      font-size: 28px;
-      margin-bottom: 20px;
-    }
-    h2 {
-      margin-top: 30px;
-      font-size: 22px;
-      color: #9db5ff;
-    }
-    p {
-      margin-bottom: 15px;
-      font-size: 18px;
-    }
-    footer {
-      margin-top: 40px;
-      font-size: 14px;
-      color: #999;
-      text-align: center;
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WarpFoundary – Compliance AI</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Compliance Hub</h1>
-  <p>Welcome to the Compliance Hub for <strong>WarpFoundary</strong>.  
-     Here you’ll find our privacy policy, terms of service, and regulatory details as we add them.</p>
 
-  <h2>Privacy Policy</h2>
-  <p>We value your trust. Our privacy guidelines and data practices will be published here shortly.</p>
+  <!-- HEADER -->
+  <header class="nav __fixed">
+    <div class="brand">
+      <a href="/" class="logo-text">Warp<span>Foundary</span></a>
+    </div>
+    <button id="menuToggle" class="menu-toggle" aria-expanded="false" aria-controls="site-menu" aria-label="Open menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+    <nav id="site-menu" class="site-menu">
+      <a href="/">Home</a>
+      <a href="/compliance.html" class="active">Compliance</a>
+      <a href="/api.html">API Fusion</a>
+    </nav>
+  </header>
 
-  <h2>Terms of Service</h2>
-  <p>The formal terms for using WarpFoundary’s platform will be added here.</p>
+  <!-- HERO -->
+  <section class="hero">
+    <h1>Compliance AI</h1>
+    <p class="tagline">
+      The AI co-pilot that slashes regulatory busywork. Generate filings, map requirements, and prove compliance — in warp speed.
+    </p>
+  </section>
 
-  <h2>Regulatory Information</h2>
-  <p>Any compliance notices, certifications, or audit details will be displayed here.</p>
+  <!-- WAITLIST FORM -->
+  <section class="waitlist">
+    <h2>Join the Early Access Waitlist</h2>
+    <form name="compliance-waitlist" method="POST" data-netlify="true" action="/thanks-compliance.html">
+      <input type="email" name="email" placeholder="Your email" required>
+      <button type="submit" class="btn">Join Waitlist</button>
+    </form>
+  </section>
 
+  <!-- FEATURES -->
+  <section class="features">
+    <h2>Why Compliance AI?</h2>
+    <ul>
+      <li>Automates regulatory filings and reporting templates</li>
+      <li>Maps controls across HIPAA, GDPR, SOC2, and more</li>
+      <li>Audit-ready export with one click</li>
+    </ul>
+  </section>
+
+  <!-- FOOTER -->
   <footer>
-    &copy; <span id="year"></span> WarpFoundary. All rights reserved.
+    <p>&copy; 2025 WarpFoundary. All rights reserved.</p>
   </footer>
 
+  <!-- JS: Menu toggle -->
   <script>
-    // Auto-update year
-    document.getElementById("year").textContent = new Date().getFullYear();
+    const toggle = document.getElementById("menuToggle");
+    const menu = document.getElementById("site-menu");
+    toggle.addEventListener("click", () => {
+      menu.classList.toggle("open");
+    });
   </script>
+
 </body>
 </html>
