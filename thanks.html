@@ -1,42 +1,11 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <title>Thank you!</title>
-
-  <!-- ✅ CHANGE THIS to where you want to land -->
-  <script>
-    // If Compliance is a section on the homepage:
-    const DEST = 'https://www.thewarpfoundary.ai/#compliance';
-
-    // If you have a dedicated page instead, use:
-    // const DEST = 'https://www.thewarpfoundary.ai/compliance.html';
-  </script>
-
-  <!-- Meta refresh fallback -->
-  <meta http-equiv="refresh" content="2;url=https://www.thewarpfoundary.ai/#compliance">
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <style>
-    body { margin:0; background:#0b0b12; color:#eaf2ff; font:16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; display:grid; place-items:center; height:100vh; }
-    .card { max-width:720px; padding:24px; border-radius:14px; background:rgba(255,255,255,.04); box-shadow:0 8px 24px rgba(0,0,0,.35); text-align:center; }
-    a { color:#bfc9ff; text-decoration:none; border-bottom:1px dotted rgba(191,201,255,.6); }
-    .small { opacity:.8; font-size:.95rem; margin-top:.5rem; }
-  </style>
+  <meta charset="utf-8">
+  <title>Redirecting…</title>
+  <meta http-equiv="refresh" content="0;url=/compliance.html">
 </head>
 <body>
-  <div class="card" role="status" aria-live="polite">
-    <h1>Thank you!</h1>
-    <p>Your form submission has been received.</p>
-    <p class="small">Redirecting you to the Compliance page…</p>
-    <p><a id="fallback" href="https://www.thewarpfoundary.ai/#compliance">Back to our site</a></p>
-  </div>
-
-  <script>
-    (function () {
-      const url = (typeof DEST === 'string' && DEST) || document.getElementById('fallback').href;
-      // Try fast JS redirect
-      try { window.location.replace(url); } catch (e) { window.location.href = url; }
-    })();
-  </script>
+  <p>Redirecting… If not redirected, <a href="/compliance.html">click here</a>.</p>
 </body>
 </html>
