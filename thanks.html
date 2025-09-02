@@ -2,46 +2,37 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Thank You | WarpFoundary</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Thanks — You're on the list!</title>
   <style>
-    body {
-      background: #0b0b12;
-      color: #ffffff;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      margin: 0;
-      text-align: center;
-    }
-    h1 {
-      font-size: 32px;
-      margin-bottom: 20px;
-      color: #5b7cff;
-    }
-    p {
-      font-size: 20px;
-      margin-bottom: 10px;
-    }
-    .small {
-      font-size: 16px;
-      color: #aaa;
-    }
+    :root { --bg:#0b0b12; --fg:#eaf2ff; --brand:#5b7cff; }
+    html,body{height:100%}
+    body { margin:0; background:var(--bg); color:var(--fg); font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,sans-serif;
+           display:flex; align-items:center; justify-content:center; text-align:center; padding:20px; }
+    h1{font-size:2rem;margin:.2rem 0}
+    p{font-size:1.1rem;opacity:.95;margin:.2rem 0 1rem}
+    a{display:inline-block;padding:10px 18px;border-radius:10px;background:var(--brand);color:#fff;text-decoration:none}
+    a:hover{opacity:.9}
+    .row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:14px}
   </style>
+  <script>
+    // If came from compliance or api pages, bounce back after 2.5s
+    const ref = document.referrer || "";
+    const target = ref.includes("compliance.html") ? "/compliance.html"
+                 : ref.includes("api")            ? "/api-fusion.html"
+                 : "/";
+    setTimeout(()=>location.href = target, 2500);
+  </script>
 </head>
 <body>
-  <h1>✅ Thanks for joining the waitlist!</h1>
-  <p>You’ll be redirected to the Compliance Hub shortly…</p>
-  <p class="small">(If not, <a href="/compliance.html" style="color:#9db5ff;">click here</a>.)</p>
-
-  <script>
-    // Redirect after 6 seconds
-    setTimeout(() => {
-      window.location.href = "/compliance.html";
-    }, 6000);
-  </script>
+  <main>
+    <h1>🎉 You’re on the list!</h1>
+    <p>Thanks for joining our early access waitlist.</p>
+    <div class="row">
+      <a href="/compliance.html">Back to Compliance</a>
+      <a href="/api-fusion.html">Back to API Fusion</a>
+      <a href="/">Home</a>
+    </div>
+  </main>
 </body>
 </html>
