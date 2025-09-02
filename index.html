@@ -1128,20 +1128,26 @@ section#featured {
 <!-- Waitlist form (Netlify) -->
 <form name="waitlist"
       method="POST"
-      action="/thanks/"
+      action="/thanks.html"
       data-netlify="true"
       data-netlify-honeypot="bot-field"
       class="waitlist-form">
 
-  <!-- Required hidden fields -->
+  <!-- Hidden field required for Netlify -->
   <input type="hidden" name="form-name" value="waitlist">
+
+  <!-- Honeypot field (hidden from humans) -->
   <p style="display:none">
     <label>Don’t fill this out: <input name="bot-field"></label>
   </p>
 
   <!-- Email field -->
   <label for="email">Your email</label>
-  <input type="email" id="email" name="email" placeholder="you@example.com" required />
+  <input type="email"
+         id="email"
+         name="email"
+         placeholder="you@example.com"
+         required />
 
   <!-- Submit button -->
   <button type="submit" class="btn">Request Invite</button>
