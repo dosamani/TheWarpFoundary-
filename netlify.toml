@@ -2,7 +2,13 @@
 [build]
   publish = "/"
 
-# --- Redirect root domain to www ---
+# --- Canonical domain: always use https://www.thewarpfoundary.ai ---
+[[redirects]]
+  from = "http://thewarpfoundary.ai/*"
+  to   = "https://www.thewarpfoundary.ai/:splat"
+  status = 301
+  force  = true
+
 [[redirects]]
   from = "https://thewarpfoundary.ai/*"
   to   = "https://www.thewarpfoundary.ai/:splat"
