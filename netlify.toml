@@ -13,3 +13,16 @@
   to   = "https://www.thewarpfoundary.ai/:splat"
   status = 301
   force  = true
+
+# --- Thank-you URLs: support both pretty and .html ---
+[[redirects]]
+  from = "/thanks-compliance"
+  to   = "/thanks-compliance.html"
+  status = 301
+  force  = true
+
+[[redirects]]
+  from = "/thanks-api"
+  to   = "/thanks-api.html"
+  status = 301
+  force  = true
