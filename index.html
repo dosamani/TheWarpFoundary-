@@ -1175,6 +1175,45 @@ section#featured {
   </p>
 </section>
 
+<!-- ================ BUREAUCRACY / FORM-KILLER WAITLIST =============== -->
+<section id="waitlist-bureau" class="waitlist">
+  <h2>Join the Form-killer Waitlist</h2>
+  <p>
+    WarpFoundary’s Bureaucracy/Form-killer is launching in private beta.
+    Auto-fill government & legal forms from plain English, with audit trails.
+  </p>
+
+  <!-- Waitlist form (Netlify) -->
+  <form name="waitlist-bureau"
+        method="POST"
+        action="/thanks-bureau.html"
+        data-netlify="true"
+        data-netlify-honeypot="bot-field"
+        class="waitlist-form">
+
+    <!-- Required hidden field -->
+    <input type="hidden" name="form-name" value="waitlist-bureau">
+    <!-- Optional tag so you can filter in Netlify -->
+    <input type="hidden" name="tag" value="bureaucracy">
+
+    <!-- Honeypot -->
+    <p style="display:none">
+      <label>Don’t fill this out: <input name="bot-field"></label>
+    </p>
+
+    <!-- Email -->
+    <label for="email-bureau">Your email</label>
+    <input type="email" id="email-bureau" name="email" placeholder="you@example.com" required>
+
+    <!-- Submit -->
+    <button type="submit" class="btn">Request Invite</button>
+  </form>
+
+  <p class="muted">We’ll only use your email for beta access notifications. No spam.</p>
+</section>
+
+
+
   <!-- Email field -->
   <label for="email">Your email</label>
   <input type="email"
