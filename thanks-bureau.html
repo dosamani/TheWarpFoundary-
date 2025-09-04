@@ -1,34 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Thank You</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thanks – Form-Killer</title>
   <style>
+    :root { --bg:#0b0b12; --fg:#eaf2ff; --brand:#5b7cff; }
+    html,body{height:100%}
     body {
-      background: #111;
-      color: #f8f8f8;
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding: 50px;
+      background:var(--bg);
+      color:var(--fg);
+      font-family:sans-serif;
+      margin:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:20px;
     }
-    h1 {
-      font-size: 28px;
-      margin-bottom: 10px;
-    }
-    p {
-      font-size: 18px;
-      color: #ccc;
+    h1 { font-size:2rem; margin:.5rem 0; }
+    p { font-size:1.1rem; opacity:.9; }
+    a {
+      display:inline-block;
+      margin-top:16px;
+      padding:10px 18px;
+      background:var(--brand);
+      color:#fff;
+      text-decoration:none;
+      border-radius:10px;
     }
   </style>
   <script>
-    setTimeout(function() {
-      window.location.href = "/compliance.html";
-    }, 3000);
+    // Redirect back to Bureau landing page after 2.5s
+    setTimeout(()=>location.href="/bureau.html", 2500);
   </script>
 </head>
 <body>
-  <h1>✅ Thanks for joining the Form-killer waitlist!</h1>
-  <p>You’ll be redirected to Compliance in a few seconds...</p>
+  <main>
+    <h1>🎉 You’re on the list!</h1>
+    <p>Thanks for joining the <strong>Form-Killer</strong> early access waitlist.</p>
+    <a href="/bureau.html">Back to Form-Killer</a>
+  </main>
 </body>
 </html>
