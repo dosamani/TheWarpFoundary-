@@ -17,10 +17,11 @@
   <main>
     <h1>API Fusion</h1>
     <p>Unify all your APIs into a single adaptive layer. Sign up for early access.</p>
-    <form name="apifusion" method="POST" data-netlify="true" action="/thanks-api.html">
-      <input type="email" name="email" placeholder="you@example.com" required />
-      <button type="submit">Join Waitlist</button>
-    </form>
+    <form name="waitlist-api" method="POST" data-netlify="true" action="/thanks-api.html">
+  <input type="hidden" name="form-name" value="waitlist-api" />
+  <input type="email" name="email" placeholder="you@example.com" required />
+  <button type="submit">Join Waitlist</button>
+</form>
   </main>
 </body>
 </html>
