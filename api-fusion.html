@@ -3,43 +3,36 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Thanks – API Fusion</title>
+  <title>API Fusion – WarpFoundary</title>
   <style>
-    :root { --bg:#0b0b12; --fg:#eaf2ff; --brand:#5b7cff; }
-    html,body{height:100%}
     body {
-      background:var(--bg);
-      color:var(--fg);
-      font-family:sans-serif;
-      margin:0;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      padding:20px;
+      background:#0b0b12; color:#eaf2ff; font-family:sans-serif;
+      margin:0; padding:40px 20px; text-align:center;
     }
-    h1{font-size:2rem;margin:.5rem 0}
-    p{font-size:1.1rem;opacity:.9}
-    a{
-      display:inline-block;
-      margin-top:16px;
-      padding:10px 18px;
-      background:var(--brand);
-      color:#fff;
-      text-decoration:none;
-      border-radius:10px;
+    h1 { font-size:2rem; margin-bottom:1rem; }
+    p { font-size:1.1rem; margin-bottom:1.5rem; opacity:.9; }
+    form { max-width:420px; margin:0 auto; }
+    input[type="email"] {
+      width:100%; padding:12px; margin-bottom:12px;
+      border:1px solid #444; border-radius:8px; font-size:1rem; background:#10101a; color:#eaf2ff;
     }
+    button {
+      background:#5b7cff; color:#fff; border:none; padding:12px 20px;
+      border-radius:8px; font-size:1rem; cursor:pointer;
+    }
+    button:hover { background:#4663d9; }
+    .hint { opacity:.7; font-size:.9rem; margin-top:.5rem; }
   </style>
-  <script>
-    // bounce back to API Fusion landing after 2.5s
-    setTimeout(()=>location.href="/apifusion.html", 2500);
-  </script>
 </head>
 <body>
-  <main>
-    <h1>🎉 You’re on the list!</h1>
-    <p>Thanks for joining the <strong>API Fusion</strong> early access waitlist.</p>
-    <a href="/apifusion.html">Back to API Fusion</a>
-  </main>
+  <h1>API Fusion</h1>
+  <p>Unify multiple APIs into one secure, consistent layer. Join the waitlist:</p>
+
+  <form name="waitlist-api" method="POST" data-netlify="true" action="/thanks-api.html" autocomplete="on" novalidate>
+    <input type="hidden" name="form-name" value="waitlist-api" />
+    <input type="email" name="email" placeholder="you@company.com" required />
+    <button type="submit">Join Waitlist</button>
+    <div class="hint">We’ll email you when the beta opens.</div>
+  </form>
 </body>
 </html>
