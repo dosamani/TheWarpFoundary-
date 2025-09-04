@@ -2,26 +2,89 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>API Fusion – WarpFoundary Pivot</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>API Fusion — One Adaptive Layer for All Your APIs</title>
+  <meta name="description" content="Unify multiple APIs into one secure, consistent layer. One schema, one auth, smart mapping, rate-limit shielding, and observability out of the box." />
   <style>
-    body { background:#0b0b12; color:#eaf2ff; font-family:sans-serif; margin:0; padding:40px; text-align:center; }
-    h1 { font-size:2rem; margin-bottom:1rem; }
-    p { opacity:.9; margin-bottom:1.5rem; }
-    form { max-width:400px; margin:0 auto; }
-    input[type="email"] { padding:10px; width:100%; border-radius:6px; border:none; margin-bottom:12px; }
-    button { background:#5b7cff; color:#fff; border:none; padding:10px 18px; border-radius:6px; cursor:pointer; }
+    :root { --bg:#0b0b12; --fg:#eaf2ff; --muted:#9fb0ff; --brand:#5b7cff; --card:#12121a; }
+    *{box-sizing:border-box} html,body{height:100%}
+    body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Inter,sans-serif}
+    .wrap{max-width:900px;margin:0 auto;padding:28px 20px 64px}
+    header{display:flex;justify-content:space-between;align-items:center;margin-bottom:28px}
+    .logo{font-weight:700;letter-spacing:.2px}
+    .hero{padding:24px 0 18px;text-align:center}
+    h1{font-size:44px;line-height:1.1;margin:0 0 12px}
+    .sub{font-size:18px;color:var(--muted);max-width:740px;margin:0 auto 22px}
+    .card{background:var(--card);border:1px solid #202030;border-radius:14px;padding:18px;margin:22px 0}
+    form{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+    input[type=email]{width:420px;max-width:100%;padding:14px 14px;border-radius:10px;border:1px solid #2a2a3a;background:#0f0f18;color:var(--fg)}
+    .btn{background:var(--brand);border:none;border-radius:10px;padding:14px 18px;color:#fff;font-weight:600}
+    .muted{color:#9aa0b5;font-size:13px;text-align:center;margin-top:8px}
+    .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+    .feature{background:var(--card);padding:16px;border:1px solid #202030;border-radius:12px}
+    .feature h3{margin:0 0 6px;font-size:16px}
+    .feature p{margin:0;color:#c9cde2;font-size:14px}
+    footer{margin-top:36px;text-align:center;color:#9aa0b5;font-size:13px}
+    @media (max-width:640px){ h1{font-size:34px} }
   </style>
 </head>
 <body>
-  <main>
-    <h1>API Fusion</h1>
-    <p>Unify all your APIs into a single adaptive layer. Sign up for early access.</p>
-    <form name="waitlist-api" method="POST" data-netlify="true" action="/thanks-api.html">
-  <input type="hidden" name="form-name" value="waitlist-api" />
-  <input type="email" name="email" placeholder="you@example.com" required />
-  <button type="submit">Join Waitlist</button>
-</form>
-  </main>
+  <div class="wrap">
+
+    <header>
+      <div class="logo">WarpFoundary</div>
+      <nav><a href="/compliance.html" style="color:#9aa0b5;text-decoration:none">Compliance</a></nav>
+    </header>
+
+    <section class="hero">
+      <h1>API Fusion</h1>
+      <p class="sub">
+        Unify all your APIs into a single adaptive layer. One schema, one auth.
+        Automatic mapping, retries &amp; rate-limit shielding, plus usage analytics.
+      </p>
+
+      <div class="card">
+        <!-- Netlify form -->
+        <form name="waitlist-api" method="POST" data-netlify="true" action="/thanks-api.html" data-netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="waitlist-api">
+          <p style="display:none">
+            <label>Don’t fill this out: <input name="bot-field"></label>
+          </p>
+          <input type="email" id="email" name="email" placeholder="you@company.com" required />
+          <button class="btn" type="submit">Join Waitlist</button>
+        </form>
+        <div class="muted">We’ll email you when the beta opens. No spam.</div>
+      </div>
+    </section>
+
+    <section class="grid">
+      <div class="feature">
+        <h3>Single Contract</h3>
+        <p>Normalize many vendor APIs into one consistent schema with versioned types.</p>
+      </div>
+      <div class="feature">
+        <h3>Smart Orchestration</h3>
+        <p>Failover, retries, dedupe &amp; caching. We handle the messy edge cases.</p>
+      </div>
+      <div class="feature">
+        <h3>Unified Auth</h3>
+        <p>OAuth/key vault and tenant routing built-in. Bring your own secrets.</p>
+      </div>
+      <div class="feature">
+        <h3>Rate-Limit Shield</h3>
+        <p>Adaptive backoff, queueing, and burst smoothing keep you under vendor caps.</p>
+      </div>
+      <div class="feature">
+        <h3>Observability</h3>
+        <p>Per-endpoint latency, errors, and spend. Export to your APM in one click.</p>
+      </div>
+      <div class="feature">
+        <h3>SDK &amp; Mock Server</h3>
+        <p>Type-safe SDKs plus a local mock for CI — build fast without vendor sandboxes.</p>
+      </div>
+    </section>
+
+    <footer>© 2025 WarpFoundary • <a href="/privacy.html" style="color:#9aa0b5">Privacy</a> • <a href="/terms.html" style="color:#9aa0b5">Terms</a></footer>
+  </div>
 </body>
 </html>
