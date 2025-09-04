@@ -3,32 +3,43 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>WarpFoundary — API Fusion Layer</title>
-  <link rel="stylesheet" href="styles.css" />
+  <title>Thanks – API Fusion</title>
+  <style>
+    :root { --bg:#0b0b12; --fg:#eaf2ff; --brand:#5b7cff; }
+    html,body{height:100%}
+    body {
+      background:var(--bg);
+      color:var(--fg);
+      font-family:sans-serif;
+      margin:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:20px;
+    }
+    h1{font-size:2rem;margin:.5rem 0}
+    p{font-size:1.1rem;opacity:.9}
+    a{
+      display:inline-block;
+      margin-top:16px;
+      padding:10px 18px;
+      background:var(--brand);
+      color:#fff;
+      text-decoration:none;
+      border-radius:10px;
+    }
+  </style>
+  <script>
+    // bounce back to API Fusion landing after 2.5s
+    setTimeout(()=>location.href="/apifusion.html", 2500);
+  </script>
 </head>
 <body>
-  <header class="nav __fixed">
-    <div class="brand">
-      <a href="/" class="logo-text">Warp<span>Foundary</span></a>
-    </div>
-  </header>
-
-  <section class="hero">
-    <h1>API Fusion Layer</h1>
-    <p class="sub">Unify OpenAI, Anthropic, Mistral, Search, Email, DBs, and more—one consistent API, keys stay with you.</p>
-  </section>
-
-  <section class="waitlist">
-    <h2>Join the API Fusion Waitlist</h2>
-    <form name="waitlist-api" method="POST" data-netlify="true" action="/thanks-api.html">
-      <input type="email" name="email" placeholder="you@example.com" required />
-      <button type="submit" class="btn">Request Invite</button>
-    </form>
-    <p class="muted">We’ll only use your email for beta access notifications.</p>
-  </section>
-
-  <footer class="footer">
-    <p>© WarpFoundary</p>
-  </footer>
+  <main>
+    <h1>🎉 You’re on the list!</h1>
+    <p>Thanks for joining the <strong>API Fusion</strong> early access waitlist.</p>
+    <a href="/apifusion.html">Back to API Fusion</a>
+  </main>
 </body>
 </html>
