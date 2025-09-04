@@ -26,3 +26,28 @@
   to   = "/thanks-api.html"
   status = 301
   force  = true
+
+# --- Friendly aliases to real files (avoid 404s) ---
+[[redirects]]
+  from = "/apifusion"
+  to   = "/api-fusion.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/apifusion.html"
+  to   = "/api-fusion.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/api-fusion"
+  to   = "/api-fusion.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/compliance"
+  to   = "/compliance.html"
+  status = 301
+  force = true
