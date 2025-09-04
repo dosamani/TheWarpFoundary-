@@ -8,35 +8,16 @@
     :root { --bg:#0b0b12; --fg:#eaf2ff; --brand:#5b7cff; }
     html,body{height:100%}
     body {
-      background:var(--bg);
-      color:var(--fg);
-      font-family:sans-serif;
-      margin:0;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      padding:20px;
+      background:var(--bg); color:var(--fg); font-family:sans-serif; margin:0;
+      display:flex; align-items:center; justify-content:center; text-align:center; padding:20px;
     }
     h1{font-size:2rem;margin:.5rem 0}
     p{font-size:1.1rem;opacity:.9}
     a{
-      display:inline-block;
-      margin-top:16px;
-      padding:10px 18px;
-      background:var(--brand);
-      color:#fff;
-      text-decoration:none;
-      border-radius:10px;
+      display:inline-block; margin-top:16px; padding:10px 18px;
+      background:var(--brand); color:#fff; text-decoration:none; border-radius:10px;
     }
   </style>
-<script>
-  // 2.5s then hard redirect to the landing (absolute URL avoids relative/case pitfalls)
-  setTimeout(() => {
-    window.location.href = "/api-fusion.html";
-  }, 2500);
-</script>
-
 </head>
 <body>
   <main>
@@ -44,5 +25,9 @@
     <p>Thanks for joining the <strong>API Fusion</strong> early access waitlist.</p>
     <a href="/api-fusion.html">Back to API Fusion</a>
   </main>
-</body>
-</html>
+
+  <script>
+    // Hard redirect back to landing after 2.5s (absolute path)
+    setTimeout(function(){ window.location.replace("/api-fusion.html"); }, 2500);
+  </script>
+</
