@@ -1,63 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Form-Killer (AI Bureaucracy Slayer)</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Form-Killer – Bureaucracy Slayer</title>
+  <link rel="stylesheet" href="styles.css" />
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #0b0b12;
-      color: #eaf2ff;
-      margin: 0;
-      padding: 0;
-      text-align: center;
-    }
-    header {
-      padding: 30px;
-    }
-    h1 {
-      font-size: 32px;
-    }
-    p {
-      font-size: 18px;
-      color: #bbb;
-    }
-    form {
-      margin-top: 20px;
-    }
+    body { background:#0b0b12; color:#eaf2ff; font-family:sans-serif; margin:0; }
+    header { padding:20px; text-align:center; font-weight:bold; font-size:20px; }
+    .hero { text-align:center; padding:60px 20px; }
+    h1 { font-size:2rem; margin-bottom:10px; }
+    p.sub { font-size:1.2rem; opacity:.85; margin-bottom:30px; }
+    form { max-width:400px; margin:0 auto; }
     input[type="email"] {
-      padding: 12px;
-      width: 280px;
-      border: none;
-      border-radius: 5px;
-      margin-right: 10px;
+      width:100%; padding:12px; border-radius:6px; border:1px solid #555; margin-bottom:12px;
     }
-    button {
-      padding: 12px 18px;
-      background: #5b7cff;
-      color: #fff;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    button:hover {
-      background: #4763cc;
-    }
+    button { background:#5b7cff; border:none; padding:12px 20px; color:#fff; border-radius:6px; cursor:pointer; width:100%; }
+    button:hover { background:#4361c2; }
+    footer { margin-top:50px; text-align:center; font-size:14px; color:#9aa0b5; padding:20px; }
   </style>
 </head>
 <body>
   <header>
-    <h1>🚀 Form-Killer</h1>
-    <p>AI that slays bureaucracy. Upload, auto-fill, and file any form in seconds.</p>
+    🚀 WarpFoundary – Form-Killer
   </header>
 
-  <main>
-    <h2>Join the waitlist</h2>
-    <form name="bureau-waitlist" method="POST" data-netlify="true" action="/thanks-bureau.html">
-      <input type="email" name="email" placeholder="Your email" required>
+  <section class="hero">
+    <h1>🚀 Form-Killer</h1>
+    <p class="sub">
+      AI that slays bureaucracy. Upload, auto-fill, and file any form in seconds.
+    </p>
+
+    <!-- Netlify form -->
+    <form name="waitlist-bureau" method="POST"
+          data-netlify="true"
+          data-netlify-honeypot="bot-field"
+          action="/thanks-bureau.html"
+          class="waitlist-form">
+
+      <input type="hidden" name="form-name" value="waitlist-bureau" />
+      <p style="display:none">
+        <label>Don’t fill this out: <input name="bot-field"></label>
+      </p>
+
+      <input type="email" id="email" name="email" placeholder="you@example.com" required />
       <button type="submit">Join</button>
     </form>
-  </main>
+  </section>
+
+  <footer>
+    &copy; 2025 WarpFoundary. All rights reserved.
+  </footer>
 </body>
 </html>
