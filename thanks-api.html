@@ -30,10 +30,13 @@
       border-radius:10px;
     }
   </style>
-  <script>
-    // Redirect back to the landing page after 2.5s
-    setTimeout(()=>location.href="/api-fusion.html", 2500);
-  </script>
+<script>
+  // 2.5s then hard redirect to the landing (absolute URL avoids relative/case pitfalls)
+  setTimeout(() => {
+    window.location.href = "/api-fusion.html";
+  }, 2500);
+</script>
+
 </head>
 <body>
   <main>
