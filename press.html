@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Press Kit</title>
+  <meta name="description" content="Press kit and media resources." />
+  <style>
+    :root { --bg:#0b0b12; --fg:#eaf2ff; --muted:#a9b6d3; --brand:#5b7cff; }
+    html,body { margin:0; padding:0; background:var(--bg); color:var(--fg); font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif; }
+    a { color: var(--brand); text-decoration: none; }
+    .wrap { max-width: 920px; margin: 40px auto; padding: 0 16px; }
+    header { display:flex; align-items:center; justify-content:space-between; margin-bottom: 24px; }
+    header .brand { font-weight: 800; letter-spacing:.3px; }
+    h1 { font-size: 2rem; margin: 8px 0 4px; }
+    h2 { font-size: 1.25rem; margin: 28px 0 8px; }
+    p  { color: var(--muted); line-height: 1.6; }
+    .grid { display:grid; gap:16px; grid-template-columns: 1fr; }
+    .card { border: 1px solid rgba(255,255,255,.08); border-radius: 12px; padding:16px; background: rgba(255,255,255,.03); }
+    .cta { display:inline-block; margin-top:10px; padding:10px 14px; background:var(--brand); color:#fff; border-radius:10px; }
+    .links a { display:inline-block; margin-right:14px; margin-top:8px; }
+    .small { font-size:.95rem; }
+    @media (min-width: 768px){ .grid{ grid-template-columns: 1fr 1fr; } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">Press Kit</div>
+      <nav class="links small">
+        <a href="/compliance.html">Compliance AI</a>
+        <a href="/api-fusion.html">API Fusion</a>
+        <a href="/bureau.html">Form-Killer</a>
+      </nav>
+    </header>
+
+    <section class="card">
+      <h1>One-liner</h1>
+      <p><strong>Compliance AI</strong>, <strong>API Fusion</strong>, and <strong>Form-Killer</strong> are three experiments proving how AI turns paperwork, integrations, and compliance into push-button workflows.</p>
+    </section>
+
+    <section class="grid">
+      <div class="card">
+        <h2>Boilerplate</h2>
+        <p>We build focused AI tools that compress weeks of work into minutes: automating compliance (SOC2/HIPAA/GDPR), unifying APIs with AI orchestration, and eliminating bureaucracy with form autofill and filing. We’re currently invite-only.</p>
+        <p class="small">Headquarters: Remote • Founded: 2025 • Contact: <a href="mailto:hello@thewarpfoundary.ai">hello@thewarpfoundary.ai</a></p>
+      </div>
+      <div class="card">
+        <h2>Fast facts</h2>
+        <ul class="small">
+          <li>Pivots live: Compliance AI, API Fusion, Form-Killer</li>
+          <li>Waitlist enabled (Netlify Forms)</li>
+          <li>Press & investor demos available on request</li>
+        </ul>
+        <a class="cta" href="mailto:hello@thewarpfoundary.ai?subject=Press%20or%20Investor%20Inquiry">Request interview/demo</a>
+      </div>
+    </section>
+
+    <section class="grid" style="margin-top:16px;">
+      <div class="card">
+        <h2>Logos & assets</h2>
+        <p class="small">Add your logos to <code>/assets/</code> and link them here when ready.</p>
+        <ul class="small">
+          <li><a href="/assets/logo-dark.png">Logo (dark)</a></li>
+          <li><a href="/assets/logo-light.png">Logo (light)</a></li>
+          <li><a href="/assets/press-screens.zip">Screens (zip)</a></li>
+        </ul>
+      </div>
+      <div class="card">
+        <h2>Key links</h2>
+        <div class="links small">
+          <a href="/compliance.html">Compliance AI</a>
+          <a href="/api-fusion.html">API Fusion</a>
+          <a href="/bureau.html">Form-Killer</a>
+          <a href="mailto:hello@thewarpfoundary.ai">Contact</a>
+        </div>
+      </div>
+    </section>
+  </div>
+</body>
+</html>
